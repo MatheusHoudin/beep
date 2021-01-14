@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "952531191789",
+    "project_id": "beep-969f5",
+    "storage_bucket": "beep-969f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952531191789:android:054a6f3312a2e38c2149e4",
+        "android_client_info": {
+          "package_name": "com.houdin.beep.prod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952531191789-0mtcvtlce1lpo721aagtkci1fqr5mlg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUcIUJRRQWpuB0lgcnsLA1Yln6RlpfvUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952531191789-0mtcvtlce1lpo721aagtkci1fqr5mlg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
