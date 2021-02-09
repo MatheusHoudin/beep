@@ -5,29 +5,45 @@ import 'package:beep/features/splash/domain/usecase/save_onboarding_done_usecase
 import 'package:beep/shared/model/splash_page_data.dart';
 import 'package:get/get.dart';
 
-abstract class SplashScreenController extends GetxController{
+abstract class SplashScreenController extends GetxController {
   void nextPage();
+
   void previousPage();
+
   void skip();
+
   String getBackgroundImageUrl();
+
   String getInfo();
+
   String getStepImageUrl();
+
   bool shouldShowSkipButton();
 }
 
-class SplashScreenControllerImpl extends GetxController implements SplashScreenController {
+class SplashScreenControllerImpl extends GetxController
+    implements SplashScreenController {
   final List<SplashPageData> _splashPagesData = [
-    SplashPageData(image: splashFirstBackground, text: splashFirstText, step: stepsFirst),
-    SplashPageData(image: splashSecondBackground, text: splashSecondText, step: stepsSecond),
-    SplashPageData(image: splashThirdBackground, text: splashThirdText, step: stepsThird)
+    SplashPageData(
+        image: splashFirstBackground, text: splashFirstText, step: stepsFirst),
+    SplashPageData(
+        image: splashSecondBackground,
+        text: splashSecondText,
+        step: stepsSecond),
+    SplashPageData(
+        image: splashThirdBackground, text: splashThirdText, step: stepsThird)
   ];
-  var selectedSplashPage = SplashPageData(image: splashFirstBackground, text: splashFirstText, step: stepsFirst).obs;
+  var selectedSplashPage = SplashPageData(
+          image: splashFirstBackground, text: splashFirstText, step: stepsFirst)
+      .obs;
   final currentIndex = 0.obs;
 
   final SaveOnboardingDoneUsecase _saveOnboardingDoneUseCase;
   final AppRouter _router;
 
-  SplashScreenControllerImpl([this._saveOnboardingDoneUseCase, this._router]);
+  SplashScreenControllerImpl(
+      [this._saveOnboardingDoneUseCase,
+      this._router]);
 
   @override
   void nextPage() {
@@ -78,5 +94,4 @@ class SplashScreenControllerImpl extends GetxController implements SplashScreenC
   bool shouldShowSkipButton() {
     return currentIndex.value == 0;
   }
-
 }
