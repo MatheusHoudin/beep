@@ -33,6 +33,10 @@ dependencies:
   get: ^3.24.0
   flutter_svg: ^0.18.0
   google_fonts: ^1.1.1
+  equatable: ^1.2.5
+  dartz: ^0.9.2
+  shared_preferences: ^0.5.12+4
+  mockito: ^4.1.4
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +59,12 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/images/
+    - assets/images/splash_first.png
+    - assets/images/splash_second.png
+    - assets/images/splash_third.png
+    - assets/images/steps_first.svg
+    - assets/images/steps_second.svg
+    - assets/images/steps_third.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
