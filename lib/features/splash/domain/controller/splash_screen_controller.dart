@@ -41,9 +41,7 @@ class SplashScreenControllerImpl extends GetxController
   final SaveOnboardingDoneUsecase _saveOnboardingDoneUseCase;
   final AppRouter _router;
 
-  SplashScreenControllerImpl(
-      [this._saveOnboardingDoneUseCase,
-      this._router]);
+  SplashScreenControllerImpl([this._saveOnboardingDoneUseCase, this._router]);
 
   @override
   void nextPage() {
