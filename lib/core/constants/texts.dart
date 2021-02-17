@@ -7,3 +7,11 @@ const skip = 'PULAR';
 const continueButton = 'AVANÇAR';
 const back = 'VOLTAR';
 // splash_screen
+
+// login_screen
+const emailFieldHint = 'Digite seu email de acesso';
+const passwordFieldHint = 'Digite sua senha';
+const login = 'ACESSAR MINHA CONTA';
+const noAccount = 'Ainda não tem uma conta?';
+const createAccount = 'CRIAR MINHA CONTA';
+// login_screen

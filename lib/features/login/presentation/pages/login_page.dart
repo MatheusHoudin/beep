@@ -1,9 +1,15 @@
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
+import 'package:beep/core/constants/texts.dart';
+import 'package:beep/features/login/domain/controller/login_page_controller.dart';
 import 'package:beep/shared/widgets/main_text_field.dart';
+import 'package:beep/shared/widgets/outlined_primary_button.dart';
+import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:beep/core/constants/assets.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
 
@@ -12,13 +18,18 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: secondaryColor,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              BeepLogo(),
-              SizedBox(height: largeSize,),
-              LoginForm()
-            ],
+        body: GetBuilder<LoginPageController>(
+          builder: (c) => SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                BeepLogo(),
+                SizedBox(height: largeSize,),
+                LoginForm(c),
+                NoAccountDivider(),
+                CreateAccountButton(),
+              ],
+            ),
           ),
         ),
       ),
@@ -28,37 +39,90 @@ class LoginPage extends StatelessWidget {
   Widget BeepLogo() {
     return SvgPicture.asset(
       beepLogo,
-      width: 130,
-      height: 180,
+      width: beepLogoWidth,
+      height: beepLogoHeight,
     );
   }
 
   Widget EmailField() {
-    return MainTextField(hint: "Digite seu email");
+    return MainTextField(hint: emailFieldHint);
   }
 
-  Widget PasswordField() {
+  Widget PasswordField(LoginPageController c) {
     return MainTextField(
-      hint: "Digite sua senha",
-      isObscure: true,
-      suffixIcon: Icon(
-        Icons.visibility_off_outlined,
-        color: primaryColor,
+      hint: passwordFieldHint,
+      isObscure: !c.isPasswordVisible(),
+      suffixIcon: GestureDetector(
+        onTap: () => c.togglePasswordVisibility(),
+        child: Icon(
+          c.isPasswordVisible() ? Icons.visibility : Icons.visibility_off_outlined,
+          color: primaryColor,
+        ),
       ),
     );
   }
 
-  Widget LoginForm() {
+  Widget LoginButton() {
+    return PrimaryButton(
+      buttonText: login,
+    );
+  }
+
+  Widget CreateAccountButton() {
     return Container(
-      margin: EdgeInsets.only(
-        left: mediumSize,
-        right: mediumSize
+      margin: EdgeInsets.symmetric(
+        vertical: normalSize,
+        horizontal: mediumSize
       ),
+      child: OutlinedPrimaryButton(
+        buttonText: createAccount,
+      ),
+    );
+  }
+
+  Widget LoginForm(LoginPageController c) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: mediumSize),
       child: Column(
         children: [
           EmailField(),
           SizedBox(height: normalSize),
-          PasswordField()
+          PasswordField(c),
+          SizedBox(height: mediumSize),
+          LoginButton()
+        ],
+      ),
+    );
+  }
+
+  Widget NoAccountDivider() {
+    return Container(
+      margin: EdgeInsets.only(top: normalSize),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              color: primaryColor,
+              height: miniSize
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: mediumSmallSize),
+            child: Text(
+              noAccount,
+              style: GoogleFonts.firaSans(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: normalTextSize
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              color: primaryColor,
+              height: miniSize,
+            ),
+          )
         ],
       ),
     );

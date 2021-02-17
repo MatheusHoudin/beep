@@ -1,5 +1,6 @@
 import 'package:beep/core/constants/keys.dart';
 import 'package:beep/core/constants/routes.dart';
+import 'package:beep/core/di/login_page_bindings.dart';
 import 'package:beep/core/di/main_bindings.dart';
 import 'package:beep/core/di/splash_screen_bindings.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
@@ -25,7 +26,11 @@ void main() async {
           name: splashScreen,
           page: () => SplashScreen(),
           binding: SplashScreenBinding()),
-      GetPage(name: loginScreen, page: () => LoginPage())
+      GetPage(
+          name: loginScreen,
+          page: () => LoginPage(),
+          binding: LoginPageBinding()
+      )
     ],
   ));
 }
