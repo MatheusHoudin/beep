@@ -21,8 +21,7 @@ abstract class SplashScreenController extends GetxController {
   bool shouldShowSkipButton();
 }
 
-class SplashScreenControllerImpl extends GetxController
-    implements SplashScreenController {
+class SplashScreenControllerImpl extends SplashScreenController {
   final List<SplashPageData> _splashPagesData = [
     SplashPageData(
         image: splashFirstBackground, text: splashFirstText, step: stepsFirst),

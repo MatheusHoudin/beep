@@ -5,30 +5,52 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String buttonText;
+  final bool shouldExpand;
   final Function onPressedCallback;
 
-  PrimaryButton({this.buttonText, this.onPressedCallback});
+  PrimaryButton({this.buttonText, this.onPressedCallback, this.shouldExpand});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: hugeSize,
       alignment: Alignment.center,
-      child: RawMaterialButton(
-        fillColor: primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-        ),
-        onPressed: () => onPressedCallback(),
-        child: Text(
-          buttonText,
-          style: GoogleFonts.firaSans(
-            fontSize: normalSize,
-            color: Colors.white,
-            fontWeight: FontWeight.bold
-          ),
-        ),
+      child: shouldExpand
+          ? ExpandableRawMaterialButton()
+          : NormalRawMaterialButton(),
+    );
+  }
+
+  Widget ExpandableRawMaterialButton() {
+    return RawMaterialButton(
+      constraints: BoxConstraints.expand(),
+      fillColor: primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
+      onPressed: () => onPressedCallback(),
+      child: ButtonText(),
+    );
+  }
+
+  Widget NormalRawMaterialButton() {
+    return RawMaterialButton(
+      fillColor: primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
+      onPressed: () => onPressedCallback(),
+      child: ButtonText(),
+    );
+  }
+
+  Widget ButtonText() {
+    return Text(
+      buttonText,
+      style: GoogleFonts.firaSans(
+          fontSize: normalSize,
+          color: Colors.white,
+          fontWeight: FontWeight.bold),
     );
   }
 }
