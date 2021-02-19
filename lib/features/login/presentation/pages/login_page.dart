@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: largeSize,),
                 LoginForm(c),
                 NoAccountDivider(),
-                CreateAccountButton(),
+                CreateAccountButton(c),
               ],
             ),
           ),
@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget CreateAccountButton() {
+  Widget CreateAccountButton(LoginPageController c) {
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: normalSize,
@@ -77,6 +77,7 @@ class LoginPage extends StatelessWidget {
       ),
       child: OutlinedPrimaryButton(
         buttonText: createAccount,
+        onPressedCallback: c.continueToRegisterPage,
       ),
     );
   }

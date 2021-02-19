@@ -1,2 +1,3 @@
-const splashScreen = '/';
-const loginScreen = '/login';
+const splashPage = '/';
+const loginPage = '/login';
+const registerPage = '/register';

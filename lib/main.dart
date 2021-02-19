@@ -2,9 +2,10 @@ import 'package:beep/core/constants/keys.dart';
 import 'package:beep/core/constants/routes.dart';
 import 'package:beep/core/di/login_page_bindings.dart';
 import 'package:beep/core/di/main_bindings.dart';
-import 'package:beep/core/di/splash_screen_bindings.dart';
+import 'package:beep/core/di/splash_page_bindings.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
-import 'package:beep/features/splash/presentation/splash_screen.dart';
+import 'package:beep/features/register/presentation/register_page.dart';
+import 'package:beep/features/splash/presentation/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,13 +26,17 @@ void main() async {
     initialBinding: MainBinding(),
     getPages: [
       GetPage(
-          name: splashScreen,
-          page: () => SplashScreen(),
-          binding: SplashScreenBinding()),
+        name: splashPage,
+        page: () => SplashPage(),
+        binding: SplashPageBinding()),
       GetPage(
-          name: loginScreen,
-          page: () => LoginPage(),
-          binding: LoginPageBinding()
+        name: loginPage,
+        page: () => LoginPage(),
+        binding: LoginPageBinding()),
+      GetPage(
+        name: registerPage,
+        page: () => RegisterPage(),
+        transition: Transition.downToUp
       )
     ],
   ));
@@ -39,6 +44,6 @@ void main() async {
 
 String getInitialRoute(bool shouldHideOnboarding) {
   return (shouldHideOnboarding != null && shouldHideOnboarding)
-      ? loginScreen
-      : splashScreen;
+      ? loginPage
+      : splashPage;
 }
