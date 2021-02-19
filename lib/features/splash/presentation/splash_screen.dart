@@ -19,33 +19,28 @@ class SplashScreen extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(c.getBackgroundImageUrl()),
-                  fit: BoxFit.cover
-              )
-          ),
+                  fit: BoxFit.cover)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: mediumSize
-                ),
+                padding: EdgeInsets.symmetric(horizontal: mediumSize),
                 child: Text(
                   c.getInfo(),
                   textAlign: TextAlign.justify,
                   style: GoogleFonts.firaSans(
                       fontSize: largeTextSize,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white
-                  ),
+                      color: Colors.white),
                 ),
               ),
-              SizedBox(height: largeSize,),
+              SizedBox(
+                height: largeSize,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: normalSize,
-                    vertical: mediumSize
-                ),
+                    horizontal: normalSize, vertical: mediumSize),
                 child: Row(
                   children: [
                     Container(
@@ -57,15 +52,24 @@ class SplashScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Visibility(
-                            child: CustomOutlinedButton(buttonText: skip, onPressedCallback: () => c.skip()),
+                            child: CustomOutlinedButton(
+                                buttonText: skip,
+                                onPressedCallback: () => c.skip()),
                             visible: c.shouldShowSkipButton(),
                           ),
                           Visibility(
-                            child: CustomOutlinedButton(buttonText: back, onPressedCallback: () => c.previousPage()),
+                            child: CustomOutlinedButton(
+                                buttonText: back,
+                                onPressedCallback: () => c.previousPage()),
                             visible: !c.shouldShowSkipButton(),
                           ),
-                          SizedBox(width: normalSize,),
-                          PrimaryButton(buttonText: continueButton, onPressedCallback: () => c.nextPage())
+                          SizedBox(
+                            width: normalSize,
+                          ),
+                          PrimaryButton(
+                              buttonText: continueButton,
+                              onPressedCallback: () => c.nextPage(),
+                              shouldExpand: false)
                         ],
                       ),
                     )

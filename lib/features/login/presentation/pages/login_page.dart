@@ -65,6 +65,7 @@ class LoginPage extends StatelessWidget {
   Widget LoginButton() {
     return PrimaryButton(
       buttonText: login,
+      shouldExpand: true,
     );
   }
 
