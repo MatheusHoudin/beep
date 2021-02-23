@@ -2,6 +2,7 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/features/login/domain/controller/login_page_controller.dart';
+import 'package:beep/shared/widgets/custom_password_field.dart';
 import 'package:beep/shared/widgets/main_text_field.dart';
 import 'package:beep/shared/widgets/outlined_primary_button.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
@@ -49,16 +50,10 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget PasswordField(LoginPageController c) {
-    return MainTextField(
+    return CustomPasswordField(
+      isObscure: c.isPasswordVisible(),
       hint: passwordFieldHint,
-      isObscure: !c.isPasswordVisible(),
-      suffixIcon: GestureDetector(
-        onTap: () => c.togglePasswordVisibility(),
-        child: Icon(
-          c.isPasswordVisible() ? Icons.visibility : Icons.visibility_off_outlined,
-          color: primaryColor,
-        ),
-      ),
+      togglePasswordVisibility: c.togglePasswordVisibility,
     );
   }
 

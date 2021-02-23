@@ -2,16 +2,25 @@ const splashFirstText = 'Agora você pode realizar inventários em suas empresa 
 const splashSecondText = 'Tenha em suas mãos relatórios sobre os seus inventários, em tempo real, realize análises e por fim, aumente a lucratividade do seu negócio e evite desperdícios.';
 const splashThirdText = 'Agora vamos realizar o cadastro de sua empresa, para que possamos incluir seus colaboradores e começe a criar inventários, para assim aproveitar nossa solução.';
 
-// splash_screen
+// splash_page
 const skip = 'PULAR';
 const continueButton = 'AVANÇAR';
 const back = 'VOLTAR';
-// splash_screen
+// splash_page
 
-// login_screen
+// login_page
 const emailFieldHint = 'Digite seu email de acesso';
 const passwordFieldHint = 'Digite sua senha';
 const login = 'ACESSAR MINHA CONTA';
 const noAccount = 'Ainda não tem uma conta?';
 const createAccount = 'CRIAR MINHA CONTA';
-// login_screen
+// login_page
+
+// register_page
+const registerPageAppBarTitle = 'CRIAR MINHA CONTA';
+const registerPageNameFieldHint = 'Digite seu nome';
+const registerPageCpfFieldHint = 'Digite seu CPF';
+const registerPageEmailFieldHint = 'Digite seu email';
+const registerPagePasswordFieldHint = 'Digite sua senha';
+const registerPageRegisterButton = 'CRIAR MINHA CONTA';
+// register_page
