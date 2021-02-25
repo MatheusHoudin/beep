@@ -52,7 +52,7 @@ void main() {
         when(collectionReferenceMock.add(any)).thenAnswer((_) async => null);
 
         await registerRemoteDataSource.registerUser(UserRegisterData(
-            name: "name", cpf: "cpf", email: "email", password: "password"));
+            name: "name", email: "email", password: "password"));
 
         verify(userCredential.credential).called(1);
         verify(authCredentialMock.providerId).called(1);
@@ -61,7 +61,7 @@ void main() {
             .called(1);
         verify(firestore.collection('users')).called(1);
         verify(collectionReferenceMock
-            .add({'id': 'id', 'name': 'name', 'email': 'email', 'cpf': 'cpf'}))
+            .add({'id': 'id', 'name': 'name', 'email': 'email'}))
             .called(1);
       });
 
@@ -78,7 +78,6 @@ void main() {
         expect(() =>
             call(UserRegisterData(
                 name: "name",
-                cpf: "cpf",
                 email: "email",
                 password: "password")), throwsA(TypeMatcher<WeakPasswordException>()));
         verify(auth.createUserWithEmailAndPassword(
@@ -99,7 +98,6 @@ void main() {
         expect(() =>
             call(UserRegisterData(
                 name: "name",
-                cpf: "cpf",
                 email: "email",
                 password: "password")), throwsA(TypeMatcher<EmailAlreadyInUseException>()));
         verify(auth.createUserWithEmailAndPassword(
@@ -119,7 +117,6 @@ void main() {
         expect(() =>
             call(UserRegisterData(
                 name: "name",
-                cpf: "cpf",
                 email: "email",
                 password: "password")), throwsA(TypeMatcher<GenericException>()));
         verify(auth.createUserWithEmailAndPassword(

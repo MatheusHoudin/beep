@@ -1,3 +1,4 @@
+import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/error/exception.dart';
 import 'package:beep/shared/model/user_register_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,8 +27,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       await firestore.collection('users').add({
         'id': userId,
         'name': userRegisterData.name,
-        'email': userRegisterData.email,
-        'cpf': userRegisterData.cpf
+        'email': userRegisterData.email
       });
 
     } on FirebaseAuthException catch (e) {
@@ -36,7 +36,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
         case 'email-already-in-use': throw EmailAlreadyInUseException();
       }
     } on Exception {
-      throw GenericException(message: "Um erro inesperado ocorreu");
+      throw GenericException(message: genericErrorMessage);
     }
   }
 }
