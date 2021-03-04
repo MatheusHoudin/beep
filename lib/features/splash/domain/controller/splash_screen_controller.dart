@@ -69,7 +69,7 @@ class SplashScreenControllerImpl extends SplashScreenController {
 
   void _saveOnboardingAndContinueToLogin() {
     _saveOnboardingDoneUseCase.call(SaveOnboardingParams(value: true));
-    _router.routeSplashScreenToLoginScreen();
+    _router.routeSplashPageToLoginPage();
   }
 
   @override

@@ -48,7 +48,7 @@ void main() {
     splashScreenController.skip();
 
     verify(mockSaveOnboardingDoneUseCase.call(SaveOnboardingParams(value: true)));
-    verify(mockAppRouter.routeSplashScreenToLoginScreen());
+    verify(mockAppRouter.routeSplashPageToLoginPage());
   });
 
   test('Should select next splash page when current page is first', () {
@@ -74,7 +74,7 @@ void main() {
     splashScreenController.nextPage();
 
     verify(mockSaveOnboardingDoneUseCase.call(SaveOnboardingParams(value: true)));
-    verify(mockAppRouter.routeSplashScreenToLoginScreen());
+    verify(mockAppRouter.routeSplashPageToLoginPage());
   });
 
   test('Should do nothing when selecting previous page but page index is zero', () {

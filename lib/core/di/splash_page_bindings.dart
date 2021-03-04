@@ -4,7 +4,7 @@ import 'package:beep/shared/datasource/onboarding/app_preferences_local_datasour
 import 'package:beep/shared/repository/onboarding/app_preferences_repository.dart';
 import 'package:get/get.dart';
 
-class SplashScreenBinding implements Bindings {
+class SplashPageBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<AppPreferencesLocalDataSource>(

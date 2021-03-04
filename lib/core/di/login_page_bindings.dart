@@ -5,6 +5,6 @@ class LoginPageBinding extends Bindings {
 
   @override
   void dependencies() {
-    Get.lazyPut<LoginPageController>(() => LoginPageControllerImpl());
+    Get.lazyPut<LoginPageController>(() => LoginPageControllerImpl(Get.find()));
   }
 }
