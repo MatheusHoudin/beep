@@ -38,10 +38,13 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget BeepLogo() {
-    return SvgPicture.asset(
-      beepLogo,
-      width: beepLogoWidth,
-      height: beepLogoHeight,
+    return Container(
+      margin: EdgeInsets.only(top: normalSize),
+      child: Image.asset(
+        beepLogo,
+        width: beepLogoWidth,
+        height: beepLogoHeight,
+      ),
     );
   }
 

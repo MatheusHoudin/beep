@@ -2,6 +2,7 @@ import 'package:beep/core/constants/keys.dart';
 import 'package:beep/core/constants/routes.dart';
 import 'package:beep/core/di/login_page_bindings.dart';
 import 'package:beep/core/di/main_bindings.dart';
+import 'package:beep/core/di/register_page_bindings.dart';
 import 'package:beep/core/di/splash_page_bindings.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
@@ -36,7 +37,8 @@ void main() async {
       GetPage(
         name: registerPage,
         page: () => RegisterPage(),
-        transition: Transition.downToUp
+        transition: Transition.downToUp,
+        binding: RegisterPageBinding()
       )
     ],
   ));

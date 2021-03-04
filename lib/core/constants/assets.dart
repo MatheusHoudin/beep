@@ -1,4 +1,4 @@
-const beepLogo = 'assets/images/beep_logo.svg';
+const beepLogo = 'assets/images/beep_logo.png';
 const passwordInvisible = 'assets/images/password_invisible.svg';
 const passwordVisible = 'assets/images/password_visible.svg';
 const splashFirstBackground = 'assets/images/splash_first.png';

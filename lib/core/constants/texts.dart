@@ -6,6 +6,7 @@ const splashThirdText = 'Agora vamos realizar o cadastro de sua empresa, para qu
 const genericErrorMessage = "Um erro inesperado ocorreu";
 const genericErrorMessageTitle = "Ops...";
 const genericErrorButton = "OK";
+const noInternetConnectionError = "Sua conexão com a internet parece estar fraca, verifique e tente novamente";
 // errors
 
 // splash_page
@@ -25,7 +26,6 @@ const createAccount = 'CRIAR MINHA CONTA';
 // register_page
 const registerPageAppBarTitle = 'CRIAR MINHA CONTA';
 const registerPageNameFieldHint = 'Digite seu nome';
-const registerPageCpfFieldHint = 'Digite seu CPF';
 const registerPageEmailFieldHint = 'Digite seu email';
 const registerPagePasswordFieldHint = 'Digite sua senha';
 const registerPageRegisterButton = 'CRIAR MINHA CONTA';
@@ -33,4 +33,6 @@ const weakPassword = "Sua senha deve conter no mínimo 6 caracteres";
 const emailAlreadyInUse = "Este email já está cadastrado, tente outro";
 const invalidName = "O nome não pode ser vazio";
 const invalidEmail = "O email fornecido não é um email válido";
+const registerPageRegisterSuccessTitle = 'Sucesso!';
+const registerPageRegisterSuccessMessage = 'Sua conta foi criada com sucesso, utilize seu email e senha para fazer login';
 // register_page

@@ -22,7 +22,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
           password: userRegisterData.password
       );
 
-      final userId = userCredentials.credential.providerId;
+      final userId = userCredentials.user.uid;
 
       await firestore.collection('users').add({
         'id': userId,
@@ -34,6 +34,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       switch(e.code) {
         case 'invalid-password': throw WeakPasswordException();
         case 'email-already-in-use': throw EmailAlreadyInUseException();
+        case 'invalid-email': throw InvalidEmailException();
       }
     } on Exception {
       throw GenericException(message: genericErrorMessage);

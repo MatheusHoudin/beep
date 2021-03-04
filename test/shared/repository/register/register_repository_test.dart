@@ -84,6 +84,19 @@ void main() {
       )));
     });
 
+    test('Should return a left with invalid email failure when data source throws an invalid email exception', () async {
+      when(dataSource.registerUser(any)).thenThrow(InvalidEmailException());
+      when(networkInfo.isConnected).thenAnswer((_) async => true);
+
+      final result = await repository.register(UserRegisterData());
+
+      verify(networkInfo.isConnected).called(1);
+      expect(result, Left(InvalidEmailFailure(
+          title: genericErrorMessageTitle,
+          message: invalidEmail
+      )));
+    });
+
     test('Should return a left with generic failure failure when data source throws generic exception', () async {
       when(dataSource.registerUser(any)).thenThrow(GenericException());
       when(networkInfo.isConnected).thenAnswer((_) async => true);

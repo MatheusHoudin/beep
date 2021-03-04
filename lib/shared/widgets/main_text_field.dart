@@ -5,14 +5,16 @@ import 'package:google_fonts/google_fonts.dart';
 class MainTextField extends StatelessWidget {
   final String hint;
   final bool isObscure;
+  final TextEditingController controller;
 
   final Widget suffixIcon;
 
-  MainTextField({this.hint, this.isObscure = false, this.suffixIcon});
+  MainTextField({this.hint, this.isObscure = false, this.suffixIcon, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         enabledBorder: BorderStyle(Colors.white),

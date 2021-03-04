@@ -5,15 +5,22 @@ import 'package:flutter/material.dart';
 class CustomPasswordField extends StatelessWidget {
   final String hint;
   final bool isObscure;
+  final TextEditingController controller;
   final Function togglePasswordVisibility;
 
-  CustomPasswordField({this.hint, this.isObscure, this.togglePasswordVisibility});
+  CustomPasswordField({
+    this.hint,
+    this.isObscure,
+    this.togglePasswordVisibility,
+    this.controller
+  });
 
   @override
   Widget build(BuildContext context) {
     return MainTextField(
       hint: hint,
       isObscure: !isObscure,
+      controller: controller,
       suffixIcon: GestureDetector(
         onTap: togglePasswordVisibility,
         child: Icon(

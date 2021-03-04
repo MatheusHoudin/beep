@@ -13,7 +13,7 @@ class FirebaseFirestoreMock extends Mock implements FirebaseFirestore {}
 
 class UserCredentialMock extends Mock implements UserCredential {}
 
-class AuthCredentialMock extends Mock implements AuthCredential {}
+class AuthUserMock extends Mock implements User {}
 
 class CollectionReferenceMock extends Mock implements CollectionReference {}
 
@@ -23,7 +23,7 @@ void main() {
   FirebaseAuthMock auth;
   FirebaseFirestoreMock firestore;
   UserCredentialMock userCredential;
-  AuthCredentialMock authCredentialMock;
+  AuthUserMock authUserMock;
   CollectionReferenceMock collectionReferenceMock;
   FirebaseAuthExceptionMock firebaseAuthExceptionMock;
 
@@ -33,7 +33,7 @@ void main() {
     auth = FirebaseAuthMock();
     firestore = FirebaseFirestoreMock();
     userCredential = UserCredentialMock();
-    authCredentialMock = AuthCredentialMock();
+    authUserMock = AuthUserMock();
     collectionReferenceMock = CollectionReferenceMock();
     firebaseAuthExceptionMock = FirebaseAuthExceptionMock();
 
@@ -43,8 +43,8 @@ void main() {
 
   test('Should create user with email and password and save user data',
           () async {
-        when(userCredential.credential).thenReturn(authCredentialMock);
-        when(authCredentialMock.providerId).thenReturn("id");
+        when(userCredential.user).thenReturn(authUserMock);
+        when(authUserMock.uid).thenReturn("id");
         when(auth.createUserWithEmailAndPassword(
             email: anyNamed('email'), password: anyNamed('password')))
             .thenAnswer((_) async => userCredential);
@@ -54,8 +54,8 @@ void main() {
         await registerRemoteDataSource.registerUser(UserRegisterData(
             name: "name", email: "email", password: "password"));
 
-        verify(userCredential.credential).called(1);
-        verify(authCredentialMock.providerId).called(1);
+        verify(userCredential.user).called(1);
+        verify(authUserMock.uid).called(1);
         verify(auth.createUserWithEmailAndPassword(
             email: "email", password: "password"))
             .called(1);
@@ -100,6 +100,26 @@ void main() {
                 name: "name",
                 email: "email",
                 password: "password")), throwsA(TypeMatcher<EmailAlreadyInUseException>()));
+        verify(auth.createUserWithEmailAndPassword(
+            email: "email", password: "password"))
+            .called(1);
+      });
+
+  test(
+      'Should throw an invalid email exception when call to create user with email and password throws invalid-email error',
+          () async {
+        when(auth.createUserWithEmailAndPassword(
+            email: anyNamed('email'), password: anyNamed('password')))
+            .thenThrow(firebaseAuthExceptionMock);
+        when(firebaseAuthExceptionMock.code).thenReturn('invalid-email');
+
+        final call = registerRemoteDataSource.registerUser;
+
+        expect(() =>
+            call(UserRegisterData(
+                name: "name",
+                email: "email",
+                password: "password")), throwsA(TypeMatcher<InvalidEmailException>()));
         verify(auth.createUserWithEmailAndPassword(
             email: "email", password: "password"))
             .called(1);

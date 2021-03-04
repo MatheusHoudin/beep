@@ -61,12 +61,15 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
+    - assets/images/beep_logo.png
     - assets/images/splash_first.png
     - assets/images/splash_second.png
     - assets/images/splash_third.png
     - assets/images/steps_first.svg
     - assets/images/steps_second.svg
     - assets/images/steps_third.svg
+    - assets/images/password_visible.svg
+    - assets/images/password_invisible.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

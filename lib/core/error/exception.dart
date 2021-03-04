@@ -18,3 +18,8 @@ class EmailAlreadyInUseException extends Equatable implements Exception {
   @override
   List<Object> get props => [];
 }
+
+class InvalidEmailException extends Equatable implements Exception {
+  @override
+  List<Object> get props => [];
+}

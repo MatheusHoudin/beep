@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 abstract class AppRouter {
   void routeSplashPageToLoginPage();
   void routeLoginPageToRegisterPage();
+  void back();
 }
 
 class AppRouterImpl extends AppRouter {
@@ -15,5 +16,10 @@ class AppRouterImpl extends AppRouter {
   @override
   void routeLoginPageToRegisterPage() {
     Get.toNamed(registerPage);
+  }
+
+  @override
+  void back() {
+    Get.back();
   }
 }

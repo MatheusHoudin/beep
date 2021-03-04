@@ -35,8 +35,13 @@ class RegisterRepositoryImpl extends RegisterRepository {
       ));
     } on EmailAlreadyInUseException {
       return Left(EmailAlreadyInUseFailure(
-        title: genericErrorMessageTitle,
-        message: emailAlreadyInUse
+          title: genericErrorMessageTitle,
+          message: emailAlreadyInUse
+      ));
+    } on InvalidEmailException {
+      return Left(InvalidEmailFailure(
+          title: genericErrorMessageTitle,
+          message: invalidEmail
       ));
     } on GenericException {
       return Left(GenericFailure(
