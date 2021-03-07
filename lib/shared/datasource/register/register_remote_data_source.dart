@@ -1,5 +1,6 @@
-import 'package:beep/core/constants/texts.dart';
+import 'package:beep/core/auth_repository/auth_repository.dart';
 import 'package:beep/core/error/exception.dart';
+import 'package:beep/core/model_repository/beep_user_repository.dart';
 import 'package:beep/shared/model/user_register_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,26 +10,17 @@ abstract class RegisterRemoteDataSource {
 }
 
 class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
-  final FirebaseAuth auth;
-  final FirebaseFirestore firestore;
+  final AuthRepository authRepository;
+  final BeepUserRepository beepUserRepository;
 
-  RegisterRemoteDataSourceImpl({this.auth, this.firestore});
+  RegisterRemoteDataSourceImpl({this.authRepository, this.beepUserRepository});
 
   @override
   Future<void> registerUser(UserRegisterData userRegisterData) async {
     try {
-      final userCredentials = await auth.createUserWithEmailAndPassword(
-          email: userRegisterData.email,
-          password: userRegisterData.password
-      );
+      final userId = await authRepository.createAccount(userRegisterData.email, userRegisterData.password);
 
-      final userId = userCredentials.user.uid;
-
-      await firestore.collection('users').add({
-        'id': userId,
-        'name': userRegisterData.name,
-        'email': userRegisterData.email
-      });
+      await beepUserRepository.registerUser(userId, userRegisterData.name, userRegisterData.email);
 
     } on FirebaseAuthException catch (e) {
       switch(e.code) {
@@ -37,7 +29,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
         case 'invalid-email': throw InvalidEmailException();
       }
     } on Exception {
-      throw GenericException(message: genericErrorMessage);
+      throw GenericException();
     }
   }
 }

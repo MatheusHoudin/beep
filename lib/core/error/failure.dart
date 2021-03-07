@@ -64,3 +64,23 @@ class GenericFailure extends Failure {
   @override
   List<Object> get props => [message, title];
 }
+
+class WrongPasswordFailure extends Failure {
+  final String title;
+  final String message;
+
+  WrongPasswordFailure({this.message, this.title}) : super(title, message);
+
+  @override
+  List<Object> get props => [message, title];
+}
+
+class UserNotFoundFailure extends Failure {
+  final String title;
+  final String message;
+
+  UserNotFoundFailure({this.message, this.title}) : super(title, message);
+
+  @override
+  List<Object> get props => [message, title];
+}

@@ -7,12 +7,14 @@ import 'package:beep/shared/widgets/main_text_field.dart';
 import 'package:beep/shared/widgets/outlined_primary_button.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:beep/core/constants/assets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,10 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget EmailField() {
-    return MainTextField(hint: emailFieldHint);
+    return MainTextField(
+      hint: emailFieldHint,
+      controller: emailController,
+    );
   }
 
   Widget PasswordField(LoginPageController c) {
@@ -57,13 +62,18 @@ class LoginPage extends StatelessWidget {
       isObscure: c.isPasswordVisible(),
       hint: passwordFieldHint,
       togglePasswordVisibility: c.togglePasswordVisibility,
+      controller: passwordController,
     );
   }
 
-  Widget LoginButton() {
+  Widget LoginButton(LoginPageController c) {
     return PrimaryButton(
       buttonText: login,
       shouldExpand: true,
+      onPressedCallback: () => c.login(
+        emailController.value.text,
+        passwordController.value.text
+      ),
     );
   }
 
@@ -89,7 +99,7 @@ class LoginPage extends StatelessWidget {
           SizedBox(height: normalSize),
           PasswordField(c),
           SizedBox(height: mediumSize),
-          LoginButton()
+          LoginButton(c)
         ],
       ),
     );

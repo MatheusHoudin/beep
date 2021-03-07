@@ -2,6 +2,13 @@ const splashFirstText = 'Agora você pode realizar inventários em suas empresa 
 const splashSecondText = 'Tenha em suas mãos relatórios sobre os seus inventários, em tempo real, realize análises e por fim, aumente a lucratividade do seu negócio e evite desperdícios.';
 const splashThirdText = 'Agora vamos realizar o cadastro de sua empresa, para que possamos incluir seus colaboradores e começe a criar inventários, para assim aproveitar nossa solução.';
 
+// shared preferences
+const userId = 'userid';
+const userName = 'username';
+const userEmail = 'useremail';
+const userType = 'usertype';
+// shared preferences
+
 // errors
 const genericErrorMessage = "Um erro inesperado ocorreu";
 const genericErrorMessageTitle = "Ops...";
@@ -21,6 +28,8 @@ const passwordFieldHint = 'Digite sua senha';
 const login = 'ACESSAR MINHA CONTA';
 const noAccount = 'Ainda não tem uma conta?';
 const createAccount = 'CRIAR MINHA CONTA';
+const wrongPassword = 'A senha fornecida não está correta, tente outra';
+const userNotFound = 'Este usuário não existe, tente outro';
 // login_page
 
 // register_page

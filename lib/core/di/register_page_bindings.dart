@@ -8,8 +8,8 @@ class RegisterPageBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<RegisterRemoteDataSource>(RegisterRemoteDataSourceImpl(
-      firestore: Get.find(),
-      auth: Get.find()
+      authRepository: Get.find(),
+      beepUserRepository: Get.find()
     ));
     Get.put<RegisterRepository>(RegisterRepositoryImpl(
       remoteDataSource: Get.find(),
