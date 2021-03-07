@@ -19,7 +19,7 @@ class RegisterControllerImpl extends RegisterController {
   final FeedbackMessageProvider _feedbackMessageProvider;
   final LoadingProvider _loadingProvider;
 
-  var _isPasswordVisible = true.obs;
+  var _isPasswordVisible = false.obs;
 
   RegisterControllerImpl([
     this._router,
@@ -67,6 +67,6 @@ class RegisterControllerImpl extends RegisterController {
 
   @override
   bool isPasswordObscure() {
-    return _isPasswordVisible.value;
+    return !_isPasswordVisible.value;
   }
 }

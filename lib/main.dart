@@ -4,6 +4,7 @@ import 'package:beep/core/di/login_page_bindings.dart';
 import 'package:beep/core/di/main_bindings.dart';
 import 'package:beep/core/di/register_page_bindings.dart';
 import 'package:beep/core/di/splash_page_bindings.dart';
+import 'package:beep/features/home/presentation/home_router.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
 import 'package:beep/features/splash/presentation/splash_page.dart';
@@ -39,6 +40,11 @@ void main() async {
         page: () => RegisterPage(),
         transition: Transition.downToUp,
         binding: RegisterPageBinding()
+      ),
+      GetPage(
+        name: homeRouterPage,
+        page: () => HomeRouter(),
+        transition: Transition.rightToLeft
       )
     ],
   ));
