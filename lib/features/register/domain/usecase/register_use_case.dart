@@ -7,7 +7,7 @@ import 'package:beep/shared/repository/register/register_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-class RegisterUseCase extends BaseUseCase<void, RegisterParams> {
+class RegisterUseCase extends AsyncBaseUseCase<void, RegisterParams> {
   RegisterRepository repository;
 
   RegisterUseCase({this.repository});
