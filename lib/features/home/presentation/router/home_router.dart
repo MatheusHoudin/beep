@@ -1,3 +1,4 @@
+import 'package:beep/core/constants/colors.dart';
 import 'package:beep/features/home/domain/router/controller/home_router_controller.dart';
 import 'package:beep/features/home/presentation/company/company_home.dart';
 import 'package:beep/features/home/presentation/employee/employee_home.dart';
@@ -20,6 +21,7 @@ class _HomeRouterState extends State<HomeRouter> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: secondaryColor,
         body: GetBuilder<HomeRouterController>(
           builder: (c) => _handleHomePage(c.currentStartPage()),
         ),

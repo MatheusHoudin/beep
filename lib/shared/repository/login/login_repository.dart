@@ -35,6 +35,7 @@ class LoginRepositoryImpl extends LoginRepository {
       preferences.setString(userEmail, beepUser.email);
       preferences.setString(userName, beepUser.name);
       preferences.setString(userType, beepUser.type);
+      preferences.setString(companyCode, beepUser.companyCode);
 
     } on UserNotFoundException {
       return Left(UserNotFoundFailure(

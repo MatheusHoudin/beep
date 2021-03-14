@@ -70,6 +70,7 @@ flutter:
     - assets/images/steps_third.svg
     - assets/images/password_visible.svg
     - assets/images/password_invisible.svg
+    - assets/images/logout.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

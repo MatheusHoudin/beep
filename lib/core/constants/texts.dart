@@ -7,6 +7,7 @@ const userId = 'userid';
 const userName = 'username';
 const userEmail = 'useremail';
 const userType = 'usertype';
+const companyCode = 'companycode';
 // shared preferences
 
 // errors
@@ -45,3 +46,10 @@ const invalidEmail = "O email fornecido não é um email válido";
 const registerPageRegisterSuccessTitle = 'Sucesso!';
 const registerPageRegisterSuccessMessage = 'Sua conta foi criada com sucesso, utilize seu email e senha para fazer login';
 // register_page
+
+// home_company
+const companyHi = 'Olá ';
+const companyWelcome = ', seja bem vindo (a)';
+const companyStart = 'Vamos começar?';
+const companyCreateInventory = 'Criar novo Inventário';
+// home_company
