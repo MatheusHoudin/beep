@@ -5,6 +5,7 @@ abstract class AppRouter {
   void routeSplashPageToLoginPage();
   void routeLoginPageToRegisterPage();
   void routeLoginPageToHomePage();
+  void routeHomePageToRegisterInventoryPage();
   void back();
 }
 
@@ -27,5 +28,10 @@ class AppRouterImpl extends AppRouter {
   @override
   void routeLoginPageToHomePage() {
     Get.offAndToNamed(homeRouterPage);
+  }
+
+  @override
+  void routeHomePageToRegisterInventoryPage() {
+    Get.toNamed(createInventoryRouterPage);
   }
 }

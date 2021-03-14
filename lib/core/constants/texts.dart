@@ -3,11 +3,11 @@ const splashSecondText = 'Tenha em suas mãos relatórios sobre os seus inventá
 const splashThirdText = 'Agora vamos realizar o cadastro de sua empresa, para que possamos incluir seus colaboradores e começe a criar inventários, para assim aproveitar nossa solução.';
 
 // shared preferences
-const userId = 'userid';
-const userName = 'username';
-const userEmail = 'useremail';
-const userType = 'usertype';
-const companyCode = 'companycode';
+const userIdKey = 'userid';
+const userNameKey = 'username';
+const userEmailKey = 'useremail';
+const userTypeKey = 'usertype';
+const companyCodeKey = 'companycode';
 // shared preferences
 
 // errors
@@ -53,3 +53,16 @@ const companyWelcome = ', seja bem vindo (a)';
 const companyStart = 'Vamos começar?';
 const companyCreateInventory = 'Criar novo Inventário';
 // home_company
+
+// create_inventory
+const createInventoryToolbarTitle = 'CADASTRAR INVENTÁRIO';
+const createInventoryInvalidName = 'O nome do inventário não deve ser vazio';
+const createInventoryInvalidDescription = 'A descrição do inventário não deve ser vazia';
+const createInventorySuccessTitle = 'Sucesso!';
+const createInventorySuccessMessage = 'O inventário foi criado com sucesso';
+const createInventoryNameHint = 'Digite o nome do inventário';
+const createInventoryDateHint = 'Digite a data do inventário';
+const createInventoryTimeHint = 'Digite o horário inicial do inventário';
+const createInventoryDescriptionHint = 'Digite uma descrição para o inventário';
+const createInventoryButtonText = 'CADASTRAR INVENTÁRIO';
+// create_inventory

@@ -31,11 +31,11 @@ class LoginRepositoryImpl extends LoginRepository {
     try {
       BeepUser beepUser = await remoteDataSource.login(email, password);
 
-      preferences.setString(userId, beepUser.uid);
-      preferences.setString(userEmail, beepUser.email);
-      preferences.setString(userName, beepUser.name);
-      preferences.setString(userType, beepUser.type);
-      preferences.setString(companyCode, beepUser.companyCode);
+      preferences.setString(userIdKey, beepUser.uid);
+      preferences.setString(userEmailKey, beepUser.email);
+      preferences.setString(userNameKey, beepUser.name);
+      preferences.setString(userTypeKey, beepUser.type);
+      preferences.setString(companyCodeKey, beepUser.companyCode);
 
     } on UserNotFoundException {
       return Left(UserNotFoundFailure(

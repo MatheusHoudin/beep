@@ -1,6 +1,7 @@
 import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
+import 'package:beep/core/router/app_router.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -83,7 +84,7 @@ class HomeHeader extends StatelessWidget {
             paddingHorizontal: largeSize,
             paddingVertical: tinySize,
             buttonText: companyCreateInventory,
-            onPressedCallback: () => null,
+            onPressedCallback: () => Get.find<AppRouter>().routeHomePageToRegisterInventoryPage(),
             shouldExpand: false,
           )
         ],

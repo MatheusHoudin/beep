@@ -1,4 +1,3 @@
-import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/constants/colors.dart';
@@ -27,7 +26,6 @@ class RegisterPage extends StatelessWidget {
               CustomAppBar(
                 appBarTitle: registerPageAppBarTitle,
                 hasIcon: false,
-                icon: stepsThird,
               ),
               SizedBox(
                 height: largeSize,
@@ -54,7 +52,8 @@ class RegisterPage extends StatelessWidget {
             SizedBox(height: normalSize),
             PasswordField(c),
             SizedBox(height: mediumSize),
-            RegisterButton(c)
+            RegisterButton(c),
+            SizedBox(height: normalSize)
           ],
         ),
       ),

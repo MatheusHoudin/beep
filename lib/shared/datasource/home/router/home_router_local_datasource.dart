@@ -14,10 +14,10 @@ class HomeRouterLocalDataSourceImpl extends HomeRouterLocalDataSource {
   @override
   BeepUser getLoggedUser() {
     return BeepUser(
-      uid: sharedPreferences.getString(userId),
-      name: sharedPreferences.getString(userName),
-      email: sharedPreferences.getString(userEmail),
-      type: sharedPreferences.getString(userType)
+      uid: sharedPreferences.getString(userIdKey),
+      name: sharedPreferences.getString(userNameKey),
+      email: sharedPreferences.getString(userEmailKey),
+      type: sharedPreferences.getString(userTypeKey)
     );
   }
 }
