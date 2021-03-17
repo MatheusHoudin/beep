@@ -21,6 +21,7 @@ class CustomPasswordField extends StatelessWidget {
       hint: hint,
       isObscure: !isObscure,
       controller: controller,
+      textInputType: TextInputType.text,
       suffixIcon: GestureDetector(
         onTap: togglePasswordVisibility,
         child: Icon(

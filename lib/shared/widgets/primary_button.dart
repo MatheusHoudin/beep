@@ -6,9 +6,16 @@ import 'package:google_fonts/google_fonts.dart';
 class PrimaryButton extends StatelessWidget {
   final String buttonText;
   final bool shouldExpand;
+  final double paddingHorizontal, paddingVertical;
   final Function onPressedCallback;
 
-  PrimaryButton({this.buttonText, this.onPressedCallback, this.shouldExpand});
+  PrimaryButton({
+    this.buttonText,
+    this.onPressedCallback,
+    this.shouldExpand,
+    this.paddingHorizontal = 0.0,
+    this.paddingVertical = 0.0
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +52,18 @@ class PrimaryButton extends StatelessWidget {
   }
 
   Widget ButtonText() {
-    return Text(
-      buttonText,
-      style: GoogleFonts.firaSans(
-          fontSize: normalSize,
-          color: Colors.white,
-          fontWeight: FontWeight.bold),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: paddingHorizontal,
+        vertical: paddingVertical
+      ),
+      child: Text(
+        buttonText,
+        style: GoogleFonts.firaSans(
+            fontSize: normalSize,
+            color: Colors.white,
+            fontWeight: FontWeight.bold),
+      ),
     );
   }
 }

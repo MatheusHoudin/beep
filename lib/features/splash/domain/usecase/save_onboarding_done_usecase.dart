@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:beep/core/constants/keys.dart';
 
-class SaveOnboardingDoneUsecase extends BaseUseCase<void, SaveOnboardingParams> {
+class SaveOnboardingDoneUsecase extends AsyncBaseUseCase<void, SaveOnboardingParams> {
   final AppPreferencesRepository _repository;
 
   SaveOnboardingDoneUsecase([this._repository]);

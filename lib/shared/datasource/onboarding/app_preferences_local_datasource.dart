@@ -1,8 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AppPreferencesLocalDataSource {
-  void saveBoolean(String key, bool value);
+  Future<bool> saveBoolean(String key, bool value);
+  Future<bool> saveString(String key, String value);
   bool getBoolean(String key);
+  String getString(String key);
 }
 
 class AppPreferencesLocalDataSourceImpl extends AppPreferencesLocalDataSource {
@@ -16,7 +18,17 @@ class AppPreferencesLocalDataSourceImpl extends AppPreferencesLocalDataSource {
   }
 
   @override
-  void saveBoolean(String key, bool value) {
-    sharedPreferences.setBool(key, value);
+  Future<bool> saveBoolean(String key, bool value) {
+    return sharedPreferences.setBool(key, value);
+  }
+
+  @override
+  String getString(String key) {
+    return sharedPreferences.getString(key);
+  }
+
+  @override
+  Future<bool> saveString(String key, String value) {
+    return sharedPreferences.setString(key, value);
   }
 }

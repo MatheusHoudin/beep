@@ -6,7 +6,7 @@ import 'package:beep/shared/repository/login/login_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-class LoginUseCase extends BaseUseCase<void, LoginParams> {
+class LoginUseCase extends AsyncBaseUseCase<void, LoginParams> {
   LoginRepository loginRepository;
 
   LoginUseCase({this.loginRepository});

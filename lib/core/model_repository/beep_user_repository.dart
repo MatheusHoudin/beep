@@ -29,9 +29,9 @@ class BeepUserRepositoryImpl extends BeepUserRepository {
   }
 
   @override
-  Future registerUser(String userId, String name, String email) {
+  Future registerUser(String userId, String name, String email) async {
     try {
-      firestore.collection('users').add({
+      await firestore.collection('users').add({
         'id': userId,
         'name': name,
         'email': email,
