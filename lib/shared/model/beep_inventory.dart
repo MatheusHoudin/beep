@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class BeepInventory extends Equatable {
-  final String name, date, time, description;
+  final String name, date, time, description, status;
 
   BeepInventory({
     this.name,
     this.description,
     this.date,
-    this.time
+    this.time,
+    this.status = "NotStarted"
   });
 
   factory BeepInventory.fromJson(Map<String, dynamic> json) {
@@ -15,7 +16,8 @@ class BeepInventory extends Equatable {
       name: json['name'],
       description: json['description'],
       date: json['date'],
-      time: json['time']
+      time: json['time'],
+      status: json['status']
     );
   }
 
@@ -24,7 +26,8 @@ class BeepInventory extends Equatable {
       'name': name,
       'description': description,
       'date': date,
-      'time': time
+      'time': time,
+      'status': status
     };
   }
 
@@ -33,6 +36,7 @@ class BeepInventory extends Equatable {
     this.name,
     this.description,
     this.date,
-    this.time
+    this.time,
+    this.status
   ];
 }
