@@ -1,4 +1,5 @@
 import 'package:beep/core/constants/texts.dart';
+import 'package:beep/core/error/exception.dart';
 import 'package:beep/core/error/failure.dart';
 import 'package:beep/core/network/network_info.dart';
 import 'package:beep/shared/datasource/createinventory/create_inventory_remote_data_source.dart';
@@ -23,11 +24,18 @@ class CreateInventoryRepositoryImpl extends CreateInventoryRepository {
 
   @override
   Future<Either<Failure, void>> registerInventory(BeepInventory inventory) async {
-    if (!await networkInfo.isConnected) {
-      return Left(NoInternetConnectionFailure());
-    }
-    final companyCode = preferences.getString(companyCodeKey);
+    try {
+      if (!await networkInfo.isConnected) {
+        return Left(NoInternetConnectionFailure());
+      }
+      final companyCode = preferences.getString(companyCodeKey);
 
-    await remoteDataSource.createInventory(inventory, companyCode);
+      await remoteDataSource.createInventory(inventory, companyCode);
+    } on GenericException {
+      return Left(GenericFailure(
+        title: genericErrorMessageTitle,
+        message: genericErrorMessage
+      ));
+    }
   }
 }

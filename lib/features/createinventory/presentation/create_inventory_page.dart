@@ -1,3 +1,4 @@
+import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
@@ -6,6 +7,7 @@ import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:beep/shared/widgets/main_text_field.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CreateInventoryPage extends StatelessWidget {
@@ -30,7 +32,7 @@ class CreateInventoryPage extends StatelessWidget {
               SizedBox(
                 height: largeSize,
               ),
-              CreateInventoryForm()
+              CreateInventoryForm(context)
             ],
           ),
         ),
@@ -38,7 +40,7 @@ class CreateInventoryPage extends StatelessWidget {
     );
   }
 
-  Widget CreateInventoryForm() {
+  Widget CreateInventoryForm(BuildContext context) {
     return GetBuilder<CreateInventoryController>(
       builder: (c) => Padding(
         padding: EdgeInsets.symmetric(
@@ -48,9 +50,9 @@ class CreateInventoryPage extends StatelessWidget {
           children: [
             NameField(),
             SizedBox(height: normalSize),
-            DateField(),
+            DateField(context, c),
             SizedBox(height: normalSize),
-            TimeField(),
+            TimeField(context, c),
             SizedBox(height: normalSize),
             DescriptionField(),
             SizedBox(height: mediumSize),
@@ -66,20 +68,71 @@ class CreateInventoryPage extends StatelessWidget {
     return MainTextField(
       hint: createInventoryNameHint,
       controller: nameController,
+      textInputType: TextInputType.text,
     );
   }
 
-  Widget DateField() {
-    return MainTextField(
-      hint: createInventoryDateHint,
-      controller: dateController,
+  Widget DateField(BuildContext context, CreateInventoryController c) {
+    dateController.text = c.getPickedDate();
+    return GestureDetector(
+      onTap: () => _handleDatePicker(context, c),
+      child: AbsorbPointer(
+        child: MainTextField(
+          hint: createInventoryDateHint,
+          controller: dateController,
+          suffixIcon: _fieldIcon(datePicker),
+          textInputType: TextInputType.text
+        ),
+      ),
     );
   }
 
-  Widget TimeField() {
-    return MainTextField(
-      hint: createInventoryTimeHint,
-      controller: timeController,
+  void _handleDatePicker(BuildContext context, CreateInventoryController c) async {
+    final DateTime pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2030)
+    );
+
+    c.setPickedDate(pickedDate);
+  }
+
+  Widget TimeField(BuildContext context, CreateInventoryController c) {
+    timeController.text = c.getPickedTime();
+
+    return GestureDetector(
+      onTap: () => _handleTimePicker(context, c),
+      child: AbsorbPointer(
+        child: MainTextField(
+          hint: createInventoryTimeHint,
+          controller: timeController,
+          suffixIcon: _fieldIcon(timePicker),
+          textInputType: TextInputType.text,
+        ),
+      ),
+    );
+  }
+
+  void _handleTimePicker(BuildContext context, CreateInventoryController c) async {
+    final TimeOfDay time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+      builder: (BuildContext context, Widget child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          child: child,
+        );
+      },
+    );
+
+    c.setPickedTime(time);
+  }
+
+  Widget _fieldIcon(String icon) {
+    return Padding(
+      padding: EdgeInsets.all(smallSize),
+      child: SvgPicture.asset(icon),
     );
   }
 
@@ -87,6 +140,8 @@ class CreateInventoryPage extends StatelessWidget {
     return MainTextField(
       hint: createInventoryDescriptionHint,
       controller: descriptionController,
+      textInputType: TextInputType.multiline,
+      isMultiline: true,
     );
   }
 

@@ -15,7 +15,8 @@ class CreateInventoryRemoteDataSourceImpl extends CreateInventoryRemoteDataSourc
   Future createInventory(BeepInventory inventory, String companyCode) async {
     try {
       await repository.registerInventory(inventory, companyCode);
-    } on Exception {
+    } on Exception catch (e) {
+      print(e);
       throw GenericException();
     }
   }

@@ -16,16 +16,31 @@ class MainBinding implements Bindings {
   @override
   void dependencies() async {
     Get.put<AppPreferencesLocalDataSource>(
-        AppPreferencesLocalDataSourceImpl(sharedPreferences: Get.find()));
+      AppPreferencesLocalDataSourceImpl(sharedPreferences: Get.find()),
+      permanent: true
+    );
     Get.put<AppPreferencesRepository>(
-        AppPreferencesRepositoryImpl(localDataSource: Get.find()));
-    Get.put<AppRouter>(AppRouterImpl());
-    Get.put<NetworkInfo>(NetworkInfoImpl(DataConnectionChecker()));
-    await Get.putAsync(() => SharedPreferences.getInstance());
+      AppPreferencesRepositoryImpl(localDataSource: Get.find()),
+      permanent: true
+    );
+    Get.put<AppRouter>(AppRouterImpl(), permanent: true);
+    Get.put<NetworkInfo>(NetworkInfoImpl(DataConnectionChecker()), permanent: true);
+    await Get.putAsync(() => SharedPreferences.getInstance(), permanent: true);
     Get.put<BeepUserRepository>(
-        BeepUserRepositoryImpl(firestore: FirebaseFirestore.instance));
-    Get.put<AuthRepository>(AuthRepositoryImpl(auth: FirebaseAuth.instance));
-    Get.put<FeedbackMessageProvider>(FeedbackMessageProviderImpl());
-    Get.put<LoadingProvider>(LoadingProviderImpl());
+      BeepUserRepositoryImpl(firestore: FirebaseFirestore.instance),
+      permanent: true
+    );
+    Get.put<AuthRepository>(
+      AuthRepositoryImpl(auth: FirebaseAuth.instance),
+      permanent: true
+    );
+    Get.put<FeedbackMessageProvider>(
+      FeedbackMessageProviderImpl(),
+      permanent: true
+    );
+    Get.put<LoadingProvider>(
+      LoadingProviderImpl(),
+      permanent: true
+    );
   }
 }

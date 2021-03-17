@@ -64,6 +64,7 @@ class RegisterPage extends StatelessWidget {
     return MainTextField(
       hint: registerPageNameFieldHint,
       controller: nameController,
+      textInputType: TextInputType.text,
     );
   }
 
@@ -71,6 +72,7 @@ class RegisterPage extends StatelessWidget {
     return MainTextField(
       hint: registerPageEmailFieldHint,
       controller: emailController,
+      textInputType: TextInputType.emailAddress,
     );
   }
 

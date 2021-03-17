@@ -54,6 +54,7 @@ class LoginPage extends StatelessWidget {
     return MainTextField(
       hint: emailFieldHint,
       controller: emailController,
+      textInputType: TextInputType.emailAddress,
     );
   }
 
