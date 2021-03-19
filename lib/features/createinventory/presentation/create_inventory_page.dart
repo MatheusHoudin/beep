@@ -92,7 +92,10 @@ class CreateInventoryPage extends StatelessWidget {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime(2030)
+      lastDate: DateTime(2030),
+      helpText: "Selecione a data inicial do inventário",
+      cancelText: "Agora não",
+      confirmText: "Pronto",
     );
 
     c.setPickedDate(pickedDate);
@@ -118,6 +121,9 @@ class CreateInventoryPage extends StatelessWidget {
     final TimeOfDay time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
+      helpText: "Selecione a hora inicial do inventário",
+      cancelText: "Agora não",
+      confirmText: "Pronto",
       builder: (BuildContext context, Widget child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),

@@ -1,4 +1,4 @@
-import 'package:beep/features/home/domain/router/usecase/home_router_use_case.dart';
+import 'package:beep/features/home/domain/usecase/get_logged_user_use_case.dart';
 import 'package:beep/shared/model/beep_user.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +8,7 @@ abstract class HomeRouterController extends GetxController {
 }
 
 class HomeRouterControllerImpl extends HomeRouterController {
-  final HomeRouterUseCase useCase;
+  final GetLoggedUserUseCase useCase;
 
   var _startPage = "".obs;
   BeepUser _loggedUser;
@@ -22,7 +22,7 @@ class HomeRouterControllerImpl extends HomeRouterController {
 
   @override
   void setStartPage() {
-    _loggedUser = useCase.call(HomeRouterNoParams());
+    _loggedUser = useCase.call(GetLoggedUserParams());
     _startPage.value = _loggedUser.type;
     update();
   }

@@ -45,7 +45,7 @@ class HomeHeader extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  '$companyHi$companyName$companyWelcome',
+                  '$companyHi$companyName',
                   style: GoogleFonts.firaSans(
                     color: Colors.black,
                     fontSize: mediumTextSize
