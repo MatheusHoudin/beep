@@ -1,5 +1,5 @@
 import 'package:beep/core/constants/colors.dart';
-import 'package:beep/features/home/domain/router/controller/home_router_controller.dart';
+import 'package:beep/features/home/domain/controller/home_router_controller.dart';
 import 'package:beep/features/home/presentation/company/company_home.dart';
 import 'package:beep/features/home/presentation/employee/employee_home.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,7 @@ class _HomeRouterState extends State<HomeRouter> {
   @override
   void initState() {
     Get.find<HomeRouterController>().setStartPage();
+    super.initState();
   }
 
   @override

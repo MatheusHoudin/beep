@@ -10,3 +10,4 @@ const stepsFirst = 'assets/images/steps_first.svg';
 const stepsSecond = 'assets/images/steps_second.svg';
 const stepsThird = 'assets/images/steps_third.svg';
 const logout = 'assets/images/logout.svg';
+const inventoryItemIcon = 'assets/images/inventory_item_icon.svg';

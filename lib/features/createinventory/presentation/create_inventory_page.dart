@@ -3,6 +3,7 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/features/createinventory/domain/controller/create_inventory_controller.dart';
+import 'package:beep/features/home/domain/controller/company_controller.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:beep/shared/widgets/main_text_field.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
@@ -19,21 +20,27 @@ class CreateInventoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: secondaryColor,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomAppBar(
-                appBarTitle: createInventoryToolbarTitle,
-                hasIcon: false,
-              ),
-              SizedBox(
-                height: largeSize,
-              ),
-              CreateInventoryForm(context)
-            ],
+    return WillPopScope(
+      onWillPop: () {
+        Get.find<CompanyController>().fetchCompanyInventories();
+        return null;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: secondaryColor,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                CustomAppBar(
+                  appBarTitle: createInventoryToolbarTitle,
+                  hasIcon: false,
+                ),
+                SizedBox(
+                  height: largeSize,
+                ),
+                CreateInventoryForm(context)
+              ],
+            ),
           ),
         ),
       ),
@@ -92,7 +99,10 @@ class CreateInventoryPage extends StatelessWidget {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime(2030)
+      lastDate: DateTime(2030),
+      helpText: "Selecione a data inicial do inventário",
+      cancelText: "Agora não",
+      confirmText: "Pronto",
     );
 
     c.setPickedDate(pickedDate);
@@ -118,6 +128,9 @@ class CreateInventoryPage extends StatelessWidget {
     final TimeOfDay time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
+      helpText: "Selecione a hora inicial do inventário",
+      cancelText: "Agora não",
+      confirmText: "Pronto",
       builder: (BuildContext context, Widget child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),

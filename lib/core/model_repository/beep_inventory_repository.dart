@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class BeepInventoryRepository {
   Future registerInventory(BeepInventory inventory, String companyCode);
+  Future<List<BeepInventory>> fetchCompanyInventories(String companyCode);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -16,6 +17,19 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       await firestore.collection('companies').doc(companyCode).update({
         'inventories': FieldValue.arrayUnion([inventory.toJson()])
       });
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @override
+  Future<List<BeepInventory>> fetchCompanyInventories(String companyCode) async {
+    try {
+      final inventoriesSnapshot = await firestore.collection('companies')
+                                    .doc(companyCode).get();
+
+      return (inventoriesSnapshot.get('inventories') as List)
+              .map((e) => BeepInventory.fromJson(e)).toList();
     } catch (e) {
       throw e;
     }

@@ -52,6 +52,9 @@ const companyHi = 'Olá ';
 const companyWelcome = ', seja bem vindo (a)';
 const companyStart = 'Vamos começar?';
 const companyCreateInventory = 'Criar novo Inventário';
+const companyStartedInventoriesTitle = 'Iniciados';
+const companyNotStartedInventoriesTitle = 'Próximos';
+const companyFinishedInventoriesTitle = 'Finalizados';
 // home_company
 
 // create_inventory

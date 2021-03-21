@@ -1,4 +1,5 @@
 import 'package:beep/core/auth_repository/auth_repository.dart';
+import 'package:beep/core/model_repository/beep_inventory_repository.dart';
 import 'package:beep/core/model_repository/beep_user_repository.dart';
 import 'package:beep/core/network/network_info.dart';
 import 'package:beep/core/router/app_router.dart';
@@ -30,6 +31,9 @@ class MainBinding implements Bindings {
       BeepUserRepositoryImpl(firestore: FirebaseFirestore.instance),
       permanent: true
     );
+    Get.put<BeepInventoryRepository>(BeepInventoryRepositoryImpl(
+      firestore: FirebaseFirestore.instance,
+    ), permanent: true);
     Get.put<AuthRepository>(
       AuthRepositoryImpl(auth: FirebaseAuth.instance),
       permanent: true
