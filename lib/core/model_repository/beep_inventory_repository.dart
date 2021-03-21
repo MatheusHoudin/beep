@@ -29,7 +29,7 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
                                     .doc(companyCode).get();
 
       return (inventoriesSnapshot.get('inventories') as List)
-              .map((e) => BeepInventory.fromJson(e));
+              .map((e) => BeepInventory.fromJson(e)).toList();
     } catch (e) {
       throw e;
     }

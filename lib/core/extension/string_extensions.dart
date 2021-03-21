@@ -5,7 +5,7 @@ extension StringExtensions on String {
     switch(this) {
       case "NotStarted": return BeepInventoryStatus.NotStarted;
       case "Started": return BeepInventoryStatus.Started;
-      case "Finished": return BeepInventoryStatus.NotStarted;
+      case "Finished": return BeepInventoryStatus.Finished;
     }
   }
 }

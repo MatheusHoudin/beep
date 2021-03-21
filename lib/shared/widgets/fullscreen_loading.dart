@@ -5,6 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class FullScreenLoading extends StatefulWidget {
+  final double height;
+  final double width;
+
+  FullScreenLoading({this.height, this.width});
+
   @override
   _FullScreenLoadingState createState() => _FullScreenLoadingState();
 }
@@ -35,16 +40,11 @@ class _FullScreenLoadingState extends State<FullScreenLoading> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: Get.size.height,
-      width: Get.size.width,
-      color: secondaryColor,
-      child: Center(
-        child: Image.asset(
-          beepLogo,
-          width: animation.value,
-          height: animation.value,
-        ),
+    return Center(
+      child: Image.asset(
+        beepLogo,
+        width: animation.value,
+        height: animation.value,
       ),
     );
   }

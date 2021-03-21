@@ -73,6 +73,7 @@ flutter:
     - assets/images/password_visible.svg
     - assets/images/password_invisible.svg
     - assets/images/logout.svg
+    - assets/images/inventory_item_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

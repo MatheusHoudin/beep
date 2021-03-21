@@ -3,16 +3,21 @@ import 'package:beep/features/home/domain/usecase/format_company_inventories_per
 import 'package:beep/features/home/domain/usecase/get_logged_user_use_case.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
 import 'package:beep/shared/feedback/loading_provider.dart';
+import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/beep_user.dart';
 import 'package:beep/shared/model/inventories_per_status.dart';
 import 'package:get/get.dart';
 
 abstract class CompanyController extends GetxController {
-  void getLoggedUser();
-
   String getCompanyName();
 
-  InventoriesPerStatus getInventoriesPerStatus();
+  bool isLoadingInventories();
+
+  List<BeepInventory> getStartedInventories();
+
+  List<BeepInventory> getNotStartedInventories();
+
+  List<BeepInventory> getFinishedInventories();
 
   void fetchCompanyInventories();
 }
@@ -22,44 +27,44 @@ class CompanyControllerImpl extends CompanyController {
   final FormatCompanyInventoriesPerStatusUseCase
       formatCompanyInventoriesPerStatusUseCase;
   final FetchCompanyInventoriesUseCase fetchCompanyInventoriesUseCase;
-  final LoadingProvider loadingProvider;
   final FeedbackMessageProvider feedbackMessageProvider;
 
   BeepUser loggedUser;
-  Rx<InventoriesPerStatus> inventoriesPerStatus;
+  Rx<InventoriesPerStatus> inventoriesPerStatus = Rx();
+  final isLoading = false.obs;
 
-  CompanyControllerImpl(
-      {this.getLoggedUserUseCase,
+  CompanyControllerImpl({
+    this.getLoggedUserUseCase,
       this.fetchCompanyInventoriesUseCase,
       this.formatCompanyInventoriesPerStatusUseCase,
-      this.loadingProvider,
-      this.feedbackMessageProvider});
+      this.feedbackMessageProvider
+  });
 
   @override
   String getCompanyName() {
     return loggedUser?.name ?? "";
   }
 
-  @override
-  void getLoggedUser() {
+  void _getLoggedUser() {
     loggedUser = getLoggedUserUseCase(GetLoggedUserParams());
-    update();
   }
 
   @override
   void fetchCompanyInventories() async {
-    loadingProvider.showFullscreenLoading();
+    _getLoggedUser();
+    isLoading.value = true;
 
     final inventoriesPerStatusResult = await fetchCompanyInventoriesUseCase
         .call(FetchCompanyInventoriesParams(companyCode: loggedUser.companyCode));
 
-    loadingProvider.hideFullscreenLoading();
+    isLoading.value = false;
     inventoriesPerStatusResult.fold(
       (failure) {
         feedbackMessageProvider.showOneButtonDialog(
           failure.title,
           failure.message
         );
+        update();
       },
       (companyInventories) {
         inventoriesPerStatus.value = formatCompanyInventoriesPerStatusUseCase.call(companyInventories);
@@ -71,5 +76,25 @@ class CompanyControllerImpl extends CompanyController {
   @override
   InventoriesPerStatus getInventoriesPerStatus() {
     return inventoriesPerStatus?.value;
+  }
+
+  @override
+  List<BeepInventory> getFinishedInventories() {
+    return inventoriesPerStatus?.value?.finishedInventories;
+  }
+
+  @override
+  List<BeepInventory> getNotStartedInventories() {
+    return inventoriesPerStatus?.value?.notStartedInventories;
+  }
+
+  @override
+  List<BeepInventory> getStartedInventories() {
+    return inventoriesPerStatus?.value?.startedInventories;
+  }
+
+  @override
+  bool isLoadingInventories() {
+    return isLoading.value;
   }
 }

@@ -17,7 +17,8 @@ class UserLocalDataSourceImpl extends UserLocalDataSource {
       uid: sharedPreferences.getString(userIdKey),
       name: sharedPreferences.getString(userNameKey),
       email: sharedPreferences.getString(userEmailKey),
-      type: sharedPreferences.getString(userTypeKey)
+      type: sharedPreferences.getString(userTypeKey),
+      companyCode: sharedPreferences.getString(companyCodeKey)
     );
   }
 }
