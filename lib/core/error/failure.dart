@@ -59,7 +59,10 @@ class GenericFailure extends Failure {
   final String title;
   final String message;
 
-  GenericFailure({this.message, this.title}) : super(title, message);
+  GenericFailure({
+    this.message = genericErrorMessage,
+    this.title = genericErrorMessageTitle
+  }) : super(title, message);
 
   @override
   List<Object> get props => [message, title];

@@ -1,15 +1,26 @@
 import 'package:beep/features/home/domain/controller/company_controller.dart';
 import 'package:beep/features/home/domain/controller/home_router_controller.dart';
+import 'package:beep/features/home/domain/usecase/fetch_company_inventories_use_case.dart';
+import 'package:beep/features/home/domain/usecase/format_company_inventories_per_status_use_case.dart';
 import 'package:beep/features/home/domain/usecase/get_logged_user_use_case.dart';
+import 'package:beep/shared/datasource/listinventory/fetch_company_inventories_remote_data_source.dart';
 import 'package:beep/shared/datasource/user/user_local_datasource.dart';
 import 'package:beep/shared/repository/home/get_logged_user_repository.dart';
+import 'package:beep/shared/repository/listinventory/fetch_company_inventories_repository.dart';
 import 'package:get/get.dart';
 
 class HomePageBinding extends Bindings {
   @override
   void dependencies() {
+    Get.put<FetchCompanyInventoriesRemoteDataSource>(FetchCompanyInventoriesRemoteDataSourceImpl(
+      repository: Get.find()
+    ));
     Get.put<UserLocalDataSource>(UserLocalDataSourceImpl(
       sharedPreferences: Get.find()
+    ));
+    Get.put<FetchCompanyInventoriesRepository>(FetchCompanyInventoriesRepositoryImpl(
+        networkInfo: Get.find(),
+        remoteDataSource: Get.find()
     ));
     Get.put<GetLoggedUserRepository>(GetLoggedUserRepositoryImpl(
       dataSource: Get.find()
@@ -17,11 +28,19 @@ class HomePageBinding extends Bindings {
     Get.put<GetLoggedUserUseCase>(GetLoggedUserUseCase(
       repository: Get.find()
     ));
+    Get.put<FetchCompanyInventoriesUseCase>(FetchCompanyInventoriesUseCase(
+      repository: Get.find()
+    ));
+    Get.put<FormatCompanyInventoriesPerStatusUseCase>(FormatCompanyInventoriesPerStatusUseCase());
     Get.put<HomeRouterController>(HomeRouterControllerImpl(
       useCase: Get.find()
     ));
     Get.put<CompanyController>(CompanyControllerImpl(
-      getLoggedUserUseCase: Get.find()
+      getLoggedUserUseCase: Get.find(),
+      feedbackMessageProvider: Get.find(),
+      fetchCompanyInventoriesUseCase: Get.find(),
+      formatCompanyInventoriesPerStatusUseCase: Get.find(),
+      loadingProvider: Get.find()
     ));
   }
 }
