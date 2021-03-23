@@ -69,3 +69,7 @@ const createInventoryTimeHint = 'Digite o horário inicial do inventário';
 const createInventoryDescriptionHint = 'Digite uma descrição para o inventário';
 const createInventoryButtonText = 'CADASTRAR INVENTÁRIO';
 // create_inventory
+
+// inventory_details
+
+// inventory_details

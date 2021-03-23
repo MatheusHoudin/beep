@@ -9,8 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class InventoryItem extends StatelessWidget {
   final BeepInventory inventory;
+  final Function onClicked;
 
-  InventoryItem({this.inventory});
+  InventoryItem({this.inventory, this.onClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -19,58 +20,65 @@ class InventoryItem extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(mediumSmallSize)
       ),
-      child: Container(
-        margin: EdgeInsets.only(
-          left: mediumSmallSize
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(mediumSmallSize)
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(mediumSmallSize),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    inventoryItemIcon
-                  ),
-                  SizedBox(width: smallSize,),
-                  Text(
-                    inventory.name,
-                    style: GoogleFonts.firaSans(
-                      fontSize: mediumTextSize,
-                      color: secondaryColor,
-                      fontWeight: FontWeight.bold
+      child: InkWell(
+        onTap: onClicked,
+        child: Container(
+          margin: EdgeInsets.only(
+            left: mediumSmallSize
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(mediumSmallSize)
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(mediumSmallSize),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      inventoryItemIcon
                     ),
-                  )
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: tinySize
+                    SizedBox(width: smallSize,),
+                    Expanded(
+                      child: Text(
+                        inventory.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.firaSans(
+                          fontSize: mediumTextSize,
+                          color: secondaryColor,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                child: Text(
-                  inventory.description,
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: tinySize
+                  ),
+                  child: Text(
+                    inventory.description,
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.firaSans(
+                      color: disabledTextColor,
+                      fontSize: smallTextSize
+                    ),
+                  ),
+                ),
+                SizedBox(height: tinySize,),
+                Text(
+                  '${inventory.date} às ${inventory.time}',
                   textAlign: TextAlign.start,
                   style: GoogleFonts.firaSans(
-                    color: disabledText,
+                    color: disabledTextColor,
                     fontSize: smallTextSize
                   ),
-                ),
-              ),
-              SizedBox(height: tinySize,),
-              Text(
-                '${inventory.date} às ${inventory.time}',
-                textAlign: TextAlign.start,
-                style: GoogleFonts.firaSans(
-                  color: disabledText,
-                  fontSize: smallTextSize
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -1,8 +1,8 @@
+import 'package:beep/core/router/app_router.dart';
 import 'package:beep/features/home/domain/usecase/fetch_company_inventories_use_case.dart';
 import 'package:beep/features/home/domain/usecase/format_company_inventories_per_status_use_case.dart';
 import 'package:beep/features/home/domain/usecase/get_logged_user_use_case.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
-import 'package:beep/shared/feedback/loading_provider.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/beep_user.dart';
 import 'package:beep/shared/model/inventories_per_status.dart';
@@ -20,6 +20,8 @@ abstract class CompanyController extends GetxController {
   List<BeepInventory> getFinishedInventories();
 
   void fetchCompanyInventories();
+
+  void routeToInventoryDetails(BeepInventory beepInventory);
 }
 
 class CompanyControllerImpl extends CompanyController {
@@ -28,6 +30,7 @@ class CompanyControllerImpl extends CompanyController {
       formatCompanyInventoriesPerStatusUseCase;
   final FetchCompanyInventoriesUseCase fetchCompanyInventoriesUseCase;
   final FeedbackMessageProvider feedbackMessageProvider;
+  final AppRouter router;
 
   BeepUser loggedUser;
   Rx<InventoriesPerStatus> inventoriesPerStatus = Rx();
@@ -35,9 +38,10 @@ class CompanyControllerImpl extends CompanyController {
 
   CompanyControllerImpl({
     this.getLoggedUserUseCase,
-      this.fetchCompanyInventoriesUseCase,
-      this.formatCompanyInventoriesPerStatusUseCase,
-      this.feedbackMessageProvider
+    this.fetchCompanyInventoriesUseCase,
+    this.formatCompanyInventoriesPerStatusUseCase,
+    this.feedbackMessageProvider,
+    this.router
   });
 
   @override
@@ -96,5 +100,10 @@ class CompanyControllerImpl extends CompanyController {
   @override
   bool isLoadingInventories() {
     return isLoading.value;
+  }
+
+  @override
+  void routeToInventoryDetails(BeepInventory beepInventory) {
+    router.routeHomePageToInventoryDetailsPage(beepInventory);
   }
 }

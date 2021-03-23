@@ -47,9 +47,9 @@ class _CompanyHomeState extends State<CompanyHome> {
                 SingleChildScrollView(
                   child: Column(
                     children: [
-                      _inventorySection(companyStartedInventoriesTitle, c.getStartedInventories()),
-                      _inventorySection(companyNotStartedInventoriesTitle, c.getNotStartedInventories()),
-                      _inventorySection(companyFinishedInventoriesTitle, c.getFinishedInventories())
+                      _inventorySection(companyStartedInventoriesTitle, c.getStartedInventories(), c),
+                      _inventorySection(companyNotStartedInventoriesTitle, c.getNotStartedInventories(), c),
+                      _inventorySection(companyFinishedInventoriesTitle, c.getFinishedInventories(), c)
                     ],
                   ),
                 )
@@ -61,11 +61,14 @@ class _CompanyHomeState extends State<CompanyHome> {
     );
   }
 
-  Widget _inventorySection(String title, List<BeepInventory> inventories) {
+  Widget _inventorySection(String title, List<BeepInventory> inventories, CompanyController c) {
     return inventories != null ? InventorySection(
       title: title,
       inventoriesSection: Column(
-        children: inventories.map((e) => InventoryItem(inventory: e,)).toList(),
+        children: inventories.map((inventory) => InventoryItem(
+          inventory: inventory,
+          onClicked: () => c.routeToInventoryDetails(inventory),
+        )).toList(),
       ),
     ) : Container();
   }
