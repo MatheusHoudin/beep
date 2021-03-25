@@ -11,3 +11,7 @@ const stepsSecond = 'assets/images/steps_second.svg';
 const stepsThird = 'assets/images/steps_third.svg';
 const logout = 'assets/images/logout.svg';
 const inventoryItemIcon = 'assets/images/inventory_item_icon.svg';
+const inventoryDetailsProductsFabIcon = 'assets/images/inventory_details_products_fab_icon.svg';
+const inventoryDetailsAddressesFabIcon = 'assets/images/inventory_details_addresses_fab_icon.svg';
+const inventoryDetailsEmployeeFabIcon = 'assets/images/inventory_details_employee_fab_icon.svg';
+const inventoryDetailsFabIcon = 'assets/images/inventory_details_fab_icon.svg';

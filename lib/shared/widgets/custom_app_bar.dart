@@ -48,7 +48,8 @@ class CustomAppBar extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.firaSans(
                   color: isWhiteStyle ? secondaryColor : Colors.white,
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                  fontSize: normalTextSize
                 ),
               ),
             ),
