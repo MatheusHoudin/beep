@@ -54,7 +54,8 @@ class HomePageBinding extends Bindings {
       getLoggedUserUseCase: Get.find(),
       feedbackMessageProvider: Get.find(),
       fetchCompanyInventoriesUseCase: Get.find(),
-      formatCompanyInventoriesPerStatusUseCase: Get.find()
+      formatCompanyInventoriesPerStatusUseCase: Get.find(),
+      router: Get.find()
     ));
   }
 }

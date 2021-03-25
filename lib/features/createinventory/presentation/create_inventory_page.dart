@@ -21,9 +21,9 @@ class CreateInventoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
+      onWillPop: () async {
         Get.find<CompanyController>().fetchCompanyInventories();
-        return null;
+        return true;
       },
       child: SafeArea(
         child: Scaffold(

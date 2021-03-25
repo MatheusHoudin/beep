@@ -6,4 +6,4 @@ const hintColor = Color(0xffc2c2c2);
 const startedInventoryBackground = Color(0xff52F19B);
 const notStartedInventoryBackground = Color(0xff52D5F1);
 const finishedInventoryBackground = Color(0xffF15252);
-const disabledText = Color(0xff7A7A7A);
+const disabledTextColor = Color(0xff7A7A7A);

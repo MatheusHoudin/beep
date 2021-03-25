@@ -9,6 +9,7 @@ import 'package:beep/core/di/register_page_bindings.dart';
 import 'package:beep/core/di/splash_page_bindings.dart';
 import 'package:beep/features/createinventory/presentation/create_inventory_page.dart';
 import 'package:beep/features/home/presentation/router/home_router.dart';
+import 'file:///C:/Users/Matheus/OneDrive/Documentos/Projetos/beep/lib/features/inventorydetails/presentation/pages/inventory_details_page.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
 import 'package:beep/features/splash/presentation/splash_page.dart';
@@ -56,6 +57,10 @@ void main() async {
         name: createInventoryRouterPage,
         page: () => CreateInventoryPage(),
         binding: CreateInventoryPageBindings()
+      ),
+      GetPage(
+        name: inventoryDetailsRouterPage,
+        page: () => InventoryDetailsPage()
       )
     ],
   ));

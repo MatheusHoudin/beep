@@ -69,3 +69,15 @@ const createInventoryTimeHint = 'Digite o horário inicial do inventário';
 const createInventoryDescriptionHint = 'Digite uma descrição para o inventário';
 const createInventoryButtonText = 'CADASTRAR INVENTÁRIO';
 // create_inventory
+
+// inventory_details
+const productsSectionTitle = "Produtos";
+const addressesSectionTitle = "Endereços";
+const analisysSectionTitle = "Análise";
+const startedInventory = "Iniciado";
+const notStartedInventory = "Não iniciado";
+const finishedInventory = "Finalizado";
+const importProducts = "Importar produtos";
+const manageAddresses = "Gerenciar endereços";
+const manageEmployees = "Gerenciar colaboradores";
+// inventory_details

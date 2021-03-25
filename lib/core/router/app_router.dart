@@ -1,4 +1,5 @@
 import 'package:beep/core/constants/routes.dart';
+import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:get/get.dart';
 
 abstract class AppRouter {
@@ -6,6 +7,7 @@ abstract class AppRouter {
   void routeLoginPageToRegisterPage();
   void routeLoginPageToHomePage();
   void routeHomePageToRegisterInventoryPage();
+  void routeHomePageToInventoryDetailsPage(BeepInventory beepInventory);
   void back();
 }
 
@@ -33,5 +35,10 @@ class AppRouterImpl extends AppRouter {
   @override
   void routeHomePageToRegisterInventoryPage() {
     Get.toNamed(createInventoryRouterPage);
+  }
+
+  @override
+  void routeHomePageToInventoryDetailsPage(BeepInventory beepInventory) {
+    Get.toNamed(inventoryDetailsRouterPage, arguments: beepInventory);
   }
 }
