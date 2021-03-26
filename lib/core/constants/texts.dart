@@ -81,3 +81,9 @@ const importProducts = "Importar produtos";
 const manageAddresses = "Gerenciar endereços";
 const manageEmployees = "Gerenciar colaboradores";
 // inventory_details
+
+// import_inventory_products
+const importInventoryProductsToolbarTitle = "Importar Produtos";
+const importInventoryProductsInfo = "Aqui você pode importar produtos para o seu inventário, no formato CSV com os seguintes campos:";
+const importInventoryProductsFieldsName = "NOME; EAN; EMB(UND/KG)";
+// import_inventory_products

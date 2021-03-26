@@ -1,6 +1,7 @@
 import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/texts.dart';
+import 'package:beep/features/inventorydetails/domain/controller/inventory_details_controller.dart';
 import 'package:beep/features/inventorydetails/presentation/widgets/action_button.dart';
 import 'package:beep/features/inventorydetails/presentation/widgets/animated_action_button.dart';
 import 'package:flutter/material.dart';
@@ -34,43 +35,46 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomRight,
-      clipBehavior: Clip.none,
-      children: [
-        _buildTapToCloseFab(),
-        AnimatedActionButton(
-          child: ActionButton(
-            onPressed: () => null,
-            icon: inventoryDetailsProductsFabIcon,
-            text: importProducts,
-            isVisible: _open,
+    return Container(
+      height: Get.size.height,
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        clipBehavior: Clip.none,
+        children: [
+          _buildTapToCloseFab(),
+          AnimatedActionButton(
+            child: ActionButton(
+              onPressed: () => Get.find<InventoryDetailsController>().routeToImportInventoryProductsPage(),
+              icon: inventoryDetailsProductsFabIcon,
+              text: importProducts,
+              isVisible: _open,
+            ),
+            progress: optionsVerticalPosition,
+            position: 3,
           ),
-          progress: optionsVerticalPosition,
-          position: 3,
-        ),
-        AnimatedActionButton(
-          child: ActionButton(
-            onPressed: () => null,
-            icon: inventoryDetailsAddressesFabIcon,
-            text: manageAddresses,
-            isVisible: _open,
+          AnimatedActionButton(
+            child: ActionButton(
+              onPressed: () => null,
+              icon: inventoryDetailsAddressesFabIcon,
+              text: manageAddresses,
+              isVisible: _open,
+            ),
+            progress: optionsVerticalPosition,
+            position: 2,
           ),
-          progress: optionsVerticalPosition,
-          position: 2,
-        ),
-        AnimatedActionButton(
-          child: ActionButton(
-            onPressed: () => null,
-            icon: inventoryDetailsEmployeeFabIcon,
-            text: manageEmployees,
-            isVisible: _open,
+          AnimatedActionButton(
+            child: ActionButton(
+              onPressed: () => null,
+              icon: inventoryDetailsEmployeeFabIcon,
+              text: manageEmployees,
+              isVisible: _open,
+            ),
+            progress: optionsVerticalPosition,
+            position: 1,
           ),
-          progress: optionsVerticalPosition,
-          position: 1,
-        ),
-        _buildTapToOpenFab(),
-      ],
+          _buildTapToOpenFab(),
+        ],
+      ),
     );
   }
 
