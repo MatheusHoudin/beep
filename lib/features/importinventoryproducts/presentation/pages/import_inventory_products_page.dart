@@ -2,12 +2,11 @@ import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
+import 'package:beep/features/importinventoryproducts/domain/controller/import_inventory_products_controller.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:googleapis/drive/v3.dart' as drive;
-import 'package:google_sign_in/google_sign_in.dart' as signIn;
 
 class ImportInventoryProductsPage extends StatelessWidget {
   @override
@@ -35,16 +34,10 @@ class ImportInventoryProductsPage extends StatelessWidget {
     );
   }
 
-  void _login() async {
-    final googleSignIn = signIn.GoogleSignIn.standard(scopes: [drive.DriveApi.driveReadonlyScope]);
-    final signIn.GoogleSignInAccount account = await googleSignIn.signIn();
-    print("User account $account");
-  }
-
   Widget ImportProductsFab() {
     return FloatingActionButton(
       backgroundColor: primaryColor,
-      onPressed: () => _login(),
+      onPressed: () => Get.find<ImportInventoryProductsController>().fetchAvailableFilesToImport(),
       child: Icon(
         Icons.add,
         color: Colors.white,

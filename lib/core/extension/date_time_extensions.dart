@@ -6,4 +6,12 @@ extension DateTimeExtension on DateTime {
 
     return "$day/$month/$year";
   }
+
+  String formatDateTimeToBrazilianDateTime() {
+    final date = this.formatDateTimeToBrazilianDate();
+    final hour = this.hour > 9 ? this.hour.toString() : "0${this.hour}";
+    final minute = this.minute > 9 ? this.minute.toString() : "0${this.minute}";
+
+    return "$date às $hour:$minute";
+  }
 }

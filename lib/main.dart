@@ -3,6 +3,7 @@ import 'package:beep/core/constants/routes.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/di/create_inventory_page_bindings.dart';
 import 'package:beep/core/di/home_page_bindings.dart';
+import 'package:beep/core/di/import_inventory_products_bindings.dart';
 import 'package:beep/core/di/inventory_details_bindings.dart';
 import 'package:beep/core/di/login_page_bindings.dart';
 import 'package:beep/core/di/main_bindings.dart';
@@ -67,7 +68,8 @@ void main() async {
       ),
       GetPage(
         name: importInventoryProductsRouterPage,
-        page: () => ImportInventoryProductsPage()
+        page: () => ImportInventoryProductsPage(),
+        binding: ImportInventoryProductsBindings()
       ),
     ],
   ));
