@@ -1,10 +1,10 @@
 import 'package:beep/core/router/app_router.dart';
 import 'package:beep/features/importinventoryproducts/domain/usecase/get_available_google_drive_files_use_case.dart';
+import 'package:beep/features/importinventoryproducts/presentation/widgets/select_products_inventory_file_dialog.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
 import 'package:beep/shared/feedback/loading_provider.dart';
 import 'package:beep/shared/model/inventory_file.dart';
 import 'package:get/get.dart';
-import 'package:googleapis/drive/v3.dart' as ga;
 
 abstract class ImportInventoryProductsController extends GetxController {
   void fetchAvailableFilesToImport();
@@ -35,9 +35,9 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
         );
       },
       (availableFiles) {
-        final inventoryFiles = availableFiles.map((file) => InventoryFile.fromDriveFile(file));
+        final inventoryFiles = availableFiles.map((file) => InventoryFile.fromDriveFile(file)).toList();
 
-        router.routeImportInventoryProductsPageToSelectedProductsPage(inventoryFiles);
+        Get.dialog(SelectProductsInventoryFileDialog(inventoryFiles: inventoryFiles,));
       }
     );
   }

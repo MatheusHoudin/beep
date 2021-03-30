@@ -86,4 +86,6 @@ const manageEmployees = "Gerenciar colaboradores";
 const importInventoryProductsToolbarTitle = "Importar Produtos";
 const importInventoryProductsInfo = "Aqui você pode importar produtos para o seu inventário, no formato CSV com os seguintes campos:";
 const importInventoryProductsFieldsName = "NOME; EAN; EMB(UND/KG)";
+const selectInventoryProductsFileGoogleDriveTitle = "Selecione o arquivo com os produtos a serem importados";
+const selectInventoryProductsFileGoogleDriveInfo = "O arquivo deve estar no formato CSV com os seguintes campos: NOME; EAN; EMB(UND/KG)";
 // import_inventory_products

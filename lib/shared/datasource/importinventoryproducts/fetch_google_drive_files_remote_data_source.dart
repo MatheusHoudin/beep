@@ -11,10 +11,13 @@ class FetchGoogleDriveFilesRemoteDataSourceImpl extends FetchGoogleDriveFilesRem
 
     var client = GoogleHttpClient(authHeaders);
     var drive = ga.DriveApi(client);
+
+    // TODO Filter file fields
     final fileList = await drive.files.list(
       spaces: 'drive',
       pageSize: 20,
-      q: "mimeType= 'application/vnd.google-apps.spreadsheet'"
+      q: "mimeType= 'application/vnd.google-apps.spreadsheet'",
+      $fields: 'files(id, name, createdTime)'
     );
 
     return fileList.files;

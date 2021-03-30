@@ -89,7 +89,7 @@ class InventoryItem extends StatelessWidget {
     switch(inventory.status) {
       case BeepInventoryStatus.Started: return startedInventoryBackground;
       case BeepInventoryStatus.NotStarted: return notStartedInventoryBackground;
-      default: return finishedInventoryBackground;
+      default: return negativeColor;
     }
   }
 }

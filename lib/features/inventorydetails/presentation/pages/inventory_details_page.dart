@@ -116,7 +116,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
       case BeepInventoryStatus.Started:
         return startedInventoryBackground;
       default:
-        return finishedInventoryBackground;
+        return negativeColor;
     }
   }
 

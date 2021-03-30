@@ -15,3 +15,5 @@ const inventoryDetailsProductsFabIcon = 'assets/images/inventory_details_product
 const inventoryDetailsAddressesFabIcon = 'assets/images/inventory_details_addresses_fab_icon.svg';
 const inventoryDetailsEmployeeFabIcon = 'assets/images/inventory_details_employee_fab_icon.svg';
 const inventoryDetailsFabIcon = 'assets/images/inventory_details_fab_icon.svg';
+const spreadsheetIcon = 'assets/images/spreadsheet.png';
+const googleDriveIcon = 'assets/images/google_drive.svg';
