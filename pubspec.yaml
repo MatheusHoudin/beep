@@ -83,6 +83,8 @@ flutter:
     - assets/images/inventory_details_products_fab_icon.svg
     - assets/images/spreadsheet.png
     - assets/images/google_drive.svg
+    - assets/images/green_barcode.svg
+    - assets/images/product_weight.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

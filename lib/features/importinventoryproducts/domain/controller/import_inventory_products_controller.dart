@@ -5,14 +5,14 @@ import 'package:beep/features/importinventoryproducts/domain/usecase/import_inve
 import 'package:beep/features/importinventoryproducts/presentation/widgets/select_products_inventory_file_dialog.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
 import 'package:beep/shared/feedback/loading_provider.dart';
-import 'package:beep/shared/model/imported_inventory_product.dart';
+import 'package:beep/shared/model/inventory_product.dart';
 import 'package:beep/shared/model/inventory_file.dart';
 import 'package:get/get.dart';
 
 abstract class ImportInventoryProductsController extends GetxController {
   void fetchAvailableFilesToImport();
   void importInventoryProducts(String fileId);
-  RxList<ImportedInventoryProduct> getImportedInventoryProducts();
+  RxList<InventoryProduct> getImportedInventoryProducts();
 }
 
 class ImportInventoryProductsControllerImpl extends ImportInventoryProductsController {
@@ -22,7 +22,7 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
   final GetAvailableGoogleDriveFilesUseCase getAvailableGoogleDriveFilesUseCase;
   final ImportInventoryProductsUseCase importInventoryProductsUseCase;
 
-  RxList<ImportedInventoryProduct> _importedInventoryProducts = <ImportedInventoryProduct>[].obs;
+  RxList<InventoryProduct> _importedInventoryProducts = <InventoryProduct>[].obs;
 
   ImportInventoryProductsControllerImpl({
     this.loadingProvider,
@@ -74,7 +74,7 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
   }
 
   @override
-  RxList<ImportedInventoryProduct> getImportedInventoryProducts() {
+  RxList<InventoryProduct> getImportedInventoryProducts() {
     return _importedInventoryProducts;
   }
 }

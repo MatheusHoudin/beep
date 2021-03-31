@@ -1,11 +1,11 @@
 import 'package:beep/shared/model/inventory_product_packaging.dart';
 import 'package:equatable/equatable.dart';
 
-class ImportedInventoryProduct extends Equatable {
+class InventoryProduct extends Equatable {
   final String name, code;
   final InventoryProductPackaging inventoryProductPackaging;
 
-  ImportedInventoryProduct({
+  InventoryProduct({
     this.name,
     this.code,
     this.inventoryProductPackaging

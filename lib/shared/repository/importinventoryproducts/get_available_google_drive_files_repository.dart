@@ -5,7 +5,7 @@ import 'package:beep/core/error/exception.dart';
 import 'package:beep/core/network/network_info.dart';
 import 'package:beep/shared/datasource/importinventoryproducts/google_drive_files_remote_data_source.dart';
 import 'package:beep/shared/datasource/importinventoryproducts/login_to_google_account_remote_data_source.dart';
-import 'package:beep/shared/model/imported_inventory_product.dart';
+import 'package:beep/shared/model/inventory_product.dart';
 import 'package:dartz/dartz.dart';
 import 'package:googleapis/drive/v3.dart' as ga;
 import 'package:beep/core/error/failure.dart';
@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 
 abstract class GetAvailableGoogleDriveFilesRepository {
   Future<Either<Failure, List<ga.File>>> getAvailableGoogleDriveFiles();
-  Future<Either<Failure, List<ImportedInventoryProduct>>> importInventoryProducts(String fileId);
+  Future<Either<Failure, List<InventoryProduct>>> importInventoryProducts(String fileId);
 }
 
 class GetAvailableGoogleDriveFilesRepositoryImpl extends GetAvailableGoogleDriveFilesRepository {
@@ -44,7 +44,7 @@ class GetAvailableGoogleDriveFilesRepositoryImpl extends GetAvailableGoogleDrive
   }
 
   @override
-  Future<Either<Failure, List<ImportedInventoryProduct>>> importInventoryProducts(String fileId) async {
+  Future<Either<Failure, List<InventoryProduct>>> importInventoryProducts(String fileId) async {
     if (!await networkInfo.isConnected) return Left(NoInternetConnectionFailure());
 
     try {
@@ -66,7 +66,7 @@ class GetAvailableGoogleDriveFilesRepositoryImpl extends GetAvailableGoogleDrive
     }
   }
 
-  List<ImportedInventoryProduct> convertStringFileToImportedInventoryProducts(String fileContent) {
+  List<InventoryProduct> convertStringFileToImportedInventoryProducts(String fileContent) {
     if (fileContent == null || fileContent.isEmpty)
       throw InvalidInventoryProductsFileException(
         message: "O conteúdo do arquivo está vazio"
@@ -82,7 +82,7 @@ class GetAvailableGoogleDriveFilesRepositoryImpl extends GetAvailableGoogleDrive
       _validateEanHasOnlyNumbers(separatedLineFields[1], line);
       _validatePackaging(separatedLineFields[2], line);
 
-      return ImportedInventoryProduct(
+      return InventoryProduct(
         name: separatedLineFields[0],
         code: separatedLineFields[1],
         inventoryProductPackaging: separatedLineFields[2].convertStringToInventoryProductPackaging()

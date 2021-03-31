@@ -45,7 +45,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           AnimatedActionButton(
             child: ActionButton(
               onPressed: () => Get.find<InventoryDetailsController>().routeToImportInventoryProductsPage(),
-              icon: inventoryDetailsProductsFabIcon,
+              icon: inventoryDetailsProductsIcon,
               text: importProducts,
               isVisible: _open,
             ),
@@ -55,7 +55,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           AnimatedActionButton(
             child: ActionButton(
               onPressed: () => null,
-              icon: inventoryDetailsAddressesFabIcon,
+              icon: inventoryDetailsAddressesIcon,
               text: manageAddresses,
               isVisible: _open,
             ),
@@ -65,7 +65,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           AnimatedActionButton(
             child: ActionButton(
               onPressed: () => null,
-              icon: inventoryDetailsEmployeeFabIcon,
+              icon: inventoryDetailsEmployeeIcon,
               text: manageEmployees,
               isVisible: _open,
             ),

@@ -3,8 +3,10 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/features/importinventoryproducts/domain/controller/import_inventory_products_controller.dart';
-import 'package:beep/shared/model/imported_inventory_product.dart';
+import 'package:beep/shared/model/inventory_product.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
+import 'package:beep/shared/widgets/inventory_product_list_item.dart';
+import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +22,7 @@ class ImportInventoryProductsPage extends StatelessWidget {
             CustomAppBar(
               isWhiteStyle: true,
               hasIcon: true,
-              icon: inventoryDetailsProductsFabIcon,
+              icon: inventoryDetailsProductsIcon,
               appBarTitle: importInventoryProductsToolbarTitle,
             ),
             ImportInfoSection(),
@@ -62,12 +64,45 @@ class ImportInventoryProductsPage extends StatelessWidget {
     );
   }
 
-  Widget ProductsImportSection(List<ImportedInventoryProduct> importedProducts) {
+  Widget ProductsImportSection(List<InventoryProduct> importedProducts) {
+    return Column(
+      children: [
+        ConfirmProductsImport(),
+        Expanded(
+          child: ProductsToImportListView(importedProducts),
+        )
+      ],
+    );
+  }
+  
+  Widget ConfirmProductsImport() {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: largeSize,
+        vertical: normalSize
+      ),
+      child: PrimaryButton(
+        buttonText: confirmProductsImport,
+        onPressedCallback: () => null,
+        shouldExpand: true
+      ),
+    );
+  }
+  
+  Widget ProductsToImportListView(List<InventoryProduct> importedProducts) {
     return ListView.builder(
       itemCount: importedProducts.length,
       scrollDirection: Axis.vertical,
+      padding: EdgeInsets.symmetric(
+        horizontal: tinySize
+      ),
       itemBuilder: (context, index) {
-        return Text(importedProducts[index].name, style: TextStyle(color: Colors.white),);
+        return Container(
+          margin: EdgeInsets.only(
+            bottom: mediumSmallSize
+          ),
+          child: InventoryProductListItem(inventoryProduct: importedProducts[index],),
+        );
       },
     );
   }

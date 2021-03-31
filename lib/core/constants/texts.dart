@@ -92,4 +92,5 @@ const confirmInventoryFileDialogTitle = "Confirmar importação";
 const confirmInventoryFileDialogMessage = "Você deseja realmente importar os produtos do arquivo: ";
 const confirmInventoryFileDialogPositiveButton = "Confirmar";
 const confirmInventoryFileDialogNegativeButton = "Cancelar";
+const confirmProductsImport = "Confirmar importação";
 // import_inventory_products
