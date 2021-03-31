@@ -3,6 +3,7 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/features/importinventoryproducts/domain/controller/import_inventory_products_controller.dart';
+import 'package:beep/shared/model/imported_inventory_product.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,11 +27,48 @@ class ImportInventoryProductsPage extends StatelessWidget {
             Expanded(
               child: Container(
                 color: secondaryColor,
+                child: GetX<ImportInventoryProductsController>(
+                  builder: (c) {
+                    final importedProducts = c.getImportedInventoryProducts();
+
+                    return importedProducts.isEmpty ?
+                    NoImportedInventoryProducts() :
+                    ProductsImportSection(importedProducts);
+                  },
+                ),
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget NoImportedInventoryProducts() {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: mediumSize
+        ),
+        child: Text(
+          'Não há produtos disponíveis para importação neste momento, clique em + para importar.',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.firaSans(
+            color: Colors.white,
+            fontSize: mediumTextSize
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget ProductsImportSection(List<ImportedInventoryProduct> importedProducts) {
+    return ListView.builder(
+      itemCount: importedProducts.length,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context, index) {
+        return Text(importedProducts[index].name, style: TextStyle(color: Colors.white),);
+      },
     );
   }
 

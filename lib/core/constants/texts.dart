@@ -88,4 +88,8 @@ const importInventoryProductsInfo = "Aqui você pode importar produtos para o se
 const importInventoryProductsFieldsName = "NOME; EAN; EMB(UND/KG)";
 const selectInventoryProductsFileGoogleDriveTitle = "Selecione o arquivo com os produtos a serem importados";
 const selectInventoryProductsFileGoogleDriveInfo = "O arquivo deve estar no formato CSV com os seguintes campos: NOME; EAN; EMB(UND/KG)";
+const confirmInventoryFileDialogTitle = "Confirmar importação";
+const confirmInventoryFileDialogMessage = "Você deseja realmente importar os produtos do arquivo: ";
+const confirmInventoryFileDialogPositiveButton = "Confirmar";
+const confirmInventoryFileDialogNegativeButton = "Cancelar";
 // import_inventory_products
