@@ -1,4 +1,0 @@
-enum InventoryProductPackaging {
-  UND,
-  KG
-}
