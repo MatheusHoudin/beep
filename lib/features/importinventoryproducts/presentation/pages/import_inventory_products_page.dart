@@ -11,7 +11,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ImportInventoryProductsPage extends StatelessWidget {
+class ImportInventoryProductsPage extends StatefulWidget {
+  @override
+  _ImportInventoryProductsPageState createState() => _ImportInventoryProductsPageState();
+}
+
+class _ImportInventoryProductsPageState extends State<ImportInventoryProductsPage> {
+
+  @override
+  void initState() {
+    String inventoryCode = Get.arguments;
+
+    Get.find<ImportInventoryProductsController>().initialize(inventoryCode);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -74,7 +88,7 @@ class ImportInventoryProductsPage extends StatelessWidget {
       ],
     );
   }
-  
+
   Widget ConfirmProductsImport() {
     return Container(
       margin: EdgeInsets.symmetric(
@@ -83,12 +97,12 @@ class ImportInventoryProductsPage extends StatelessWidget {
       ),
       child: PrimaryButton(
         buttonText: confirmProductsImport,
-        onPressedCallback: () => null,
+        onPressedCallback: () => Get.find<ImportInventoryProductsController>().registerInventoryProducts(),
         shouldExpand: true
       ),
     );
   }
-  
+
   Widget ProductsToImportListView(List<InventoryProduct> importedProducts) {
     return ListView.builder(
       itemCount: importedProducts.length,

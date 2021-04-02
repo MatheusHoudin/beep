@@ -37,8 +37,7 @@ class LoginRepositoryImpl extends LoginRepository {
         preferences.saveString(userNameKey, beepUser.name),
         preferences.saveString(userTypeKey, beepUser.type),
       ]);
-      final result = await preferences.saveString(companyCodeKey, beepUser.companyCode);
-      print("Saving company result $result");
+      await preferences.saveString(companyCodeKey, beepUser.companyCode);
 
     } on UserNotFoundException {
       return Left(UserNotFoundFailure(

@@ -22,6 +22,7 @@ class InventoryProductListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProductName(),
+            SizedBox(height: mediumSmallSize,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

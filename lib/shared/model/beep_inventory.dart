@@ -4,10 +4,11 @@ import 'package:beep/core/extension/string_extensions.dart';
 import 'package:beep/core/extension/beep_inventory_status_extensions.dart';
 
 class BeepInventory extends Equatable {
-  final String name, date, time, description;
+  final String id, name, date, time, description;
   final BeepInventoryStatus status;
 
   BeepInventory({
+    this.id,
     this.name,
     this.description,
     this.date,
@@ -17,6 +18,7 @@ class BeepInventory extends Equatable {
 
   factory BeepInventory.fromJson(Map<String, dynamic> json) {
     return BeepInventory(
+      id: json['id'],
       name: json['name'],
       description: json['description'],
       date: json['date'],
@@ -37,6 +39,7 @@ class BeepInventory extends Equatable {
 
   @override
   List<Object> get props => [
+    this.id,
     this.name,
     this.description,
     this.date,
