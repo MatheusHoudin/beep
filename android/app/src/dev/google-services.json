@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "215669603109-1pshodqolj4prtfgl4u4kl39n8klfokb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.houdin.beep.dev",
+            "certificate_hash": "64659587d838a54fa880f03fa2373e9619c85468"
+          }
+        },
+        {
           "client_id": "215669603109-75psk0o1ftqqcoobcq34mg9e5i6e51rg.apps.googleusercontent.com",
           "client_type": 3
         }

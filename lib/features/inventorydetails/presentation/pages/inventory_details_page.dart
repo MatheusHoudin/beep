@@ -1,6 +1,7 @@
 import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
+import 'package:beep/features/inventorydetails/domain/controller/inventory_details_controller.dart';
 import 'package:beep/features/inventorydetails/presentation/widgets/action_button.dart';
 import 'package:beep/features/inventorydetails/presentation/widgets/expandable_fab.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
@@ -26,6 +27,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
   @override
   void initState() {
     inventory = Get.arguments as BeepInventory;
+    Get.find<InventoryDetailsController>().initialize(inventory);
     super.initState();
   }
 
@@ -62,7 +64,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
           Text(
             inventory.description,
             style: GoogleFonts.firaSans(
-                color: disabledTextColor,
+                color: grayTextColor,
                 fontSize: normalTextSize
             ),
           ),
@@ -74,7 +76,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
                 '${inventory.date} às ${inventory.time}',
                 textAlign: TextAlign.start,
                 style: GoogleFonts.firaSans(
-                    color: disabledTextColor,
+                    color: grayTextColor,
                     fontSize: smallTextSize
                 ),
               ),
@@ -114,9 +116,9 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
       case BeepInventoryStatus.NotStarted:
         return notStartedInventoryBackground;
       case BeepInventoryStatus.Started:
-        return startedInventoryBackground;
+        return positiveColor;
       default:
-        return finishedInventoryBackground;
+        return negativeColor;
     }
   }
 

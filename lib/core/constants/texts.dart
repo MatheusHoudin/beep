@@ -81,3 +81,18 @@ const importProducts = "Importar produtos";
 const manageAddresses = "Gerenciar endereços";
 const manageEmployees = "Gerenciar colaboradores";
 // inventory_details
+
+// import_inventory_products
+const importInventoryProductsToolbarTitle = "Importar Produtos";
+const importInventoryProductsInfo = "Aqui você pode importar produtos para o seu inventário, no formato CSV com os seguintes campos:";
+const importInventoryProductsFieldsName = "NOME; EAN; EMB(UND/KG)";
+const selectInventoryProductsFileGoogleDriveTitle = "Selecione o arquivo com os produtos a serem importados";
+const selectInventoryProductsFileGoogleDriveInfo = "O arquivo deve estar no formato CSV com os seguintes campos: NOME; EAN; EMB(UND/KG)";
+const confirmInventoryFileDialogTitle = "Confirmar importação";
+const confirmInventoryFileDialogMessage = "Você deseja realmente importar os produtos do arquivo: ";
+const confirmInventoryFileDialogPositiveButton = "Confirmar";
+const confirmInventoryFileDialogNegativeButton = "Cancelar";
+const confirmProductsImport = "Confirmar importação";
+const importProductsSuccessTitle = "Importação com sucesso!";
+const importProductsSuccessMessage = "Importação dos produtos realizada com sucesso, confira seu inventário.";
+// import_inventory_products

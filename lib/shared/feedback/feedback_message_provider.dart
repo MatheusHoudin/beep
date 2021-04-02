@@ -12,6 +12,6 @@ class FeedbackMessageProviderImpl extends FeedbackMessageProvider {
       title: title,
       message: message,
       okFunction: Get.back,
-    ), barrierDismissible: false);
+    ));
   }
 }

@@ -63,7 +63,7 @@ class InventoryItem extends StatelessWidget {
                     inventory.description,
                     textAlign: TextAlign.start,
                     style: GoogleFonts.firaSans(
-                      color: disabledTextColor,
+                      color: grayTextColor,
                       fontSize: smallTextSize
                     ),
                   ),
@@ -73,7 +73,7 @@ class InventoryItem extends StatelessWidget {
                   '${inventory.date} às ${inventory.time}',
                   textAlign: TextAlign.start,
                   style: GoogleFonts.firaSans(
-                    color: disabledTextColor,
+                    color: grayTextColor,
                     fontSize: smallTextSize
                   ),
                 )
@@ -87,9 +87,9 @@ class InventoryItem extends StatelessWidget {
 
   Color getBackgroundColor() {
     switch(inventory.status) {
-      case BeepInventoryStatus.Started: return startedInventoryBackground;
+      case BeepInventoryStatus.Started: return positiveColor;
       case BeepInventoryStatus.NotStarted: return notStartedInventoryBackground;
-      default: return finishedInventoryBackground;
+      default: return negativeColor;
     }
   }
 }

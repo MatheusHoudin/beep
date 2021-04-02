@@ -25,7 +25,6 @@ class CustomAppBar extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: smallSize,
-          vertical: mediumSmallSize
         ),
         child: Stack(
           alignment: Alignment.centerRight,
