@@ -15,7 +15,7 @@ class FetchCompanyInventoriesRemoteDataSourceImpl extends FetchCompanyInventorie
   Future<List<BeepInventory>> fetchCompanyInventories(String companyCode) {
     try {
       return repository.fetchCompanyInventories(companyCode);
-    } on Exception {
+    } catch(_) {
       throw GenericException();
     }
   }

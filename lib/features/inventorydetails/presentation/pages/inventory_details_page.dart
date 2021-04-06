@@ -6,7 +6,10 @@ import 'package:beep/features/inventorydetails/presentation/widgets/action_butto
 import 'package:beep/features/inventorydetails/presentation/widgets/expandable_fab.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/beep_inventory_status.dart';
+import 'package:beep/shared/model/inventory_product.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
+import 'package:beep/shared/widgets/empty_list.dart';
+import 'package:beep/shared/widgets/inventory_products_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,9 +29,9 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
 
   @override
   void initState() {
-    inventory = Get.arguments as BeepInventory;
-    Get.find<InventoryDetailsController>().initialize(inventory);
     super.initState();
+    inventory = Get.arguments as BeepInventory;
+    Get.find<InventoryDetailsController>().initialize(inventory.id);
   }
 
   @override
@@ -141,19 +144,27 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
         children: [
           ContentSectionNavigator(),
           Expanded(
-            child: PageView(
-              controller: pageController,
-              onPageChanged: (page) {
-                setState(() {
-                  selectedPage = page;
-                });
+            child: GetBuilder<InventoryDetailsController>(
+              initState: (_) {
+                Get.find<InventoryDetailsController>().fetchInventoryDetails();
               },
-              scrollDirection: Axis.horizontal,
-              children: [
-                ProductsSection(),
-                AddressesSection(),
-                AnalisysSection()
-              ],
+              builder: (c) {
+                final beepInventory = c.getBeepInventoryDetails();
+                return PageView(
+                  controller: pageController,
+                  onPageChanged: (page) {
+                    setState(() {
+                      selectedPage = page;
+                    });
+                  },
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ProductsSection(beepInventory?.inventoryProducts),
+                    AddressesSection(),
+                    AnalisysSection()
+                  ],
+                );
+              },
             ),
           )
         ],
@@ -189,24 +200,24 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: mediumSmallSize,
-                vertical: smallSize
+              horizontal: mediumSmallSize,
+              vertical: smallSize
             ),
             child: Text(
               section,
               textAlign: TextAlign.center,
               style: GoogleFonts.firaSans(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: smallTextSize
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: smallTextSize
               ),
             ),
           ),
           Visibility(
             visible: selectedPage == pageNumber,
             child: Container(
-                color: primaryColor,
-                height: miniSize
+              color: primaryColor,
+              height: miniSize
             ),
           )
         ],
@@ -214,24 +225,28 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
     );
   }
 
-  Widget ProductsSection() {
-    return Center(
-      child: Text(
-          productsSectionTitle,
-          style: GoogleFonts.firaSans(
-              color: Colors.white
-          )
-      ),
+  Widget ProductsSection(List<InventoryProduct> inventoryProducts) {
+    return inventoryProducts == null || inventoryProducts.isEmpty ?
+    NoInventoryProducts() : InventoryProductsSection(inventoryProducts);
+  }
+
+  Widget NoInventoryProducts() {
+    return EmptyList(
+      message: emptyListMessage,
     );
+  }
+
+  Widget InventoryProductsSection(List<InventoryProduct> inventoryProducts) {
+    return InventoryProductsList(inventoryProducts: inventoryProducts,);
   }
 
   Widget AddressesSection() {
     return Center(
       child: Text(
-          addressesSectionTitle,
-          style: GoogleFonts.firaSans(
-              color: Colors.white
-          )
+        addressesSectionTitle,
+        style: GoogleFonts.firaSans(
+          color: Colors.white
+        )
       ),
     );
   }
@@ -239,10 +254,10 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
   Widget AnalisysSection() {
     return Center(
       child: Text(
-          analisysSectionTitle,
-          style: GoogleFonts.firaSans(
-              color: Colors.white
-          )
+        analisysSectionTitle,
+        style: GoogleFonts.firaSans(
+          color: Colors.white
+        )
       ),
     );
   }

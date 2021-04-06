@@ -95,4 +95,5 @@ const confirmInventoryFileDialogNegativeButton = "Cancelar";
 const confirmProductsImport = "Confirmar importação";
 const importProductsSuccessTitle = "Importação com sucesso!";
 const importProductsSuccessMessage = "Importação dos produtos realizada com sucesso, confira seu inventário.";
+const emptyListMessage = 'Não há produtos disponíveis para importação neste momento, clique em + para importar.';
 // import_inventory_products

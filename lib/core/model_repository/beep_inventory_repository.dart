@@ -12,6 +12,8 @@ abstract class BeepInventoryRepository {
     String inventoryCode,
     List<InventoryProduct> inventoryProducts
   );
+
+  Future<BeepInventory> fetchInventoryData(String companyCode, String inventoryId);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -67,6 +69,33 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
                 .collection('products')
                 .add(e.toJson());
           }).toList());
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @override
+  Future<BeepInventory> fetchInventoryData(String companyCode, String inventoryId) async {
+    try {
+      final inventorySnapshot = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryId)
+          .get();
+      final inventoryProducts = await inventorySnapshot.reference.collection('products').get();
+
+      final data = inventorySnapshot.data();
+      final inventoryDetailsJson = {
+        'id': data['id'],
+        'name': data['name'],
+        'description': data['description'],
+        'date': data['date'],
+        'time': data['time'],
+        'status': data['status'],
+        'products': inventoryProducts.docs.map((e) => e.data()).toList()
+      };
+      return BeepInventory.fromJson(inventoryDetailsJson);
     } catch (e) {
       throw e;
     }

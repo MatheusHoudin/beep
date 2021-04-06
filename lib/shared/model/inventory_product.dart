@@ -1,6 +1,7 @@
 import 'package:beep/shared/model/inventory_product_packaging.dart';
 import 'package:equatable/equatable.dart';
 import 'package:beep/core/extension/inventory_product_packaging_extensions.dart';
+import 'package:beep/core/extension/string_extensions.dart';
 
 class InventoryProduct extends Equatable {
   final String name, code;
@@ -11,6 +12,14 @@ class InventoryProduct extends Equatable {
     this.code,
     this.inventoryProductPackaging
   });
+
+  factory InventoryProduct.fromJson(Map<String, dynamic> json) {
+    return InventoryProduct(
+      name: json['name'],
+      code: json['code'],
+      inventoryProductPackaging: json['packaging'].toString().convertStringToInventoryProductPackaging()
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
