@@ -20,27 +20,24 @@ class CreateInventoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        Get.find<CompanyController>().fetchCompanyInventories();
-        return true;
-      },
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: secondaryColor,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomAppBar(
-                  appBarTitle: createInventoryToolbarTitle,
-                  hasIcon: false,
-                ),
-                SizedBox(
-                  height: largeSize,
-                ),
-                CreateInventoryForm(context)
-              ],
-            ),
+    Get.find<CreateInventoryController>().initialize(() =>
+        Get.find<CompanyController>().fetchCompanyInventories()
+    );
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: secondaryColor,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomAppBar(
+                appBarTitle: createInventoryToolbarTitle,
+                hasIcon: false,
+              ),
+              SizedBox(
+                height: largeSize,
+              ),
+              CreateInventoryForm(context)
+            ],
           ),
         ),
       ),
