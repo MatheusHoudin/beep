@@ -3,6 +3,7 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/features/importinventoryproducts/domain/controller/import_inventory_products_controller.dart';
+import 'package:beep/features/inventorydetails/domain/controller/inventory_details_controller.dart';
 import 'package:beep/shared/model/inventory_product.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:beep/shared/widgets/empty_list.dart';
@@ -24,39 +25,49 @@ class _ImportInventoryProductsPageState extends State<ImportInventoryProductsPag
   void initState() {
     String inventoryCode = Get.arguments;
 
-    Get.find<ImportInventoryProductsController>().initialize(inventoryCode);
+    Get.find<ImportInventoryProductsController>().initialize(
+        inventoryCode,
+        () => Get.find<InventoryDetailsController>().fetchInventoryDetails()
+    );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: ImportProductsFab(),
-        body: Column(
-          children: [
-            CustomAppBar(
-              isWhiteStyle: true,
-              hasIcon: true,
-              icon: inventoryDetailsProductsIcon,
-              appBarTitle: importInventoryProductsToolbarTitle,
-            ),
-            ImportInfoSection(),
-            Expanded(
-              child: Container(
-                color: secondaryColor,
-                child: GetX<ImportInventoryProductsController>(
-                  builder: (c) {
-                    final importedProducts = c.getImportedInventoryProducts();
-
-                    return importedProducts.isEmpty ?
-                    NoImportedInventoryProducts() :
-                    ProductsImportSection(importedProducts);
-                  },
-                ),
+    return WillPopScope(
+      onWillPop: () async {
+        Get.find<InventoryDetailsController>().fetchInventoryDetails();
+        return true;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          floatingActionButton: ImportProductsFab(),
+          body: Column(
+            children: [
+              CustomAppBar(
+                isWhiteStyle: true,
+                hasIcon: true,
+                icon: inventoryDetailsProductsIcon,
+                appBarTitle: importInventoryProductsToolbarTitle,
+                onBackPressed: () => Get.find<InventoryDetailsController>().fetchInventoryDetails(),
               ),
-            )
-          ],
+              ImportInfoSection(),
+              Expanded(
+                child: Container(
+                  color: secondaryColor,
+                  child: GetX<ImportInventoryProductsController>(
+                    builder: (c) {
+                      final importedProducts = c.getImportedInventoryProducts();
+
+                      return importedProducts.isEmpty ?
+                      NoImportedInventoryProducts() :
+                      ProductsImportSection(importedProducts);
+                    },
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

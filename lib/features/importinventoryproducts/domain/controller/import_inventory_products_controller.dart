@@ -12,7 +12,7 @@ import 'package:beep/shared/model/inventory_file.dart';
 import 'package:get/get.dart';
 
 abstract class ImportInventoryProductsController extends GetxController {
-  void initialize(String inventoryCode);
+  void initialize(String inventoryCode, Function onBackPressedCallback);
   void fetchAvailableFilesToImport();
   void importInventoryProducts(String fileId);
   void registerInventoryProducts();
@@ -29,6 +29,7 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
 
   RxList<InventoryProduct> _importedInventoryProducts = <InventoryProduct>[].obs;
   String inventoryCode;
+  Function onBackPressedCallback;
 
   ImportInventoryProductsControllerImpl({
     this.loadingProvider,
@@ -40,8 +41,9 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
   });
 
   @override
-  void initialize(String inventoryCode) {
+  void initialize(String inventoryCode, Function onBackPressedCallback) {
     this.inventoryCode = inventoryCode;
+    this.onBackPressedCallback = onBackPressedCallback;
   }
 
   @override

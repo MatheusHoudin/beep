@@ -9,12 +9,14 @@ class CustomAppBar extends StatelessWidget {
   final String appBarTitle;
   final bool hasIcon, isWhiteStyle;
   final String icon;
+  final Function onBackPressed;
 
   CustomAppBar({
     this.appBarTitle,
     this.hasIcon,
     this.icon = "",
-    this.isWhiteStyle = false
+    this.isWhiteStyle = false,
+    this.onBackPressed
   });
 
   @override
@@ -32,7 +34,10 @@ class CustomAppBar extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               child: GestureDetector(
-                onTap: () => Get.back(),
+                onTap: () {
+                  Get.back();
+                  if (onBackPressed != null) onBackPressed();
+                },
                 child: Icon(
                   Icons.arrow_back_ios_outlined,
                   color: isWhiteStyle ? primaryColor : Colors.white,
