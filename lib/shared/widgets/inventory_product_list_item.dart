@@ -9,8 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class InventoryProductListItem extends StatelessWidget {
   final InventoryProduct inventoryProduct;
+  final bool shouldShowProductCount;
 
-  InventoryProductListItem({this.inventoryProduct});
+  InventoryProductListItem(
+      {this.inventoryProduct, this.shouldShowProductCount});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,13 @@ class InventoryProductListItem extends StatelessWidget {
             ProductName(),
             SizedBox(height: mediumSmallSize,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ProductBarcode(),
-                ProductPackaging()
+                Expanded(child: ProductBarcode()),
+                ProductPackaging(),
+                Visibility(
+                  child: ProductCount(),
+                  visible: shouldShowProductCount,
+                )
               ],
             )
           ],
@@ -40,9 +45,9 @@ class InventoryProductListItem extends StatelessWidget {
     return Text(
       inventoryProduct.name,
       style: GoogleFonts.firaSans(
-        color: primaryColor,
-        fontWeight: FontWeight.bold,
-        fontSize: mediumTextSize
+          color: primaryColor,
+          fontWeight: FontWeight.bold,
+          fontSize: mediumTextSize
       ),
     );
   }
@@ -51,14 +56,14 @@ class InventoryProductListItem extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(
-          greenBarcodeIcon
+            greenBarcodeIcon
         ),
         SizedBox(width: tinySize,),
         Text(
           inventoryProduct.code,
           style: GoogleFonts.firaSans(
-            fontSize: normalTextSize,
-            color: grayTextColor
+              fontSize: normalTextSize,
+              color: grayTextColor
           ),
         )
       ],
@@ -74,7 +79,28 @@ class InventoryProductListItem extends StatelessWidget {
   }
 
   String _getProductPackagingIcon() {
-    return inventoryProduct.inventoryProductPackaging == InventoryProductPackaging.KG
+    return inventoryProduct.inventoryProductPackaging ==
+        InventoryProductPackaging.KG
         ? productWeightIcon : inventoryDetailsProductsIcon;
+  }
+
+  Widget ProductCount() {
+    return Padding(
+      padding: EdgeInsets.only(left: mediumSmallSize),
+      child: Text(
+        getFormattedProductCount(),
+        style: GoogleFonts.firaSans(
+            color: secondaryColor,
+            fontSize: smallTextSize
+        ),
+      ),
+    );
+  }
+
+  String getFormattedProductCount() {
+    return inventoryProduct.inventoryProductPackaging ==
+        InventoryProductPackaging.KG
+        ? inventoryProduct.quantity.toString()
+        : inventoryProduct.quantity.toInt().toString();
   }
 }

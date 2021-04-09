@@ -10,6 +10,7 @@ import 'package:beep/core/extension/date_time_extensions.dart';
 import 'package:beep/core/extension/time_of_day_extensions.dart';
 
 abstract class CreateInventoryController extends GetxController {
+  void initialize(Function onBackPressedCallback);
   void createInventory(
     String name,
     String description,
@@ -31,12 +32,19 @@ class CreateInventoryControllerImpl extends CreateInventoryController {
   final _pickedDate = "".obs;
   final _pickedTime = "".obs;
 
+  Function onBackPressedCallback;
+
   CreateInventoryControllerImpl([
     this._feedbackMessageProvider,
     this._loadingProvider,
     this._useCase,
     this._router
   ]);
+
+  @override
+  void initialize(Function onBackPressedCallback) {
+    this.onBackPressedCallback = onBackPressedCallback;
+  }
 
   @override
   void createInventory(String name, String description, String date, String time) async {
@@ -57,6 +65,7 @@ class CreateInventoryControllerImpl extends CreateInventoryController {
       createInventoryResult.fold(_handleCreateInventoryFailure, null);
     } else {
       _router.back();
+      onBackPressedCallback();
       _feedbackMessageProvider.showOneButtonDialog(
         createInventorySuccessTitle,
         createInventorySuccessMessage

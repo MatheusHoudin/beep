@@ -42,13 +42,10 @@ class InventoryDetailsControllerImpl extends InventoryDetailsController {
 
   @override
   void fetchInventoryDetails() async {
-    //loadingProvider.showFullscreenLoading();
-
     final inventoryDetailsOrFailure = await fetchInventoryDetailsUseCase.call(
       FetchInventoryDetailsParams(inventoryId: inventoryId)
     );
 
-    //loadingProvider.hideFullscreenLoading();
     inventoryDetailsOrFailure.fold(
       (failure) {
         feedbackMessageProvider.showOneButtonDialog(

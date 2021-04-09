@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class InventoryProductsList extends StatelessWidget {
   final List<InventoryProduct> inventoryProducts;
+  final bool shouldShowProductCount;
 
-  InventoryProductsList({this.inventoryProducts});
+  InventoryProductsList({this.inventoryProducts, this.shouldShowProductCount = false});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,10 @@ class InventoryProductsList extends StatelessWidget {
           margin: EdgeInsets.only(
               bottom: mediumSmallSize
           ),
-          child: InventoryProductListItem(inventoryProduct: inventoryProducts[index],),
+          child: InventoryProductListItem(
+            inventoryProduct: inventoryProducts[index],
+            shouldShowProductCount: shouldShowProductCount,
+          ),
         );
       },
     );
