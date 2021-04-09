@@ -21,25 +21,8 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Expanded(
-          child: Visibility(
-            visible: isVisible,
-            child: Padding(
-              padding: EdgeInsets.only(
-                right: normalSize
-              ),
-              child: Text(
-                text,
-                textAlign: TextAlign.end,
-                style: GoogleFonts.firaSans(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-          ),
-        ),
         Container(
           width: 56,
           height: 56,
