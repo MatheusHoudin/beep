@@ -33,6 +33,14 @@ class InventoryProduct extends Equatable {
     };
   }
 
+  Map<String, dynamic> toJsonWithoutQuantityField() {
+    return {
+      'name': name,
+      'code': code,
+      'packaging': inventoryProductPackaging.convertInventoryProductPackagingToString()
+    };
+  }
+
   @override
   String toString() {
     return "Name: $name, Code: $code, Quantity: $quantity, Packaging: $inventoryProductPackaging";
