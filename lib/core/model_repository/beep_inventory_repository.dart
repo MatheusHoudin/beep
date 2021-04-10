@@ -67,7 +67,11 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
                 .collection('inventories')
                 .doc(inventoryCode)
                 .collection('products')
-                .add(e.toJson());
+                .doc(e.code)
+                .set(
+                  e.toJsonWithoutQuantityField(),
+                  SetOptions(merge: true,)
+                );
           }).toList());
     } catch (e) {
       throw e;
