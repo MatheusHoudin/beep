@@ -20,24 +20,49 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Container(
-          width: 56,
-          height: 56,
-          child: Material(
-            shape: CircleBorder(),
-            clipBehavior: Clip.antiAlias,
-            color: primaryColor,
-            elevation: 4.0,
-            child: IconButton(
-              onPressed: onPressed,
-              icon: SvgPicture.asset(icon),
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        margin: EdgeInsets.only(left: hugeSize),
+        decoration: BoxDecoration(
+          //color: isVisible ? primaryColor.withOpacity(0.9) : Colors.transparent,
+          borderRadius: BorderRadius.circular(mediumSmallSize)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Visibility(
+              visible: isVisible,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right: smallSize
+                ),
+                child: Text(
+                  text,
+                  style: GoogleFonts.firaSans(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
             ),
-          ),
-        )
-      ],
+            Container(
+              width: 56,
+              height: 56,
+              child: Material(
+                shape: CircleBorder(),
+                clipBehavior: Clip.antiAlias,
+                color: primaryColor,
+                elevation: 4.0,
+                child: IconButton(
+                  onPressed: onPressed,
+                  icon: SvgPicture.asset(icon),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

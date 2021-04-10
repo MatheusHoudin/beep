@@ -9,6 +9,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ExpandableFab extends StatefulWidget {
+  final Function onFabClickAction;
+
+  ExpandableFab({this.onFabClickAction});
+
   @override
   _ExpandableFabState createState() => _ExpandableFabState();
 }
@@ -25,6 +29,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
   void _toggle() {
     setState(() {
       _open = !_open;
+      widget.onFabClickAction(_open);
       if (_open) {
         optionsVerticalPosition = 70.0;
       } else {
@@ -37,6 +42,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Container(
       height: Get.size.height,
+      width: Get.size.width,
       child: Stack(
         alignment: Alignment.bottomRight,
         clipBehavior: Clip.none,
