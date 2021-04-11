@@ -15,7 +15,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.3.0+1
+version: 1.0.0+1
+
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
@@ -27,8 +28,20 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  firebase_core: ^0.7.0
-  cloud_firestore: ^0.16.0
+  firebase_core: ^1.0.2
+  cloud_firestore: ^1.0.2
+  get: ^3.24.0
+  flutter_svg: ^0.19.3
+  google_fonts: ^2.0.0
+  equatable: ^1.2.5
+  dartz: ^0.9.2
+  shared_preferences: 2.0.1
+  mockito: ^4.1.4
+  firebase_auth: ^1.0.1
+  data_connection_checker: ^0.3.4
+  googleapis: ^2.0.0
+  google_sign_in: ^5.0.0
+  path_provider: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +62,29 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+
+  assets:
+    - assets/images/beep_logo.png
+    - assets/images/splash_first.png
+    - assets/images/splash_second.png
+    - assets/images/splash_third.png
+    - assets/images/steps_first.svg
+    - assets/images/steps_second.svg
+    - assets/images/steps_third.svg
+    - assets/images/date_picker.svg
+    - assets/images/time_picker.svg
+    - assets/images/password_visible.svg
+    - assets/images/password_invisible.svg
+    - assets/images/logout.svg
+    - assets/images/inventory_item_icon.svg
+    - assets/images/inventory_details_fab_icon.svg
+    - assets/images/inventory_details_employee_fab_icon.svg
+    - assets/images/inventory_details_addresses_fab_icon.svg
+    - assets/images/inventory_details_products_fab_icon.svg
+    - assets/images/spreadsheet.png
+    - assets/images/google_drive.svg
+    - assets/images/green_barcode.svg
+    - assets/images/product_weight.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

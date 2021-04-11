@@ -25,6 +25,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
 
   BeepInventory inventory;
   int selectedPage = 0;
+  bool isFabOpened = false;
 
   @override
   void initState() {
@@ -33,25 +34,49 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
     super.initState();
   }
 
+  void _setFabOptionsAreOpened(bool isOpened) {
+    setState(() {
+      this.isFabOpened = isOpened;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        floatingActionButton: ExpandableFab(),
-        body: Column(
+        floatingActionButton: ExpandableFab(
+          onFabClickAction: _setFabOptionsAreOpened,
+        ),
+        body: Stack(
           children: [
-            CustomAppBar(
-              appBarTitle: inventory.name,
-              hasIcon: true,
-              icon: inventoryItemIcon,
-              isWhiteStyle: true,
+            Content(),
+            Visibility(
+              visible: isFabOpened,
+              child: Container(
+                width: Get.size.width,
+                height: Get.size.height,
+                color: isFabOpened ? Colors.black.withOpacity(0.5) : Colors.transparent,
+              ),
             ),
-            InventoryDetailsSection(),
-            Expanded(child: ContentSection())
           ],
         ),
       ),
+    );
+  }
+
+  Widget Content() {
+    return Column(
+      children: [
+        CustomAppBar(
+          appBarTitle: inventory.name,
+          hasIcon: true,
+          icon: inventoryItemIcon,
+          isWhiteStyle: true,
+        ),
+        InventoryDetailsSection(),
+        Expanded(child: ContentSection())
+      ],
     );
   }
 
