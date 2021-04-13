@@ -4,7 +4,9 @@ import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/features/importinventoryproducts/domain/controller/import_inventory_products_controller.dart';
 import 'package:beep/features/inventorydetails/domain/controller/inventory_details_controller.dart';
+import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/inventory_product.dart';
+import 'package:beep/shared/widgets/app_bar_details_section.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:beep/shared/widgets/empty_list.dart';
 import 'package:beep/shared/widgets/inventory_product_list_item.dart';
@@ -23,10 +25,10 @@ class _ImportInventoryProductsPageState extends State<ImportInventoryProductsPag
 
   @override
   void initState() {
-    String inventoryCode = Get.arguments;
+    BeepInventory beepInventory = Get.arguments;
 
     Get.find<ImportInventoryProductsController>().initialize(
-        inventoryCode,
+        beepInventory,
         () => Get.find<InventoryDetailsController>().fetchInventoryDetails()
     );
     super.initState();
@@ -51,7 +53,10 @@ class _ImportInventoryProductsPageState extends State<ImportInventoryProductsPag
                 appBarTitle: importInventoryProductsToolbarTitle,
                 onBackPressed: () => Get.find<InventoryDetailsController>().fetchInventoryDetails(),
               ),
-              ImportInfoSection(),
+              AppBarDetailsSection(
+                title: Get.find<InventoryDetailsController>().getBeepInventoryDetails().name,
+                bottomSection: ImportInfoSection(),
+              ),
               Expanded(
                 child: Container(
                   color: secondaryColor,
@@ -120,43 +125,25 @@ class _ImportInventoryProductsPageState extends State<ImportInventoryProductsPag
   }
 
   Widget ImportInfoSection() {
-    return Container(
-      width: Get.size.width,
-      margin: EdgeInsets.only(
-        bottom: mediumSmallSize
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: smallSize
-      ),
-      color: Colors.white,
-      child: Column(
-        children: [
-          Text(
-            'Frios e Congelados',
-            style: GoogleFonts.firaSans(
-              fontSize: normalTextSize,
-              color: grayTextColor
-            ),
-          ),
-          SizedBox(height: mediumSmallSize,),
-          Text(
-            importInventoryProductsInfo,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.firaSans(
+    return Column(
+      children: [
+        Text(
+          importInventoryProductsInfo,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.firaSans(
               fontSize: smallTextSize,
               color: grayTextColor
-            ),
           ),
-          Text(
-            importInventoryProductsFieldsName,
-            style: GoogleFonts.firaSans(
+        ),
+        Text(
+          importInventoryProductsFieldsName,
+          style: GoogleFonts.firaSans(
               fontSize: smallTextSize,
               color: grayTextColor,
               fontWeight: FontWeight.bold
-            ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

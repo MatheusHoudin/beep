@@ -97,3 +97,8 @@ const importProductsSuccessTitle = "Importação com sucesso!";
 const importProductsSuccessMessage = "Importação dos produtos realizada com sucesso, confira seu inventário.";
 const emptyListMessage = 'Não há produtos disponíveis para importação neste momento, clique em + para importar.';
 // import_inventory_products
+
+// inventory_employees
+const inventoryEmployeesToolbarTitle = "Gerenciar Colaboradores";
+const inventoryEmployeesInfo = "Aqui você pode gerenciar os colaboradores do seu inventário, adicionando a inventários e removendo.";
+// inventory_employees

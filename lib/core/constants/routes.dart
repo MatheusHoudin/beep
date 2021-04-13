@@ -5,3 +5,4 @@ const homeRouterPage = '/homeRouter/';
 const createInventoryRouterPage = '/createInventory';
 const inventoryDetailsRouterPage = '/inventoryDetails';
 const importInventoryProductsRouterPage = '/importInventoryProducts';
+const inventoryEmployeesRouterPage = '/inventoryEmployees';

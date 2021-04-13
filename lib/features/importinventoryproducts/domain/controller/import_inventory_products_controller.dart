@@ -7,15 +7,17 @@ import 'package:beep/features/importinventoryproducts/domain/usecase/register_in
 import 'package:beep/features/importinventoryproducts/presentation/widgets/select_products_inventory_file_dialog.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
 import 'package:beep/shared/feedback/loading_provider.dart';
+import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/inventory_product.dart';
 import 'package:beep/shared/model/inventory_file.dart';
 import 'package:get/get.dart';
 
 abstract class ImportInventoryProductsController extends GetxController {
-  void initialize(String inventoryCode, Function onBackPressedCallback);
+  void initialize(BeepInventory beepInventory, Function onBackPressedCallback);
   void fetchAvailableFilesToImport();
   void importInventoryProducts(String fileId);
   void registerInventoryProducts();
+  String getInventoryName();
   RxList<InventoryProduct> getImportedInventoryProducts();
 }
 
@@ -28,7 +30,7 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
   final RegisterInventoryProductsUseCase registerInventoryProductsUseCase;
 
   RxList<InventoryProduct> _importedInventoryProducts = <InventoryProduct>[].obs;
-  String inventoryCode;
+  BeepInventory beepInventory;
   Function onBackPressedCallback;
 
   ImportInventoryProductsControllerImpl({
@@ -41,8 +43,8 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
   });
 
   @override
-  void initialize(String inventoryCode, Function onBackPressedCallback) {
-    this.inventoryCode = inventoryCode;
+  void initialize(BeepInventory beepInventory, Function onBackPressedCallback) {
+    this.beepInventory = beepInventory;
     this.onBackPressedCallback = onBackPressedCallback;
   }
 
@@ -94,7 +96,7 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
     final registerInventoryProductsOrFailure = await registerInventoryProductsUseCase(
         RegisterInventoryProductsParams(
           inventoryProducts: _importedInventoryProducts,
-          inventoryCode: inventoryCode
+          inventoryCode: beepInventory.id
         )
     );
 
@@ -117,5 +119,10 @@ class ImportInventoryProductsControllerImpl extends ImportInventoryProductsContr
   @override
   RxList<InventoryProduct> getImportedInventoryProducts() {
     return _importedInventoryProducts;
+  }
+
+  @override
+  String getInventoryName() {
+    return beepInventory.name;
   }
 }

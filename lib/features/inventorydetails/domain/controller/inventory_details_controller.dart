@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 abstract class InventoryDetailsController extends GetxController {
   void initialize(String inventoryId);
   void routeToImportInventoryProductsPage();
+  void routeToInventoryEmployeesPage();
   void fetchInventoryDetails();
   BeepInventory getBeepInventoryDetails();
 }
@@ -30,9 +31,12 @@ class InventoryDetailsControllerImpl extends InventoryDetailsController {
 
   @override
   void routeToImportInventoryProductsPage() {
-    router.routeInventoryDetailsPageToImportInventoryProductsPage(
-      inventoryId
-    );
+    router.routeInventoryDetailsPageToImportInventoryProductsPage(beepInventory);
+  }
+
+  @override
+  void routeToInventoryEmployeesPage() {
+    router.routeInventoryDetailsPageToInventoryEmployeesPage(beepInventory);
   }
 
   @override
