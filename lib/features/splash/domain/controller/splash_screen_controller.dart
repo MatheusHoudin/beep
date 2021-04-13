@@ -12,13 +12,17 @@ abstract class SplashScreenController extends GetxController {
 
   void skip();
 
-  String getBackgroundImageUrl();
+  void updatePage(int page);
 
-  String getInfo();
+  String getBackgroundImageUrl(int index);
+
+  String getInfo(int index);
 
   String getStepImageUrl();
 
   bool shouldShowSkipButton();
+
+  int getCurrentPage();
 }
 
 class SplashScreenControllerImpl extends SplashScreenController {
@@ -32,9 +36,7 @@ class SplashScreenControllerImpl extends SplashScreenController {
     SplashPageData(
         image: splashThirdBackground, text: splashThirdText, step: stepsThird)
   ];
-  var selectedSplashPage = SplashPageData(
-          image: splashFirstBackground, text: splashFirstText, step: stepsFirst)
-      .obs;
+  var selectedSplashPage = SplashPageData(step: stepsFirst).obs;
   final currentIndex = 0.obs;
 
   final SaveOnboardingDoneUsecase _saveOnboardingDoneUseCase;
@@ -63,6 +65,15 @@ class SplashScreenControllerImpl extends SplashScreenController {
   }
 
   @override
+  void updatePage(int page) {
+    if (page < currentIndex.value) {
+      previousPage();
+    } else if (page > currentIndex.value) {
+      nextPage();
+    }
+  }
+
+  @override
   void skip() {
     _saveOnboardingAndContinueToLogin();
   }
@@ -73,13 +84,13 @@ class SplashScreenControllerImpl extends SplashScreenController {
   }
 
   @override
-  String getBackgroundImageUrl() {
-    return selectedSplashPage.value.image;
+  String getBackgroundImageUrl(int index) {
+    return _splashPagesData[index].image;
   }
 
   @override
-  String getInfo() {
-    return selectedSplashPage.value.text;
+  String getInfo(int index) {
+    return _splashPagesData[index].text;
   }
 
   @override
@@ -90,5 +101,10 @@ class SplashScreenControllerImpl extends SplashScreenController {
   @override
   bool shouldShowSkipButton() {
     return currentIndex.value == 0;
+  }
+
+  @override
+  int getCurrentPage() {
+    return currentIndex.value;
   }
 }
