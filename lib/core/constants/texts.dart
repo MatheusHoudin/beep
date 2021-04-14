@@ -101,4 +101,6 @@ const emptyListMessage = 'Não há produtos disponíveis para importação neste
 // inventory_employees
 const inventoryEmployeesToolbarTitle = "Gerenciar Colaboradores";
 const inventoryEmployeesInfo = "Aqui você pode gerenciar os colaboradores do seu inventário, adicionando a inventários e removendo.";
+const registerInventoryEmployeeHint = "Digite o email do colaborador";
+const registerInventoryEmployeeButton = "Adicionar colaborador";
 // inventory_employees
