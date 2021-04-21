@@ -1,3 +1,5 @@
+import 'package:beep/core/error/exception.dart';
+import 'package:beep/features/inventoryemployees/presentation/widgets/inventory_employee.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/inventory_product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +16,8 @@ abstract class BeepInventoryRepository {
   );
 
   Future<BeepInventory> fetchInventoryData(String companyCode, String inventoryId);
+
+  Future registerInventoryEmployee(String companyCode, String inventoryId, String userEmail);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -100,6 +104,50 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
         'products': inventoryProducts.docs.map((e) => e.data()).toList()
       };
       return BeepInventory.fromJson(inventoryDetailsJson);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @override
+  Future registerInventoryEmployee(String companyCode, String inventoryId, String userEmail) async {
+    try {
+      final foundUser = await firestore
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .where('type', isNotEqualTo: 'company')
+          .limit(1)
+          .get();
+
+      if (foundUser.docs.length == 0)
+        throw InventoryUserNotFoundException();
+
+      final inventoryUserWithNewUserEmail = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryId)
+          .collection('employees')
+          .where('email', isEqualTo: userEmail)
+          .limit(1)
+          .get();
+      
+      if (inventoryUserWithNewUserEmail.docs.length > 0)
+        throw InventoryUserIsAlreadyRegisteredOnInventoryException();
+
+      final userData = foundUser.docs.first.data();
+
+      return await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryId)
+          .collection('employees')
+          .add({
+            'name': userData['name'],
+            'id': userData['id'],
+            'email': userData['email'],
+          });
     } catch (e) {
       throw e;
     }

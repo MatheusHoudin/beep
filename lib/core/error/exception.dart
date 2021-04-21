@@ -30,6 +30,16 @@ class WrongPasswordException extends Equatable implements Exception {
   List<Object> get props => [];
 }
 
+class InventoryUserNotFoundException extends Equatable implements Exception {
+  @override
+  List<Object> get props => [];
+}
+
+class InventoryUserIsAlreadyRegisteredOnInventoryException extends Equatable implements Exception {
+  @override
+  List<Object> get props => [];
+}
+
 class InvalidInventoryProductsFileException extends Equatable implements Exception {
   final String message;
 

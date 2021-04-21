@@ -103,4 +103,8 @@ const inventoryEmployeesToolbarTitle = "Gerenciar Colaboradores";
 const inventoryEmployeesInfo = "Aqui você pode gerenciar os colaboradores do seu inventário, adicionando a inventários e removendo.";
 const registerInventoryEmployeeHint = "Digite o email do colaborador";
 const registerInventoryEmployeeButton = "Adicionar colaborador";
+const registerInventoryEmployeeUserAlreadyRegistered = "Este usuário já está cadastrado neste inventário";
+const registerInventoryEmployeeUserNotFound = "Não existe um usuário cadastrado com este email ou este usuário não é um colaborador";
+const registerInventoryEmployeeSuccessfulTitle = "Sucesso!";
+const registerInventoryEmployeeSuccessfulMessage = "O colaborador foi adicionado ao inventário com sucesso";
 // inventory_employees

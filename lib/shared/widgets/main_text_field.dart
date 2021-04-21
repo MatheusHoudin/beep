@@ -45,7 +45,7 @@ class MainTextField extends StatelessWidget {
         )
       ),
       style: GoogleFonts.firaSans(
-        color: isFilled ? secondaryColor : Colors.white
+        color: Colors.white
       ),
       obscureText: isObscure,
     );

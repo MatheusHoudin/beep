@@ -1,3 +1,4 @@
+import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/shared/widgets/base_dialog.dart';
 import 'package:flutter/material.dart';
@@ -42,11 +43,16 @@ class OneButtonDialog extends StatelessWidget {
         ),
         SizedBox(height: 16,),
         InkWell(
-          child: Text(
-            okText,
-            style: GoogleFonts.firaSans(
-                fontSize: 18,
-                fontWeight: FontWeight.bold
+          child: Container(
+            width: extraHugeSize,
+            height: extraLargeSize,
+            alignment: Alignment.center,
+            child: Text(
+              okText,
+              style: GoogleFonts.firaSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+              ),
             ),
           ),
           onTap: () => okFunction(),
