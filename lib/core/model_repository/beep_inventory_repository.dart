@@ -95,7 +95,7 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
 
       final data = inventorySnapshot.data();
       final inventoryDetailsJson = {
-        'id': data['id'],
+        'id': inventoryId,
         'name': data['name'],
         'description': data['description'],
         'date': data['date'],
