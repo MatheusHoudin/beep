@@ -256,7 +256,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
 
   Widget NoInventoryProducts() {
     return EmptyList(
-      message: emptyListMessage,
+      message: emptyProductListMessage,
     );
   }
 

@@ -1,6 +1,6 @@
 import 'package:beep/core/error/exception.dart';
-import 'package:beep/features/inventoryemployees/presentation/widgets/inventory_employee.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
+import 'package:beep/shared/model/inventory_employee.dart';
 import 'package:beep/shared/model/inventory_product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -8,6 +8,8 @@ abstract class BeepInventoryRepository {
   Future registerInventory(BeepInventory inventory, String companyCode);
 
   Future<List<BeepInventory>> fetchCompanyInventories(String companyCode);
+
+  Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId);
 
   Future importInventoryProductsToInventory(
     String companyCode,
@@ -33,8 +35,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .doc(companyCode)
           .collection('inventories')
           .add(inventory.toJson());
-    } catch (e) {
-      throw e;
+    } catch (_) {
+      throw GenericException();
     }
   }
 
@@ -51,8 +53,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .map((e) =>
               BeepInventory.fromJson(e.data()..putIfAbsent('id', () => e.id)))
           .toList();
-    } catch (e) {
-      throw e;
+    } catch (_) {
+      throw GenericException();
     }
   }
 
@@ -77,8 +79,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
                   SetOptions(merge: true,)
                 );
           }).toList());
-    } catch (e) {
-      throw e;
+    } catch (_) {
+      throw GenericException();
     }
   }
 
@@ -104,8 +106,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
         'products': inventoryProducts.docs.map((e) => e.data()).toList()
       };
       return BeepInventory.fromJson(inventoryDetailsJson);
-    } catch (e) {
-      throw e;
+    } catch (_) {
+      throw GenericException();
     }
   }
 
@@ -148,8 +150,25 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
             'id': userData['id'],
             'email': userData['email'],
           });
-    } catch (e) {
-      throw e;
+    } catch (_) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId) async {
+    try {
+      final inventorySnapshot = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryId)
+          .get();
+
+      final inventoryEmployees = await inventorySnapshot.reference.collection('employees').get();
+      return inventoryEmployees.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
+    } catch (_) {
+      throw GenericException();
     }
   }
 }

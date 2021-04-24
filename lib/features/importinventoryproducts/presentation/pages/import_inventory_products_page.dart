@@ -80,7 +80,7 @@ class _ImportInventoryProductsPageState extends State<ImportInventoryProductsPag
 
   Widget NoImportedInventoryProducts() {
     return EmptyList(
-      message: emptyListMessage,
+      message: emptyProductListMessage,
     );
   }
 

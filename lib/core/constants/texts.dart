@@ -95,7 +95,7 @@ const confirmInventoryFileDialogNegativeButton = "Cancelar";
 const confirmProductsImport = "Confirmar importação";
 const importProductsSuccessTitle = "Importação com sucesso!";
 const importProductsSuccessMessage = "Importação dos produtos realizada com sucesso, confira seu inventário.";
-const emptyListMessage = 'Não há produtos disponíveis para importação neste momento, clique em + para importar.';
+const emptyProductListMessage = 'Não há produtos disponíveis para importação neste momento, clique em + para importar.';
 // import_inventory_products
 
 // inventory_employees
@@ -107,4 +107,5 @@ const registerInventoryEmployeeUserAlreadyRegistered = "Este usuário já está 
 const registerInventoryEmployeeUserNotFound = "Não existe um usuário cadastrado com este email ou este usuário não é um colaborador";
 const registerInventoryEmployeeSuccessfulTitle = "Sucesso!";
 const registerInventoryEmployeeSuccessfulMessage = "O colaborador foi adicionado ao inventário com sucesso";
+const emptyInventoryEmployeesListMessage = "Não existem colaboradores cadastrados neste inventário";
 // inventory_employees
