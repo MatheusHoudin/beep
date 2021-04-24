@@ -1,4 +1,5 @@
 import 'package:beep/core/constants/colors.dart';
+import 'package:beep/core/constants/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,6 +7,7 @@ class MainTextField extends StatelessWidget {
   final String hint;
   final bool isObscure;
   final bool isMultiline;
+  final bool isFilled;
   final TextInputType textInputType;
   final TextEditingController controller;
 
@@ -17,7 +19,8 @@ class MainTextField extends StatelessWidget {
     this.isMultiline = false,
     this.suffixIcon,
     this.controller,
-    this.textInputType
+    this.textInputType,
+    this.isFilled = false
   });
 
   @override
@@ -29,11 +32,16 @@ class MainTextField extends StatelessWidget {
       maxLines: isMultiline ? null : 1,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
+        fillColor: Colors.white,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: smallSize,
+          vertical: tinySize
+        ),
         enabledBorder: BorderStyle(Colors.white),
         focusedBorder: BorderStyle(primaryColor),
         hintText: hint,
         hintStyle: GoogleFonts.firaSans(
-          color: hintColor
+          color: hintColor,
         )
       ),
       style: GoogleFonts.firaSans(

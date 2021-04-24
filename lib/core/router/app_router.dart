@@ -8,7 +8,8 @@ abstract class AppRouter {
   void routeLoginPageToHomePage();
   void routeHomePageToRegisterInventoryPage();
   void routeHomePageToInventoryDetailsPage(BeepInventory beepInventory);
-  void routeInventoryDetailsPageToImportInventoryProductsPage(String inventoryCode);
+  void routeInventoryDetailsPageToImportInventoryProductsPage(BeepInventory beepInventory);
+  void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory);
   void back();
 }
 
@@ -44,7 +45,12 @@ class AppRouterImpl extends AppRouter {
   }
 
   @override
-  void routeInventoryDetailsPageToImportInventoryProductsPage(String inventoryCode) {
-    Get.toNamed(importInventoryProductsRouterPage, arguments: inventoryCode);
+  void routeInventoryDetailsPageToImportInventoryProductsPage(BeepInventory beepInventory) {
+    Get.toNamed(importInventoryProductsRouterPage, arguments: beepInventory);
+  }
+
+  @override
+  void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory) {
+    Get.toNamed(inventoryEmployeesRouterPage, arguments: beepInventory);
   }
 }

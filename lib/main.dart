@@ -7,11 +7,13 @@ import 'package:beep/core/di/import_inventory_products_bindings.dart';
 import 'package:beep/core/di/inventory_details_bindings.dart';
 import 'package:beep/core/di/login_page_bindings.dart';
 import 'package:beep/core/di/main_bindings.dart';
+import 'package:beep/core/di/register_inventory_employee_bindings.dart';
 import 'package:beep/core/di/register_page_bindings.dart';
 import 'package:beep/core/di/splash_page_bindings.dart';
 import 'package:beep/features/createinventory/presentation/create_inventory_page.dart';
 import 'package:beep/features/home/presentation/router/home_router.dart';
 import 'package:beep/features/importinventoryproducts/presentation/pages/import_inventory_products_page.dart';
+import 'package:beep/features/inventoryemployees/presentation/pages/inventory_employees.dart';
 import 'file:///C:/Users/Matheus/OneDrive/Documentos/Projetos/beep/lib/features/inventorydetails/presentation/pages/inventory_details_page.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
@@ -70,6 +72,11 @@ void main() async {
         name: importInventoryProductsRouterPage,
         page: () => ImportInventoryProductsPage(),
         binding: ImportInventoryProductsBindings()
+      ),
+      GetPage(
+        name: inventoryEmployeesRouterPage,
+        page: () => InventoryEmployees(),
+        binding: RegisterInventoryEmployeeBindings()
       ),
     ],
   ));

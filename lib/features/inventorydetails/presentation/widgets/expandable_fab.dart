@@ -70,7 +70,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           ),
           AnimatedActionButton(
             child: ActionButton(
-              onPressed: () => null,
+              onPressed: () => Get.find<InventoryDetailsController>().routeToInventoryEmployeesPage(),
               icon: inventoryDetailsEmployeeIcon,
               text: manageEmployees,
               isVisible: _open,
