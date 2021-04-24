@@ -1,4 +1,5 @@
 import 'package:beep/core/error/failure.dart';
+import 'package:beep/core/router/app_router.dart';
 import 'package:beep/features/inventoryemployees/domain/usecase/fetch_inventory_employees_use_case.dart';
 import 'package:beep/features/inventoryemployees/domain/usecase/register_inventory_employee_use_case.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
@@ -24,6 +25,7 @@ class InventoryEmployeesControllerImpl extends InventoryEmployeesController {
   final RegisterInventoryEmployeeUseCase registerInventoryEmployeeUseCase;
   final FetchInventoryEmployeesUseCase fetchInventoryEmployeesUseCase;
   final FeedbackMessageProvider feedbackMessageProvider;
+  final AppRouter router;
   final LoadingProvider loadingProvider;
 
   BeepInventory _beepInventory;
@@ -33,7 +35,8 @@ class InventoryEmployeesControllerImpl extends InventoryEmployeesController {
       {this.registerInventoryEmployeeUseCase,
       this.feedbackMessageProvider,
       this.loadingProvider,
-      this.fetchInventoryEmployeesUseCase});
+      this.fetchInventoryEmployeesUseCase,
+      this.router});
 
   @override
   void initialize(BeepInventory inventory) {
@@ -50,8 +53,9 @@ class InventoryEmployeesControllerImpl extends InventoryEmployeesController {
 
     loadingProvider.hideFullscreenLoading();
     inventoryEmployeesResult.fold(
-      _handleFailureFailure,
+      _handleFailure,
       (inventoryEmployees) {
+        _inventoryEmployees.clear();
         _inventoryEmployees.addAll(inventoryEmployees);
         update();
       }
@@ -67,17 +71,22 @@ class InventoryEmployeesControllerImpl extends InventoryEmployeesController {
             userEmail: userEmail, inventoryId: _beepInventory.id));
 
     loadingProvider.hideFullscreenLoading();
-    if (registerResult != null) {
-      registerResult.fold(_handleFailureFailure, null);
-    } else {
-      feedbackMessageProvider.showOneButtonDialog(
-          registerInventoryEmployeeSuccessfulTitle,
-          registerInventoryEmployeeSuccessfulMessage);
-    }
+    registerResult.fold(_handleFailure, (_) => _handleRegisterInventoryEmployeeSuccess());
   }
 
-  void _handleFailureFailure(Failure failure) {
+  void _handleFailure(Failure failure) {
     feedbackMessageProvider.showOneButtonDialog(failure.title, failure.message);
+  }
+
+  void _handleRegisterInventoryEmployeeSuccess() {
+    feedbackMessageProvider.showOneButtonDialog(
+        registerInventoryEmployeeSuccessfulTitle,
+        registerInventoryEmployeeSuccessfulMessage,
+        okFunction: () {
+          router.back();
+          fetchInventoryEmployees();
+        }
+    );
   }
 
   @override

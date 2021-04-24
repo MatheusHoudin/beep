@@ -43,19 +43,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01fd1866-6d26-4baa-974a-6af039d690a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/features/inventoryemployees/domain/usecase/fetch_inventory_employees_use_case.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/datasource/inventoryemployees/fetch_inventory_emoloyees_remote_data_source.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/model/inventory_employee.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/repository/inventoryemployees/fetch_inventory_employees_repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/constants/texts.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/constants/texts.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/di/register_inventory_employee_bindings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/di/register_inventory_employee_bindings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/error/exception.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/error/exception.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/importinventoryproducts/presentation/pages/import_inventory_products_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/importinventoryproducts/presentation/pages/import_inventory_products_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/inventorydetails/domain/controller/inventory_details_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventorydetails/domain/controller/inventory_details_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/inventorydetails/presentation/pages/inventory_details_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventorydetails/presentation/pages/inventory_details_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/inventoryemployees/domain/controller/register_inventory_employee_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventoryemployees/domain/controller/inventory_employees_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/inventoryemployees/presentation/pages/inventory_employees.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventoryemployees/presentation/pages/inventory_employees.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/inventoryemployees/domain/controller/inventory_employees_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventoryemployees/domain/controller/inventory_employees_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/feedback/feedback_message_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/feedback/feedback_message_provider.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,29 +129,29 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2699" y="266" key="AndroidProcessChooserDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619028536000" />
-    <state width="506" height="466" key="DebuggerActiveHint" timestamp="1619028865735">
+    <state width="508" height="466" key="DebuggerActiveHint" timestamp="1619284952059">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="506" height="466" key="DebuggerActiveHint/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619028865735" />
-    <state width="1877" height="167" key="GridCell.Tab.0.bottom" timestamp="1619284049745">
+    <state width="508" height="466" key="DebuggerActiveHint/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619284952059" />
+    <state width="1877" height="209" key="GridCell.Tab.0.bottom" timestamp="1619287074377">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619284049745" />
+    <state width="1877" height="209" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
     <state width="1491" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
-    <state width="1877" height="167" key="GridCell.Tab.0.center" timestamp="1619284049744">
+    <state width="1877" height="209" key="GridCell.Tab.0.center" timestamp="1619287074377">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="167" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619284049744" />
+    <state width="1877" height="209" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
     <state width="1491" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
-    <state width="1877" height="167" key="GridCell.Tab.0.left" timestamp="1619284049744">
+    <state width="1877" height="209" key="GridCell.Tab.0.left" timestamp="1619287074377">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="167" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619284049744" />
+    <state width="1877" height="209" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
     <state width="1491" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
-    <state width="1877" height="167" key="GridCell.Tab.0.right" timestamp="1619284049744">
+    <state width="1877" height="209" key="GridCell.Tab.0.right" timestamp="1619287074377">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="167" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619284049744" />
+    <state width="1877" height="209" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
     <state width="1491" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
     <state x="147" y="65" key="MergeDialog" timestamp="1618273600280">
       <screen x="0" y="0" width="1536" height="824" />
@@ -165,10 +161,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1618273600287" />
-    <state x="2587" y="253" width="586" height="534" key="find.popup" timestamp="1619025976600">
+    <state x="2587" y="253" width="586" height="534" key="find.popup" timestamp="1619287004409">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2587" y="253" width="586" height="534" key="find.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619025976600" />
+    <state x="2587" y="253" width="586" height="534" key="find.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287004409" />
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1619025719246">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -178,19 +174,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/features/inventoryemployees/domain/controller/inventory_employees_controller.dart</url>
-          <line>40</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/features/home/domain/controller/company_controller.dart</url>
           <line>73</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/features/inventorydetails/domain/controller/inventory_details_controller.dart</url>
-          <line>38</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart</url>
@@ -201,6 +187,21 @@
           <url>file://$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart</url>
           <line>99</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/shared/repository/inventoryemployees/register_inventory_employee_repository.dart</url>
+          <line>40</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/shared/repository/inventoryemployees/register_inventory_employee_repository.dart</url>
+          <line>41</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/shared/feedback/feedback_message_provider.dart</url>
+          <line>13</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

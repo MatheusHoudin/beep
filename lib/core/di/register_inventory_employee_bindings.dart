@@ -35,7 +35,8 @@ class RegisterInventoryEmployeeBindings extends Bindings {
           loadingProvider: Get.find(),
           feedbackMessageProvider: Get.find(),
           registerInventoryEmployeeUseCase: Get.find(),
-          fetchInventoryEmployeesUseCase: Get.find()
+          fetchInventoryEmployeesUseCase: Get.find(),
+          router: Get.find()
         ));
   }
 }

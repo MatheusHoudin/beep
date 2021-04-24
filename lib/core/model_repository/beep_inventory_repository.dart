@@ -150,8 +150,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
             'id': userData['id'],
             'email': userData['email'],
           });
-    } catch (_) {
-      throw GenericException();
+    } catch (e) {
+      throw e;
     }
   }
 
