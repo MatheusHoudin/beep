@@ -14,7 +14,6 @@ import 'package:beep/features/createinventory/presentation/create_inventory_page
 import 'package:beep/features/home/presentation/router/home_router.dart';
 import 'package:beep/features/importinventoryproducts/presentation/pages/import_inventory_products_page.dart';
 import 'package:beep/features/inventoryemployees/presentation/pages/inventory_employees.dart';
-import 'file:///C:/Users/Matheus/OneDrive/Documentos/Projetos/beep/lib/features/inventorydetails/presentation/pages/inventory_details_page.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
 import 'package:beep/features/splash/presentation/splash_page.dart';
@@ -22,6 +21,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'features/inventorydetails/presentation/pages/inventory_details_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,45 +39,39 @@ void main() async {
     initialBinding: MainBinding(),
     getPages: [
       GetPage(
-        name: splashPage,
-        page: () => SplashPage(),
-        binding: SplashPageBinding()),
+          name: splashPage,
+          page: () => SplashPage(),
+          binding: SplashPageBinding()),
       GetPage(
-        name: loginPage,
-        page: () => LoginPage(),
-        binding: LoginPageBinding()),
+          name: loginPage,
+          page: () => LoginPage(),
+          binding: LoginPageBinding()),
       GetPage(
-        name: registerPage,
-        page: () => RegisterPage(),
-        transition: Transition.downToUp,
-        binding: RegisterPageBinding()
-      ),
+          name: registerPage,
+          page: () => RegisterPage(),
+          transition: Transition.downToUp,
+          binding: RegisterPageBinding()),
       GetPage(
-        name: homeRouterPage,
-        page: () => HomeRouter(),
-        transition: Transition.rightToLeft,
-        binding: HomePageBinding()
-      ),
+          name: homeRouterPage,
+          page: () => HomeRouter(),
+          transition: Transition.rightToLeft,
+          binding: HomePageBinding()),
       GetPage(
-        name: createInventoryRouterPage,
-        page: () => CreateInventoryPage(),
-        binding: CreateInventoryPageBindings()
-      ),
+          name: createInventoryRouterPage,
+          page: () => CreateInventoryPage(),
+          binding: CreateInventoryPageBindings()),
       GetPage(
-        name: inventoryDetailsRouterPage,
-        page: () => InventoryDetailsPage(),
-        binding: InventoryDetailsBindings()
-      ),
+          name: inventoryDetailsRouterPage,
+          page: () => InventoryDetailsPage(),
+          binding: InventoryDetailsBindings()),
       GetPage(
-        name: importInventoryProductsRouterPage,
-        page: () => ImportInventoryProductsPage(),
-        binding: ImportInventoryProductsBindings()
-      ),
+          name: importInventoryProductsRouterPage,
+          page: () => ImportInventoryProductsPage(),
+          binding: ImportInventoryProductsBindings()),
       GetPage(
-        name: inventoryEmployeesRouterPage,
-        page: () => InventoryEmployees(),
-        binding: RegisterInventoryEmployeeBindings()
-      ),
+          name: inventoryEmployeesRouterPage,
+          page: () => InventoryEmployees(),
+          binding: RegisterInventoryEmployeeBindings()),
     ],
   ));
 }
