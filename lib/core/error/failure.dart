@@ -88,11 +88,31 @@ class UserNotFoundFailure extends Failure {
   List<Object> get props => [message, title];
 }
 
+class InventoryLocationAlreadyExistsFailure extends Failure {
+  final String title;
+  final String message;
+
+  InventoryLocationAlreadyExistsFailure({this.message, this.title}) : super(title, message);
+
+  @override
+  List<Object> get props => [message, title];
+}
+
 class InvalidInventoryProductsFileFailure extends Failure {
   final String title;
   final String message;
 
   InvalidInventoryProductsFileFailure({this.message, this.title}) : super(title, message);
+
+  @override
+  List<Object> get props => [message, title];
+}
+
+class InvalidInventoryLocationNameFailure extends Failure {
+  final String title;
+  final String message;
+
+  InvalidInventoryLocationNameFailure({this.message, this.title}) : super(title, message);
 
   @override
   List<Object> get props => [message, title];

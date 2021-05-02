@@ -9,7 +9,6 @@ import 'package:beep/shared/model/inventory_product.dart';
 import 'package:beep/shared/widgets/app_bar_details_section.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:beep/shared/widgets/empty_list.dart';
-import 'package:beep/shared/widgets/inventory_product_list_item.dart';
 import 'package:beep/shared/widgets/inventory_products_list.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';

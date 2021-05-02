@@ -1,8 +1,11 @@
 import 'package:beep/core/error/exception.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/inventory_employee.dart';
+import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/model/inventory_product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../error/exception.dart';
 
 abstract class BeepInventoryRepository {
   Future registerInventory(BeepInventory inventory, String companyCode);
@@ -12,14 +15,13 @@ abstract class BeepInventoryRepository {
   Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId);
 
   Future importInventoryProductsToInventory(
-    String companyCode,
-    String inventoryCode,
-    List<InventoryProduct> inventoryProducts
-  );
+      String companyCode, String inventoryCode, List<InventoryProduct> inventoryProducts);
 
   Future<BeepInventory> fetchInventoryData(String companyCode, String inventoryId);
 
   Future registerInventoryEmployee(String companyCode, String inventoryId, String userEmail);
+
+  Future registerInventoryLocation(String companyCode, String inventoryCode, InventoryLocation inventoryLocation);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -30,11 +32,7 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
   @override
   Future registerInventory(BeepInventory inventory, String companyCode) async {
     try {
-      await firestore
-          .collection('companies')
-          .doc(companyCode)
-          .collection('inventories')
-          .add(inventory.toJson());
+      await firestore.collection('companies').doc(companyCode).collection('inventories').add(inventory.toJson());
     } catch (_) {
       throw GenericException();
     }
@@ -43,15 +41,11 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
   @override
   Future<List<BeepInventory>> fetchCompanyInventories(String companyCode) async {
     try {
-      final inventoriesSnapshot = await firestore
-          .collection('companies')
-          .doc(companyCode)
-          .collection('inventories')
-          .get();
+      final inventoriesSnapshot =
+          await firestore.collection('companies').doc(companyCode).collection('inventories').get();
 
       return inventoriesSnapshot.docs
-          .map((e) =>
-              BeepInventory.fromJson(e.data()..putIfAbsent('id', () => e.id)))
+          .map((e) => BeepInventory.fromJson(e.data()..putIfAbsent('id', () => e.id)))
           .toList();
     } catch (_) {
       throw GenericException();
@@ -60,25 +54,22 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
 
   @override
   Future importInventoryProductsToInventory(
-    String companyCode,
-    String inventoryCode,
-    List<InventoryProduct> inventoryProducts
-  ) async {
+      String companyCode, String inventoryCode, List<InventoryProduct> inventoryProducts) async {
     try {
-      await Future.wait(inventoryProducts
-          .map((e) {
-            return firestore
-                .collection('companies')
-                .doc(companyCode)
-                .collection('inventories')
-                .doc(inventoryCode)
-                .collection('products')
-                .doc(e.code)
-                .set(
-                  e.toJsonWithoutQuantityField(),
-                  SetOptions(merge: true,)
-                );
-          }).toList());
+      await Future.wait(inventoryProducts.map((e) {
+        return firestore
+            .collection('companies')
+            .doc(companyCode)
+            .collection('inventories')
+            .doc(inventoryCode)
+            .collection('products')
+            .doc(e.code)
+            .set(
+                e.toJsonWithoutQuantityField(),
+                SetOptions(
+                  merge: true,
+                ));
+      }).toList());
     } catch (_) {
       throw GenericException();
     }
@@ -87,12 +78,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
   @override
   Future<BeepInventory> fetchInventoryData(String companyCode, String inventoryId) async {
     try {
-      final inventorySnapshot = await firestore
-          .collection('companies')
-          .doc(companyCode)
-          .collection('inventories')
-          .doc(inventoryId)
-          .get();
+      final inventorySnapshot =
+          await firestore.collection('companies').doc(companyCode).collection('inventories').doc(inventoryId).get();
       final inventoryProducts = await inventorySnapshot.reference.collection('products').get();
 
       final data = inventorySnapshot.data();
@@ -121,8 +108,7 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .limit(1)
           .get();
 
-      if (foundUser.docs.length == 0)
-        throw InventoryUserNotFoundException();
+      if (foundUser.docs.length == 0) throw InventoryUserNotFoundException();
 
       final inventoryUserWithNewUserEmail = await firestore
           .collection('companies')
@@ -133,9 +119,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .where('email', isEqualTo: userEmail)
           .limit(1)
           .get();
-      
-      if (inventoryUserWithNewUserEmail.docs.length > 0)
-        throw InventoryUserIsAlreadyRegisteredOnInventoryException();
+
+      if (inventoryUserWithNewUserEmail.docs.length > 0) throw InventoryUserIsAlreadyRegisteredOnInventoryException();
 
       final userData = foundUser.docs.first.data();
 
@@ -146,10 +131,10 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .doc(inventoryId)
           .collection('employees')
           .add({
-            'name': userData['name'],
-            'id': userData['id'],
-            'email': userData['email'],
-          });
+        'name': userData['name'],
+        'id': userData['id'],
+        'email': userData['email'],
+      });
     } catch (e) {
       throw e;
     }
@@ -158,15 +143,38 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
   @override
   Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId) async {
     try {
-      final inventorySnapshot = await firestore
-          .collection('companies')
-          .doc(companyCode)
-          .collection('inventories')
-          .doc(inventoryId)
-          .get();
+      final inventorySnapshot =
+          await firestore.collection('companies').doc(companyCode).collection('inventories').doc(inventoryId).get();
 
       final inventoryEmployees = await inventorySnapshot.reference.collection('employees').get();
       return inventoryEmployees.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
+    } catch (_) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future registerInventoryLocation(
+      String companyCode, String inventoryCode, InventoryLocation inventoryLocation) async {
+    try {
+      final locationExistsOnInventory = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('locations')
+          .where('name', isEqualTo: inventoryLocation.name)
+          .get();
+
+      if (locationExistsOnInventory.size > 0) throw InventoryLocationAlreadyExistsException();
+
+      return await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('locations')
+          .add(inventoryLocation.toJson());
     } catch (_) {
       throw GenericException();
     }
