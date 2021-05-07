@@ -189,8 +189,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     ProductsSection(beepInventory?.inventoryProducts),
-                    AddressesSection(),
-                    AnalisysSection()
+                    InventorySessionsSection()
                   ],
                 );
               },
@@ -205,13 +204,10 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
     return Row(
       children: [
         Expanded(
-            child: SectionNavigatorItem('Produtos', 0)
+            child: SectionNavigatorItem(productsSectionTitle, 0)
         ),
         Expanded(
-            child: SectionNavigatorItem('Endereços', 1)
-        ),
-        Expanded(
-            child: SectionNavigatorItem('Análise', 2)
+            child: SectionNavigatorItem(inventorySessionsSectionTitle, 1)
         ),
       ],
     );
@@ -245,8 +241,8 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
           Visibility(
             visible: selectedPage == pageNumber,
             child: Container(
-                color: primaryColor,
-                height: miniSize
+              color: primaryColor,
+              height: miniSize
             ),
           )
         ],
@@ -272,21 +268,10 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
     );
   }
 
-  Widget AddressesSection() {
+  Widget InventorySessionsSection() {
     return Center(
       child: Text(
-          addressesSectionTitle,
-          style: GoogleFonts.firaSans(
-              color: Colors.white
-          )
-      ),
-    );
-  }
-
-  Widget AnalisysSection() {
-    return Center(
-      child: Text(
-          analisysSectionTitle,
+          inventorySessionsSectionTitle,
           style: GoogleFonts.firaSans(
               color: Colors.white
           )
