@@ -22,6 +22,8 @@ abstract class BeepInventoryRepository {
   Future registerInventoryEmployee(String companyCode, String inventoryId, String userEmail);
 
   Future registerInventoryLocation(String companyCode, String inventoryCode, InventoryLocation inventoryLocation);
+
+  Future<List<InventoryLocation>> fetchInventoryLocations(String companyCode, String inventoryCode);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -175,6 +177,23 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .doc(inventoryCode)
           .collection('locations')
           .add(inventoryLocation.toJson());
+    } catch (_) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future<List<InventoryLocation>> fetchInventoryLocations(String companyCode, String inventoryCode) async {
+    try {
+      final inventoryLocationsReference = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('locations')
+          .get();
+
+      return inventoryLocationsReference.docs.map((e) => InventoryLocation.fromJson(e.data())).toList();
     } catch (_) {
       throw GenericException();
     }

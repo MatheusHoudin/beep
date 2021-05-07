@@ -1,6 +1,6 @@
-import 'package:beep/features/location/domain/controller/inventory_location_controller.dart';
-import 'package:beep/features/location/presentation/widgets/add_inventory_location_section.dart';
-import 'package:beep/features/location/presentation/widgets/list_inventory_locations_section.dart';
+import 'package:beep/features/inventorylocations/domain/controller/inventory_location_controller.dart';
+import 'package:beep/features/inventorylocations/presentation/widgets/add_inventory_location_section.dart';
+import 'package:beep/features/inventorylocations/presentation/widgets/list_inventory_locations_section.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

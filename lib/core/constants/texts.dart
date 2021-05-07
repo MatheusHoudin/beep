@@ -121,7 +121,8 @@ const emptyInventoryEmployeesListMessage = "Não existem colaboradores cadastrad
 // inventory_locations
 const inventoryLocationsToolbarTitle = 'Gerenciar Endereços';
 const inventoryLocationsInfo =
-    'Aqui você pode gerenciar os endereços do seu inventário, adicionando a inventários e removendo.';
+    'Aqui você pode gerenciar os endereços do seu inventário e os colaboradores de cada endereço';
+const inventoryLocationsEmptyListMessage = 'Não existem endereços cadastrados neste inventário, crie um para visualizá-lo';
 const addInventoryLocationLocationNameFieldHint = 'Digite o nome do endereço';
 const addInventoryLocationLocationDescriptionFieldHint = 'Digite a descrição do endereco (opcional)';
 const addInventoryLocationInvalidNameError = 'O nome do inventário não pode estar vazio';

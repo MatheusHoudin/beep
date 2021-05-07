@@ -1,4 +1,4 @@
-import 'package:beep/features/location/domain/controller/inventory_location_controller.dart';
+import 'package:beep/features/inventorylocations/domain/controller/inventory_location_controller.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

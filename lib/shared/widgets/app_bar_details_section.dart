@@ -15,10 +15,11 @@ class AppBarDetailsSection extends StatelessWidget {
     return Container(
       width: Get.size.width,
       margin: EdgeInsets.only(
-          bottom: mediumSmallSize
+        bottom: mediumSmallSize
       ),
       padding: EdgeInsets.symmetric(
-          horizontal: smallSize
+        horizontal: smallSize,
+        vertical: mediumSmallSize
       ),
       color: Colors.white,
       child: Column(

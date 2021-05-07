@@ -15,7 +15,7 @@ import 'package:beep/features/createinventory/presentation/create_inventory_page
 import 'package:beep/features/home/presentation/router/home_router.dart';
 import 'package:beep/features/importinventoryproducts/presentation/pages/import_inventory_products_page.dart';
 import 'package:beep/features/inventoryemployees/presentation/pages/inventory_employees.dart';
-import 'package:beep/features/location/presentation/pages/inventory_location_page.dart';
+import 'package:beep/features/inventorylocations/presentation/pages/inventory_location_page.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
 import 'package:beep/features/splash/presentation/splash_page.dart';
