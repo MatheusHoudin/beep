@@ -27,8 +27,6 @@ class InventoryLocationItem extends StatelessWidget {
   Widget LocationTitle() {
     return Text(
       inventoryLocation.name,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.firaSans(color: Colors.black, fontWeight: FontWeight.bold, fontSize: mediumTextSize),
     );
   }
@@ -36,8 +34,6 @@ class InventoryLocationItem extends StatelessWidget {
   Widget LocationDescription() {
     return Text(
       inventoryLocation.description,
-      maxLines: 3,
-      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.firaSans(
         color: grayTextColor,
         fontSize: normalTextSize

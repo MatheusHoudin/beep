@@ -76,8 +76,7 @@ const createInventoryButtonText = 'CADASTRAR INVENTÁRIO';
 
 // inventory_details
 const productsSectionTitle = "Produtos";
-const addressesSectionTitle = "Endereços";
-const analisysSectionTitle = "Análise";
+const inventorySessionsSectionTitle = "Contagens";
 const startedInventory = "Iniciado";
 const notStartedInventory = "Não iniciado";
 const finishedInventory = "Finalizado";
