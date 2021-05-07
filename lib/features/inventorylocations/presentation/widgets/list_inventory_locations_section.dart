@@ -4,20 +4,10 @@ import 'package:beep/features/inventorylocations/presentation/widgets/inventory_
 import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/widgets/empty_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 
-class ListInventoryLocationsSection extends StatefulWidget {
-  @override
-  _ListInventoryLocationsSectionState createState() => _ListInventoryLocationsSectionState();
-}
-
-class _ListInventoryLocationsSectionState extends State<ListInventoryLocationsSection> {
-  @override
-  void initState() {
-    super.initState();
-    Get.find<InventoryLocationController>().fetchInventoryLocations();
-  }
-
+class ListInventoryLocationsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<InventoryLocationController>(builder: (c) {
@@ -26,6 +16,10 @@ class _ListInventoryLocationsSectionState extends State<ListInventoryLocationsSe
       return inventoryLocations.isEmpty
           ? EmptyList(message: inventoryLocationsEmptyListMessage)
           : InventoryLocationsListView(inventoryLocations);
+    }, initState: (_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        Get.find<InventoryLocationController>().fetchInventoryLocations();
+      });
     });
   }
 

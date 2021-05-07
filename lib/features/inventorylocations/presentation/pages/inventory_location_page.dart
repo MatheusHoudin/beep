@@ -31,27 +31,27 @@ class _InventoryLocationPageState extends State<InventoryLocationPage> {
     return SafeArea(
       child: GetBuilder<InventoryLocationController>(
         builder: (c) => Scaffold(
-        backgroundColor: secondaryColor,
-        floatingActionButton: AddLocationFloatingButton(c),
-        body: Column(
-          children: [
-            CustomAppBar(
-              isWhiteStyle: true,
-              hasIcon: true,
-              icon: inventoryDetailsAddressesIcon,
-              appBarTitle: inventoryLocationsToolbarTitle,
-              onBackPressed: () => null,
-            ),
-            AppBarDetailsSection(
-              title: c.getBeepInventoryTitle(),
-              bottomSection: ImportInfoSection(),
-            ),
-            Expanded(
-              child: ContentSection(c.isCreatingInventoryLocation()),
-            )
-          ],
+          backgroundColor: secondaryColor,
+          floatingActionButton: AddLocationFloatingButton(c),
+          body: Column(
+            children: [
+              CustomAppBar(
+                isWhiteStyle: true,
+                hasIcon: true,
+                icon: inventoryDetailsAddressesIcon,
+                appBarTitle: inventoryLocationsToolbarTitle,
+                onBackPressed: () => null,
+              ),
+              AppBarDetailsSection(
+                title: c.getBeepInventoryTitle(),
+                bottomSection: ImportInfoSection(),
+              ),
+              Expanded(
+                child: ContentSection(c.isCreatingInventoryLocation()),
+              )
+            ],
+          ),
         ),
-      ),
       ),
     );
   }
@@ -66,18 +66,19 @@ class _InventoryLocationPageState extends State<InventoryLocationPage> {
 
   Widget ContentSection(bool isAddingInventoryLocation) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: smallSize, vertical: mediumSmallSize),
-      child: isAddingInventoryLocation ? AddInventoryLocationSection() : ListInventoryLocationsSection()
-    );
+        margin: EdgeInsets.symmetric(horizontal: smallSize, vertical: mediumSmallSize),
+        child: isAddingInventoryLocation ? AddInventoryLocationSection() : ListInventoryLocationsSection());
   }
 
   Widget AddLocationFloatingButton(InventoryLocationController controller) {
+    final isAddFab = !controller.isCreatingInventoryLocation();
     return FloatingActionButton(
       onPressed: () => controller.toogleIsCreatingInventoryLocation(),
-      backgroundColor: primaryColor,
+      backgroundColor: isAddFab ? primaryColor : Colors.white,
+      mini: !isAddFab,
       child: Icon(
-        Icons.add,
-        color: Colors.white,
+        isAddFab ? Icons.add : Icons.close,
+        color: isAddFab ? Colors.white : negativeColor,
       ),
     );
   }

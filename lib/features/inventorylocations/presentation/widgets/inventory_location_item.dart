@@ -14,9 +14,10 @@ class InventoryLocationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SmallCardListItem(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LocationTitle(),
-          SizedBox(height: tinySize,),
+          SizedBox(height: miniSize,),
           LocationDescription()
         ],
       ),
