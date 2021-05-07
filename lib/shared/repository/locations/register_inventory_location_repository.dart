@@ -26,7 +26,7 @@ class RegisterInventoryLocationRepositoryImpl extends RegisterInventoryLocationR
     try {
       BeepUser loggedUser = userLocalDataSource.getLoggedUser();
 
-      return await remoteDataSource.registerInventoryLocation(loggedUser.companyCode, inventoryCode, inventoryLocation);
+      await remoteDataSource.registerInventoryLocation(loggedUser.companyCode, inventoryCode, inventoryLocation);
     } on InventoryLocationAlreadyExistsException {
       return Left(NoInternetConnectionFailure());
     } on GenericException {

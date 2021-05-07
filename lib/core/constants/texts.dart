@@ -125,4 +125,5 @@ const inventoryLocationsInfo =
 const addInventoryLocationLocationNameFieldHint = 'Digite o nome do endereço';
 const addInventoryLocationLocationDescriptionFieldHint = 'Digite a descrição do endereco (opcional)';
 const addInventoryLocationInvalidNameError = 'O nome do inventário não pode estar vazio';
+const addInventoryLocationAddButton = 'CRIAR ENDEREÇO';
 // inventory_locations
