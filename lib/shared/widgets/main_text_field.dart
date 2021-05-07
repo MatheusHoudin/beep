@@ -28,7 +28,7 @@ class MainTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       keyboardType: textInputType,
-      minLines: isMultiline ? 3 : 1,
+      minLines: isMultiline ? 5 : 1,
       maxLines: isMultiline ? null : 1,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,

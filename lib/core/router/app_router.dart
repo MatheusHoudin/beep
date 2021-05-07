@@ -10,6 +10,7 @@ abstract class AppRouter {
   void routeHomePageToInventoryDetailsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToImportInventoryProductsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory);
+  void routeInventoryDetailsPageToInventoryLocationsPage(BeepInventory beepInventory);
   void back();
 }
 
@@ -52,5 +53,10 @@ class AppRouterImpl extends AppRouter {
   @override
   void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory) {
     Get.toNamed(inventoryEmployeesRouterPage, arguments: beepInventory);
+  }
+
+  @override
+  void routeInventoryDetailsPageToInventoryLocationsPage(BeepInventory beepInventory) {
+    Get.toNamed(inventoryLocationsRouterPage, arguments: beepInventory);
   }
 }

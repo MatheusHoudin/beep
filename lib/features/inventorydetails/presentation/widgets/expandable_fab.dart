@@ -60,7 +60,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           ),
           AnimatedActionButton(
             child: ActionButton(
-              onPressed: () => null,
+              onPressed: () => Get.find<InventoryDetailsController>().routeToInventoryLocationsPage(),
               icon: inventoryDetailsAddressesIcon,
               text: manageAddresses,
               isVisible: _open,

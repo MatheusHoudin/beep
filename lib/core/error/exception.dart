@@ -40,6 +40,11 @@ class InventoryUserIsAlreadyRegisteredOnInventoryException extends Equatable imp
   List<Object> get props => ["InventoryUserIsAlreadyRegisteredOnInventoryException"];
 }
 
+class InventoryLocationAlreadyExistsException extends Equatable implements Exception {
+  @override
+  List<Object> get props => ["InventoryLocationAlreadyExistsException"];
+}
+
 class InvalidInventoryProductsFileException extends Equatable implements Exception {
   final String message;
 

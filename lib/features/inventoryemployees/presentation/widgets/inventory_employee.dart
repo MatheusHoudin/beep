@@ -1,6 +1,7 @@
 import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
+import 'package:beep/shared/widgets/small_card_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,17 +14,8 @@ class InventoryEmployee extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(mediumSmallSize)
-      ),
-      color: Colors.white,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: smallSize,
-          vertical: mediumSmallSize
-        ),
-        child: Row(
+    return SmallCardListItem(
+      child: Row(
           children: [
             SvgPicture.asset(inventoryDetailsEmployeeIcon),
             SizedBox(width: mediumSmallSize,),
@@ -50,7 +42,6 @@ class InventoryEmployee extends StatelessWidget {
             )
           ],
         ),
-      ),
     );
   }
 }

@@ -1,6 +1,9 @@
-const splashFirstText = 'Agora você pode realizar inventários em suas empresa de forma ágil, diretamente na palma da sua mão, e o melhor, sem precisar de dispositivos caros.';
-const splashSecondText = 'Tenha em suas mãos relatórios sobre os seus inventários, em tempo real, realize análises e por fim, aumente a lucratividade do seu negócio e evite desperdícios.';
-const splashThirdText = 'Agora vamos realizar o cadastro de sua empresa, para que possamos incluir seus colaboradores e começe a criar inventários, para assim aproveitar nossa solução.';
+const splashFirstText =
+    'Agora você pode realizar inventários em suas empresa de forma ágil, diretamente na palma da sua mão, e o melhor, sem precisar de dispositivos caros.';
+const splashSecondText =
+    'Tenha em suas mãos relatórios sobre os seus inventários, em tempo real, realize análises e por fim, aumente a lucratividade do seu negócio e evite desperdícios.';
+const splashThirdText =
+    'Agora vamos realizar o cadastro de sua empresa, para que possamos incluir seus colaboradores e começe a criar inventários, para assim aproveitar nossa solução.';
 
 // shared preferences
 const userIdKey = 'userid';
@@ -44,7 +47,8 @@ const emailAlreadyInUse = "Este email já está cadastrado, tente outro";
 const invalidName = "O nome não pode ser vazio";
 const invalidEmail = "O email fornecido não é um email válido";
 const registerPageRegisterSuccessTitle = 'Sucesso!';
-const registerPageRegisterSuccessMessage = 'Sua conta foi criada com sucesso, utilize seu email e senha para fazer login';
+const registerPageRegisterSuccessMessage =
+    'Sua conta foi criada com sucesso, utilize seu email e senha para fazer login';
 // register_page
 
 // home_company
@@ -84,10 +88,12 @@ const manageEmployees = "Gerenciar colaboradores";
 
 // import_inventory_products
 const importInventoryProductsToolbarTitle = "Importar Produtos";
-const importInventoryProductsInfo = "Aqui você pode importar produtos para o seu inventário, no formato CSV com os seguintes campos:";
+const importInventoryProductsInfo =
+    "Aqui você pode importar produtos para o seu inventário, no formato CSV com os seguintes campos:";
 const importInventoryProductsFieldsName = "NOME; EAN; EMB(UND/KG)";
 const selectInventoryProductsFileGoogleDriveTitle = "Selecione o arquivo com os produtos a serem importados";
-const selectInventoryProductsFileGoogleDriveInfo = "O arquivo deve estar no formato CSV com os seguintes campos: NOME; EAN; EMB(UND/KG)";
+const selectInventoryProductsFileGoogleDriveInfo =
+    "O arquivo deve estar no formato CSV com os seguintes campos: NOME; EAN; EMB(UND/KG)";
 const confirmInventoryFileDialogTitle = "Confirmar importação";
 const confirmInventoryFileDialogMessage = "Você deseja realmente importar os produtos do arquivo: ";
 const confirmInventoryFileDialogPositiveButton = "Confirmar";
@@ -100,12 +106,25 @@ const emptyProductListMessage = 'Não há produtos disponíveis para importaçã
 
 // inventory_employees
 const inventoryEmployeesToolbarTitle = "Gerenciar Colaboradores";
-const inventoryEmployeesInfo = "Aqui você pode gerenciar os colaboradores do seu inventário, adicionando a inventários e removendo.";
+const inventoryEmployeesInfo =
+    "Aqui você pode gerenciar os colaboradores do seu inventário, adicionando a inventários e removendo.";
 const registerInventoryEmployeeHint = "Digite o email do colaborador";
 const registerInventoryEmployeeButton = "Adicionar colaborador";
 const registerInventoryEmployeeUserAlreadyRegistered = "Este usuário já está cadastrado neste inventário";
-const registerInventoryEmployeeUserNotFound = "Não existe um usuário cadastrado com este email ou este usuário não é um colaborador";
+const registerInventoryEmployeeUserNotFound =
+    "Não existe um usuário cadastrado com este email ou este usuário não é um colaborador";
 const registerInventoryEmployeeSuccessfulTitle = "Sucesso!";
 const registerInventoryEmployeeSuccessfulMessage = "O colaborador foi adicionado ao inventário com sucesso";
 const emptyInventoryEmployeesListMessage = "Não existem colaboradores cadastrados neste inventário";
 // inventory_employees
+
+// inventory_locations
+const inventoryLocationsToolbarTitle = 'Gerenciar Endereços';
+const inventoryLocationsInfo =
+    'Aqui você pode gerenciar os endereços do seu inventário e os colaboradores de cada endereço';
+const inventoryLocationsEmptyListMessage = 'Não existem endereços cadastrados neste inventário, crie um para visualizá-lo';
+const addInventoryLocationLocationNameFieldHint = 'Digite o nome do endereço';
+const addInventoryLocationLocationDescriptionFieldHint = 'Digite a descrição do endereco (opcional)';
+const addInventoryLocationInvalidNameError = 'O nome do inventário não pode estar vazio';
+const addInventoryLocationAddButton = 'CRIAR ENDEREÇO';
+// inventory_locations

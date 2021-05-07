@@ -9,6 +9,7 @@ abstract class InventoryDetailsController extends GetxController {
   void initialize(String inventoryId);
   void routeToImportInventoryProductsPage();
   void routeToInventoryEmployeesPage();
+  void routeToInventoryLocationsPage();
   void fetchInventoryDetails();
   BeepInventory getBeepInventoryDetails();
 }
@@ -22,12 +23,8 @@ class InventoryDetailsControllerImpl extends InventoryDetailsController {
   String inventoryId;
   BeepInventory beepInventory;
 
-  InventoryDetailsControllerImpl({
-    this.router,
-    this.fetchInventoryDetailsUseCase,
-    this.feedbackMessageProvider,
-    this.loadingProvider
-  });
+  InventoryDetailsControllerImpl(
+      {this.router, this.fetchInventoryDetailsUseCase, this.feedbackMessageProvider, this.loadingProvider});
 
   @override
   void routeToImportInventoryProductsPage() {
@@ -40,6 +37,11 @@ class InventoryDetailsControllerImpl extends InventoryDetailsController {
   }
 
   @override
+  void routeToInventoryLocationsPage() {
+    router.routeInventoryDetailsPageToInventoryLocationsPage(beepInventory);
+  }
+
+  @override
   void initialize(String inventoryId) {
     this.inventoryId = inventoryId;
   }
@@ -48,23 +50,16 @@ class InventoryDetailsControllerImpl extends InventoryDetailsController {
   void fetchInventoryDetails() async {
     loadingProvider.showFullscreenLoading();
 
-    final inventoryDetailsOrFailure = await fetchInventoryDetailsUseCase.call(
-      FetchInventoryDetailsParams(inventoryId: inventoryId)
-    );
+    final inventoryDetailsOrFailure =
+        await fetchInventoryDetailsUseCase.call(FetchInventoryDetailsParams(inventoryId: inventoryId));
 
     loadingProvider.hideFullscreenLoading();
-    inventoryDetailsOrFailure.fold(
-      (failure) {
-        feedbackMessageProvider.showOneButtonDialog(
-          failure.title,
-          failure.message
-        );
-      },
-      (inventoryDetails) {
-        this.beepInventory = inventoryDetails;
-        update();
-      }
-    );
+    inventoryDetailsOrFailure.fold((failure) {
+      feedbackMessageProvider.showOneButtonDialog(failure.title, failure.message);
+    }, (inventoryDetails) {
+      this.beepInventory = inventoryDetails;
+      update();
+    });
   }
 
   @override
