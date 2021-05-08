@@ -35,7 +35,7 @@ class InventoryEmployee extends StatelessWidget {
                   employeeEmail,
                   style: GoogleFonts.firaSans(
                     fontSize: normalTextSize,
-                    color: grayTextColor
+                    color: grayColor
                   ),
                 )
               ],

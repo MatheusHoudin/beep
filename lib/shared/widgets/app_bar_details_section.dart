@@ -28,7 +28,7 @@ class AppBarDetailsSection extends StatelessWidget {
             title,
             style: GoogleFonts.firaSans(
                 fontSize: normalTextSize,
-                color: grayTextColor
+                color: grayColor
             ),
           ),
           SizedBox(height: mediumSmallSize,),

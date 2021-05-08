@@ -63,7 +63,7 @@ class SelectProductsInventoryFileDialog extends StatelessWidget {
                 selectInventoryProductsFileGoogleDriveInfo,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.firaSans(
-                  color: grayTextColor,
+                  color: grayColor,
                   fontSize: smallTextSize
                 ),
               )
@@ -124,7 +124,7 @@ class SelectProductsInventoryFileDialog extends StatelessWidget {
                       Text(
                         inventoryFile.createdAt,
                         style: GoogleFonts.firaSans(
-                            color: grayTextColor,
+                            color: grayColor,
                             fontSize: normalTextSize
                         ),
                       ),
@@ -135,7 +135,7 @@ class SelectProductsInventoryFileDialog extends StatelessWidget {
             ),
             SizedBox(height: mediumSmallSize,),
             Container(
-              color: grayTextColor,
+              color: grayColor,
               height: 1.0
             )
           ],

@@ -77,7 +77,7 @@ class InventoryEmployees extends StatelessWidget {
       inventoryEmployeesInfo,
       textAlign: TextAlign.center,
       style:
-      GoogleFonts.firaSans(fontSize: smallTextSize, color: grayTextColor),
+      GoogleFonts.firaSans(fontSize: smallTextSize, color: grayColor),
     );
   }
 

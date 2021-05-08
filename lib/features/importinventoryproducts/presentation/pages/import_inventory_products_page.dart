@@ -131,14 +131,14 @@ class _ImportInventoryProductsPageState extends State<ImportInventoryProductsPag
           textAlign: TextAlign.center,
           style: GoogleFonts.firaSans(
               fontSize: smallTextSize,
-              color: grayTextColor
+              color: grayColor
           ),
         ),
         Text(
           importInventoryProductsFieldsName,
           style: GoogleFonts.firaSans(
               fontSize: smallTextSize,
-              color: grayTextColor,
+              color: grayColor,
               fontWeight: FontWeight.bold
           ),
         )

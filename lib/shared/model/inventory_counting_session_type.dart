@@ -1,0 +1,4 @@
+enum InventoryCountingSessionType {
+  Counting,
+  Checking
+}

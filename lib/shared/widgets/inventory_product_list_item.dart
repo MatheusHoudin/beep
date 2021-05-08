@@ -63,7 +63,7 @@ class InventoryProductListItem extends StatelessWidget {
           inventoryProduct.code,
           style: GoogleFonts.firaSans(
               fontSize: normalTextSize,
-              color: grayTextColor
+              color: grayColor
           ),
         )
       ],

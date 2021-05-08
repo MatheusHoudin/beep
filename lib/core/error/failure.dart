@@ -117,3 +117,13 @@ class InvalidInventoryLocationNameFailure extends Failure {
   @override
   List<Object> get props => [message, title];
 }
+
+class InventoryCountingSessionAlreadyExistsFailure extends Failure {
+  final String title;
+  final String message;
+
+  InventoryCountingSessionAlreadyExistsFailure({this.message, this.title}) : super(title, message);
+
+  @override
+  List<Object> get props => [message, title];
+}

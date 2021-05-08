@@ -35,7 +35,7 @@ class InventoryLocationItem extends StatelessWidget {
     return Text(
       inventoryLocation.description,
       style: GoogleFonts.firaSans(
-        color: grayTextColor,
+        color: grayColor,
         fontSize: normalTextSize
       ),
     );

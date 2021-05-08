@@ -15,7 +15,7 @@ class InventoryProductsList extends StatelessWidget {
       itemCount: inventoryProducts.length,
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.symmetric(
-          horizontal: tinySize
+        horizontal: tinySize
       ),
       itemBuilder: (context, index) {
         return Container(
