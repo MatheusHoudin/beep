@@ -83,6 +83,8 @@ const finishedInventory = "Finalizado";
 const importProducts = "Importar produtos";
 const manageAddresses = "Gerenciar endereços";
 const manageEmployees = "Gerenciar colaboradores";
+const createInventoryCountingSessionButton = 'CRIAR SESSÃO DE CONTAGEM';
+const thereAreNoCreatedInventoryCountingSessions = 'Ainda não existem sessões de inventários criadas.'; 
 // inventory_details
 
 // import_inventory_products
@@ -121,7 +123,8 @@ const emptyInventoryEmployeesListMessage = "Não existem colaboradores cadastrad
 const inventoryLocationsToolbarTitle = 'Gerenciar Endereços';
 const inventoryLocationsInfo =
     'Aqui você pode gerenciar os endereços do seu inventário e os colaboradores de cada endereço';
-const inventoryLocationsEmptyListMessage = 'Não existem endereços cadastrados neste inventário, crie um para visualizá-lo';
+const inventoryLocationsEmptyListMessage =
+    'Não existem endereços cadastrados neste inventário, crie um para visualizá-lo';
 const addInventoryLocationLocationNameFieldHint = 'Digite o nome do endereço';
 const addInventoryLocationLocationDescriptionFieldHint = 'Digite a descrição do endereco (opcional)';
 const addInventoryLocationInvalidNameError = 'O nome do inventário não pode estar vazio';

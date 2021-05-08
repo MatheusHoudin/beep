@@ -3,6 +3,7 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/features/inventorydetails/domain/controller/inventory_details_controller.dart';
 import 'package:beep/features/inventorydetails/presentation/widgets/expandable_fab.dart';
+import 'package:beep/features/inventorydetails/presentation/widgets/inventory_counting_session_section.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/beep_inventory_status.dart';
 import 'package:beep/shared/model/inventory_product.dart';
@@ -269,13 +270,6 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
   }
 
   Widget InventorySessionsSection() {
-    return Center(
-      child: Text(
-          inventorySessionsSectionTitle,
-          style: GoogleFonts.firaSans(
-              color: Colors.white
-          )
-      ),
-    );
+    return InventoryCountingSessionSection();
   }
 }
