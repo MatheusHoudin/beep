@@ -63,7 +63,7 @@ class InventoryItem extends StatelessWidget {
                     inventory.description,
                     textAlign: TextAlign.start,
                     style: GoogleFonts.firaSans(
-                      color: grayTextColor,
+                      color: grayColor,
                       fontSize: smallTextSize
                     ),
                   ),
@@ -73,7 +73,7 @@ class InventoryItem extends StatelessWidget {
                   '${inventory.date} às ${inventory.time}',
                   textAlign: TextAlign.start,
                   style: GoogleFonts.firaSans(
-                    color: grayTextColor,
+                    color: grayColor,
                     fontSize: smallTextSize
                   ),
                 )

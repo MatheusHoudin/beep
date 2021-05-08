@@ -12,6 +12,10 @@ class FetchInventoryLocationsRemoteDataSourceImpl extends FetchInventoryLocation
 
   @override
   Future<List<InventoryLocation>> fetchInventoryLocations(String companyCode, String inventoryCode) async {
-    return await repository.fetchInventoryLocations(companyCode, inventoryCode);
+    try {
+      return await repository.fetchInventoryLocations(companyCode, inventoryCode);
+    } catch(e) {
+      throw e;
+    }
   }
 }

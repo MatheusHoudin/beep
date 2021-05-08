@@ -1,5 +1,6 @@
 import 'package:beep/core/error/exception.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
+import 'package:beep/shared/model/inventory_counting_session.dart';
 import 'package:beep/shared/model/inventory_employee.dart';
 import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/model/inventory_product.dart';
@@ -24,6 +25,9 @@ abstract class BeepInventoryRepository {
   Future registerInventoryLocation(String companyCode, String inventoryCode, InventoryLocation inventoryLocation);
 
   Future<List<InventoryLocation>> fetchInventoryLocations(String companyCode, String inventoryCode);
+
+  Future registerInventoryCountingSession(
+      String companyCode, String inventoryCode, InventoryCountingSession inventoryCountingSession);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -196,6 +200,30 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       return inventoryLocationsReference.docs.map((e) => InventoryLocation.fromJson(e.data())).toList();
     } catch (_) {
       throw GenericException();
+    }
+  }
+
+  @override
+  Future registerInventoryCountingSession(
+      String companyCode, String inventoryCode, InventoryCountingSession inventoryCountingSession) async {
+    try {
+      final inventoryCountingSessionReference = firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('sessions');
+
+      final inventoryCountingAlreadyExists = await inventoryCountingSessionReference
+          .where('name', isEqualTo: inventoryCountingSession.name)
+          .limit(1)
+          .get();
+
+      if (inventoryCountingAlreadyExists.size > 0) throw InventoryCountingSessionAlreadyExistsException();
+
+      return await inventoryCountingSessionReference.add(inventoryCountingSession.toJson());
+    } catch (e) {
+      throw e;
     }
   }
 }

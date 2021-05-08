@@ -1,8 +1,10 @@
 import 'package:beep/core/constants/dimens.dart';
+import 'package:beep/features/inventorydetails/presentation/widgets/register_inventory_session_dialog.dart';
 import 'package:beep/shared/widgets/empty_list.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:beep/core/constants/texts.dart';
+import 'package:get/get.dart';
 
 class InventoryCountingSessionSection extends StatelessWidget {
   @override
@@ -31,7 +33,7 @@ class InventoryCountingSessionSection extends StatelessWidget {
       child: PrimaryButton(
         buttonText: createInventoryCountingSessionButton,
         shouldExpand: true,
-        onPressedCallback: () => null
+        onPressedCallback: () => Get.dialog(RegisterInventorySessionDialog())
       ),
     );
   }

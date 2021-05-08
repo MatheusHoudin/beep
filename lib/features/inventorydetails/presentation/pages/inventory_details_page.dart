@@ -94,7 +94,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
           Text(
             inventory.description,
             style: GoogleFonts.firaSans(
-                color: grayTextColor,
+                color: grayColor,
                 fontSize: normalTextSize
             ),
           ),
@@ -106,7 +106,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
                 '${inventory.date} às ${inventory.time}',
                 textAlign: TextAlign.start,
                 style: GoogleFonts.firaSans(
-                    color: grayTextColor,
+                    color: grayColor,
                     fontSize: smallTextSize
                 ),
               ),

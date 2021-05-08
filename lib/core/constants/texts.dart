@@ -84,7 +84,15 @@ const importProducts = "Importar produtos";
 const manageAddresses = "Gerenciar endereços";
 const manageEmployees = "Gerenciar colaboradores";
 const createInventoryCountingSessionButton = 'CRIAR SESSÃO DE CONTAGEM';
-const thereAreNoCreatedInventoryCountingSessions = 'Ainda não existem sessões de inventários criadas.'; 
+const thereAreNoCreatedInventoryCountingSessions = 'Ainda não existem sessões de inventários criadas.';
+const createInventoryCountingSessionTitle = 'Cadastrar sessão de contagem';
+const createInventoryCountingSessionAddButton = 'Confirmar';
+const createInventoryCountingSessionNameHint = 'Digite o nome da sessão de contagem';
+const selectInventorySessionTypeHint = 'Selecione o tipo da contagem';
+const registerInventorySessionErrorTitle = 'Ops';
+const invalidInventorySessionName = 'O nome da sessão de contagem deve conter ao menos 1 caractere';
+const invalidInventorySessionType = 'Selecione o tipo da sessão de contagem';
+const registerInventorySessionErrorMessage = 'Já existe uma sessão de contagem com este nome, tente outro';
 // inventory_details
 
 // import_inventory_products

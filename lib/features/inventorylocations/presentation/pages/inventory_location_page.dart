@@ -60,7 +60,7 @@ class _InventoryLocationPageState extends State<InventoryLocationPage> {
     return Text(
       inventoryLocationsInfo,
       textAlign: TextAlign.center,
-      style: GoogleFonts.firaSans(fontSize: smallTextSize, color: grayTextColor),
+      style: GoogleFonts.firaSans(fontSize: smallTextSize, color: grayColor),
     );
   }
 

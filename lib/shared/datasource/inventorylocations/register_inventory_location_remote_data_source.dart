@@ -14,6 +14,10 @@ class RegisterInventoryLocationRemoteDataSourceImpl extends RegisterInventoryLoc
   @override
   Future registerInventoryLocation(
       String companyCode, String inventoryCode, InventoryLocation inventoryLocation) async {
-    await repository.registerInventoryLocation(companyCode, inventoryCode, inventoryLocation);
+    try {
+      return await repository.registerInventoryLocation(companyCode, inventoryCode, inventoryLocation);
+    } catch (e) {
+      throw e;
+    }
   }
 }
