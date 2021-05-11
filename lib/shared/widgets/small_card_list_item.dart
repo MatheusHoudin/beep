@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class SmallCardListItem extends StatelessWidget {
   final Widget child;
+  final double verticalPadding;
 
-  SmallCardListItem({this.child});
+  SmallCardListItem({this.child, this.verticalPadding = mediumSmallSize});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class SmallCardListItem extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(mediumSmallSize)),
       color: Colors.white,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: smallSize, vertical: mediumSmallSize),
+        padding: EdgeInsets.symmetric(horizontal: smallSize, vertical: verticalPadding),
         child: child,
       ),
     );

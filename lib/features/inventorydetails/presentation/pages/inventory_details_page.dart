@@ -190,7 +190,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     ProductsSection(beepInventory?.inventoryProducts),
-                    InventorySessionsSection()
+                    InventorySessionsSection(c)
                   ],
                 );
               },
@@ -269,7 +269,9 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
     );
   }
 
-  Widget InventorySessionsSection() {
-    return InventoryCountingSessionSection();
+  Widget InventorySessionsSection(InventoryDetailsController controller) {
+    return InventoryCountingSessionSection(
+      inventoryCountingSessions: controller.getInventorySessions(),
+    );
   }
 }

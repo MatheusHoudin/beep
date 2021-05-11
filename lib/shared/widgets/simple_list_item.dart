@@ -1,24 +1,30 @@
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
-import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/widgets/small_card_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InventoryLocationItem extends StatelessWidget {
-  final InventoryLocation inventoryLocation;
+class SimpleListItem extends StatelessWidget {
+  final String title, description;
+  final bool hasDescription, isExpandedVertically;
 
-  InventoryLocationItem({this.inventoryLocation});
+  SimpleListItem({this.description, this.title, this.hasDescription = true, this.isExpandedVertically = false});
 
   @override
   Widget build(BuildContext context) {
     return SmallCardListItem(
+      verticalPadding: isExpandedVertically ? mediumSize : mediumSmallSize,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LocationTitle(),
-          SizedBox(height: miniSize,),
-          LocationDescription()
+          SizedBox(
+            height: miniSize,
+          ),
+          Visibility(
+            visible: hasDescription,
+            child: LocationDescription(),
+          )
         ],
       ),
     );
@@ -26,18 +32,15 @@ class InventoryLocationItem extends StatelessWidget {
 
   Widget LocationTitle() {
     return Text(
-      inventoryLocation.name,
+      title,
       style: GoogleFonts.firaSans(color: Colors.black, fontWeight: FontWeight.bold, fontSize: mediumTextSize),
     );
   }
 
   Widget LocationDescription() {
     return Text(
-      inventoryLocation.description,
-      style: GoogleFonts.firaSans(
-        color: grayColor,
-        fontSize: normalTextSize
-      ),
+      description,
+      style: GoogleFonts.firaSans(color: grayColor, fontSize: normalTextSize),
     );
   }
 }
