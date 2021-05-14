@@ -1,5 +1,6 @@
 import 'package:beep/core/constants/routes.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
+import 'package:beep/shared/model/beep_inventory_session.dart';
 import 'package:get/get.dart';
 
 abstract class AppRouter {
@@ -11,6 +12,7 @@ abstract class AppRouter {
   void routeInventoryDetailsPageToImportInventoryProductsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryLocationsPage(BeepInventory beepInventory);
+  void routeInventoryDetailsPageToInventoryCountingSessionsPage(BeepInventory beepInventory, String session);
   void back();
 }
 
@@ -58,5 +60,11 @@ class AppRouterImpl extends AppRouter {
   @override
   void routeInventoryDetailsPageToInventoryLocationsPage(BeepInventory beepInventory) {
     Get.toNamed(inventoryLocationsRouterPage, arguments: beepInventory);
+  }
+
+  @override
+  void routeInventoryDetailsPageToInventoryCountingSessionsPage(BeepInventory beepInventory, String session) {
+    Get.toNamed(inventoryCountingSessionsRouterPage,
+        arguments: BeepInventorySession(beepInventory: beepInventory, session: session));
   }
 }

@@ -4,6 +4,7 @@ import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/di/create_inventory_page_bindings.dart';
 import 'package:beep/core/di/home_page_bindings.dart';
 import 'package:beep/core/di/import_inventory_products_bindings.dart';
+import 'package:beep/core/di/inventory_counting_sessions_bindings.dart';
 import 'package:beep/core/di/inventory_details_bindings.dart';
 import 'package:beep/core/di/inventory_location_bindings.dart';
 import 'package:beep/core/di/login_page_bindings.dart';
@@ -14,11 +15,13 @@ import 'package:beep/core/di/splash_page_bindings.dart';
 import 'package:beep/features/createinventory/presentation/create_inventory_page.dart';
 import 'package:beep/features/home/presentation/router/home_router.dart';
 import 'package:beep/features/importinventoryproducts/presentation/pages/import_inventory_products_page.dart';
+import 'package:beep/features/inventorycountingsessions/presentation/pages/inventory_counting_sessions.dart';
 import 'package:beep/features/inventoryemployees/presentation/pages/inventory_employees.dart';
 import 'package:beep/features/inventorylocations/presentation/pages/inventory_location_page.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
 import 'package:beep/features/splash/presentation/splash_page.dart';
+import 'package:beep/shared/model/inventory_counting_session.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -77,8 +80,11 @@ void main() async {
       GetPage(
         name: inventoryLocationsRouterPage,
         page: () => InventoryLocationPage(),
-        binding: InventoryLocationBindings()
-      )    
+        binding: InventoryLocationBindings()),    
+      GetPage(
+        name: inventoryCountingSessionsRouterPage,
+        page: () => InventoryCountingSessionsPage(),
+        binding: InventoryCountingSessionsBindings()),   
     ],
   ));
 }

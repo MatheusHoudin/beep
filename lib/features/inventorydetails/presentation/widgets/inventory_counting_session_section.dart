@@ -1,4 +1,5 @@
 import 'package:beep/core/constants/dimens.dart';
+import 'package:beep/features/inventorydetails/domain/controller/inventory_details_controller.dart';
 import 'package:beep/features/inventorydetails/presentation/widgets/register_inventory_session_dialog.dart';
 import 'package:beep/shared/model/inventory_counting_session.dart';
 import 'package:beep/shared/widgets/empty_list.dart';
@@ -53,11 +54,14 @@ class InventoryCountingSessionSection extends StatelessWidget {
     return ListView.builder(
       itemCount: inventoryCountingSessions.length,
       scrollDirection: Axis.vertical,
-      itemBuilder: (context, index) => SimpleListItem(
+      itemBuilder: (context, index) => InkWell(
+        onTap: () => Get.find<InventoryDetailsController>().routeToInventoryCountingSessions(inventoryCountingSessions[index].name),
+        child: SimpleListItem(
         title: inventoryCountingSessions[index].name,
         description: '',
         hasDescription: false,
         isExpandedVertically: true,
+      ),
       ),
     );
   }

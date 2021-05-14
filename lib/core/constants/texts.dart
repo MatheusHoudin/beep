@@ -138,3 +138,9 @@ const addInventoryLocationLocationDescriptionFieldHint = 'Digite a descrição d
 const addInventoryLocationInvalidNameError = 'O nome do inventário não pode estar vazio';
 const addInventoryLocationAddButton = 'CRIAR ENDEREÇO';
 // inventory_locations
+
+// inventory_counting_sessions
+const inventoryCountingSessionsAppBarTitle = 'Gerenciar sessões de contagem';
+const inventoryCountingSessionsInfo =
+    'Aqui você pode criar sessões de contagem, atribuindo colaboradores aos seus respectivos endereços para contagem.';
+// inventory_counting_sessions

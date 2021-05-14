@@ -1,5 +1,6 @@
 import 'package:beep/core/error/exception.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
+import 'package:beep/shared/model/beep_inventory_counting_session_options.dart';
 import 'package:beep/shared/model/inventory_counting_session.dart';
 import 'package:beep/shared/model/inventory_employee.dart';
 import 'package:beep/shared/model/inventory_location.dart';
@@ -30,6 +31,9 @@ abstract class BeepInventoryRepository {
       String companyCode, String inventoryCode, InventoryCountingSession inventoryCountingSession);
 
   Future<List<InventoryCountingSession>> fetchInventoryCountingSessions(String companyCode, String inventoryCode);
+
+  Future<BeepInventoryCountingSessionsOptions> fetchInventoryCountingSessionsOptions(
+      String companyCode, String inventoryCode);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -244,6 +248,25 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       return inventoryCountingSessions.docs.map((e) => InventoryCountingSession.fromJson(e.data())).toList();
     } catch (e) {
       throw GenericException();
+    }
+  }
+
+  @override
+  Future<BeepInventoryCountingSessionsOptions> fetchInventoryCountingSessionsOptions(
+      String companyCode, String inventoryCode) async {
+    try {
+      final inventoryReference =
+          firestore.collection('companies').doc(companyCode).collection('inventories').doc(inventoryCode);
+
+      final inventoryLocationsResult = await inventoryReference.collection('locations').get();
+      final inventoryEmployeesResult = await inventoryReference.collection('employees').get();
+
+      final inventoryLocations = inventoryLocationsResult.docs.map((e) => e.data()['name'].toString()).toList();
+      final inventoryEmployees = inventoryEmployeesResult.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
+
+      return BeepInventoryCountingSessionsOptions(employees: inventoryEmployees, locations: inventoryLocations);
+    } catch (e) {
+      throw e;
     }
   }
 }
