@@ -67,6 +67,6 @@ class RegisterControllerImpl extends RegisterController {
 
   @override
   bool isPasswordObscure() {
-    return !_isPasswordVisible.value;
+    return _isPasswordVisible.value;
   }
 }

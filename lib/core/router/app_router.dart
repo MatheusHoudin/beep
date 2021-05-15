@@ -13,6 +13,7 @@ abstract class AppRouter {
   void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryLocationsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryCountingSessionsPage(BeepInventory beepInventory, String session);
+  void logOut();
   void back();
 }
 
@@ -66,5 +67,10 @@ class AppRouterImpl extends AppRouter {
   void routeInventoryDetailsPageToInventoryCountingSessionsPage(BeepInventory beepInventory, String session) {
     Get.toNamed(inventoryCountingSessionsRouterPage,
         arguments: BeepInventorySession(beepInventory: beepInventory, session: session));
+  }
+
+  @override
+  void logOut() {
+    Get.offAndToNamed(loginPage);
   }
 }

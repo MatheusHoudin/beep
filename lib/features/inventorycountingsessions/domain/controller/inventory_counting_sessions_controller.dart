@@ -81,6 +81,7 @@ class InventoryCountingSessionsControllerImpl extends InventoryCountingSessionsC
     }
     router.back();
     feedbackMessageProvider.showOneButtonDialog(allocationCreatedSuccessfulyTitle, allocationCreatedSuccessfulyMessage);
+    fetchInventoryCountingSessionAllocations();
   }
 
   void _handleFailure(Failure failure) {

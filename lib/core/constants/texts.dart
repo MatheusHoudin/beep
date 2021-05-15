@@ -51,6 +51,13 @@ const registerPageRegisterSuccessMessage =
     'Sua conta foi criada com sucesso, utilize seu email e senha para fazer login';
 // register_page
 
+// home
+const logOutConfirmationDialogTitle = 'Sair';
+const logOutConfirmationDialogMessage = 'Tem certeza de que deseja sair?';
+const logOutConfirmationDialogConfirm = 'Confirmar';
+const logOutConfirmationDialogCancel = 'Cancelar';
+// home
+
 // home_company
 const companyHi = 'Olá ';
 const companyWelcome = ', seja bem vindo (a)';
