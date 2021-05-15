@@ -1,5 +1,6 @@
 import 'package:beep/core/error/failure.dart';
 import 'package:beep/core/router/app_router.dart';
+import 'package:beep/features/inventorycountingsessions/domain/usecase/fetch_inventory_counting_session_allocations_use_case.dart';
 import 'package:beep/features/inventorycountingsessions/domain/usecase/fetch_inventory_counting_sessions_options_use_case.dart';
 import 'package:beep/features/inventorycountingsessions/domain/usecase/register_inventory_counting_session_allocation_use_case.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
@@ -15,9 +16,11 @@ abstract class InventoryCountingSessionsController extends GetxController {
   void initialize(BeepInventorySession beepInventorySession);
   String getInventoryTitle();
   void fetchInventoryCountingSessionsOptions();
+  void fetchInventoryCountingSessionAllocations();
   void registerAllocation(String employeeEmail, String location);
   List<InventoryEmployee> getInventoryEmployees();
   List<String> getInventoryLocations();
+  List<InventoryCountingSessionAllocation> getAllocations();
 }
 
 class InventoryCountingSessionsControllerImpl extends InventoryCountingSessionsController {
@@ -25,17 +28,20 @@ class InventoryCountingSessionsControllerImpl extends InventoryCountingSessionsC
   final LoadingProvider loadingProvider;
   final FeedbackMessageProvider feedbackMessageProvider;
   final FetchInventoryCountingSessionsOptionsUseCase fetchInventoryCountingSessionsOptionsUseCase;
+  final FetchInventoryCountingSessionAllocationsUseCase fetchInventoryCountingSessionAllocationsUseCase;
   final RegisterInventoryCountingSessionAllocationUseCase registerInventoryCountingSessionAllocationUseCase;
 
   BeepInventoryCountingSessionsOptions beepInventoryCountingSessionsOptions;
   BeepInventorySession beepInventorySession;
+  List<InventoryCountingSessionAllocation> allocations = [];
 
   InventoryCountingSessionsControllerImpl(
       {this.loadingProvider,
       this.router,
       this.feedbackMessageProvider,
       this.fetchInventoryCountingSessionsOptionsUseCase,
-      this.registerInventoryCountingSessionAllocationUseCase});
+      this.registerInventoryCountingSessionAllocationUseCase,
+      this.fetchInventoryCountingSessionAllocationsUseCase});
 
   @override
   void initialize(BeepInventorySession beepInventorySession) {
@@ -63,12 +69,10 @@ class InventoryCountingSessionsControllerImpl extends InventoryCountingSessionsC
         RegisterInventoryCountingSessionAllocationParams(
             inventoryCode: beepInventorySession.beepInventory.id,
             session: beepInventorySession.session,
-            inventoryCountingSessionAllocation:
-                InventoryCountingSessionAllocation(
-                  employee: beepInventoryCountingSessionsOptions.employees.firstWhere(
-                    (element) => element.email == employeeEmail), location: location)
-                  )
-                );
+            inventoryCountingSessionAllocation: InventoryCountingSessionAllocation(
+                employee: beepInventoryCountingSessionsOptions.employees
+                    .firstWhere((element) => element.email == employeeEmail),
+                location: location)));
 
     loadingProvider.hideFullscreenLoading();
     if (allocationResult != null) {
@@ -96,5 +100,25 @@ class InventoryCountingSessionsControllerImpl extends InventoryCountingSessionsC
   @override
   List<String> getInventoryLocations() {
     return beepInventoryCountingSessionsOptions.locations;
+  }
+
+  @override
+  void fetchInventoryCountingSessionAllocations() async {
+    loadingProvider.showFullscreenLoading();
+
+    final allocationsResult = await fetchInventoryCountingSessionAllocationsUseCase(
+        FetchInventoryCountingSessionAllocationsParams(
+            inventoryCode: beepInventorySession.beepInventory.id, session: beepInventorySession.session));
+
+    loadingProvider.hideFullscreenLoading();
+    allocationsResult.fold(_handleFailure, (sessionAllocations) {
+      this.allocations = sessionAllocations;
+      update();
+    });
+  }
+
+  @override
+  List<InventoryCountingSessionAllocation> getAllocations() {
+    return allocations;
   }
 }

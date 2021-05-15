@@ -3,6 +3,7 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/features/inventorycountingsessions/domain/controller/inventory_counting_sessions_controller.dart';
+import 'package:beep/features/inventorycountingsessions/presentation/widgets/allocations_list_section.dart';
 import 'package:beep/features/inventorycountingsessions/presentation/widgets/register_inventory_counting_session_dialog.dart';
 import 'package:beep/shared/model/beep_inventory_session.dart';
 import 'package:beep/shared/widgets/app_bar_details_section.dart';
@@ -56,7 +57,9 @@ class InventoryCountingSessionsPage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CreateCountingSessionButton(controller)
+          CreateCountingSessionButton(controller),
+          SizedBox(height: mediumSize),
+          Expanded(child: AllocationsListSection())
         ],
       ),
     );

@@ -38,6 +38,9 @@ abstract class BeepInventoryRepository {
 
   Future registerInventoryCountingSessionAllocation(String companyCode, String inventoryCode, String countingSession,
       InventoryCountingSessionAllocation inventoryCountingSessionAllocation);
+
+  Future<List<InventoryCountingSessionAllocation>> fetchInventoryCountingSessionAllocations(
+      String companyCode, String inventoryCode, String countingSession);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -292,10 +295,28 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .get();
 
       if (allocationAlreadyExists.size > 0) throw AllocationAlreadyExistsException();
-      
+
       return await allocationsReference.add(inventoryCountingSessionAllocation.toJson());
     } catch (e) {
       throw e;
+    }
+  }
+
+  @override
+  Future<List<InventoryCountingSessionAllocation>> fetchInventoryCountingSessionAllocations(
+      String companyCode, String inventoryCode, String countingSession) async {
+    try {
+      final allocationsResult = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .get();
+
+      return allocationsResult.docs.map((e) => InventoryCountingSessionAllocation.fromJson(e.data())).toList();
+    } catch (_) {
+      throw GenericException();
     }
   }
 }

@@ -150,4 +150,5 @@ const allocationAlreadyExistsFailureTitle = 'Não foi possível realizar o cadas
 const allocationAlreadyExistsFailureMessage = 'Esta alocação já está feita na presente contagem';
 const allocationCreatedSuccessfulyTitle = 'Sucesso!';
 const allocationCreatedSuccessfulyMessage = 'Alocação criada com sucesso';
+const allocationsEmptyListMessage = 'Não existem alocações desta sessão de inventário criadas no momento.';
 // inventory_counting_sessions

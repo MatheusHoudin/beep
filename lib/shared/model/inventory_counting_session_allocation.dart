@@ -7,6 +7,13 @@ class InventoryCountingSessionAllocation extends Equatable {
 
   InventoryCountingSessionAllocation({this.employee, this.location});
 
+  factory InventoryCountingSessionAllocation.fromJson(Map<String, dynamic> json) {
+    return InventoryCountingSessionAllocation(
+      employee: InventoryEmployee.fromJson(json['employee']),
+      location: json['location']
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {'employee': employee.toJson(), 'location': location};
   }
