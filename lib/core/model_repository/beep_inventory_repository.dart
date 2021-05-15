@@ -291,12 +291,17 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       final allocationAlreadyExists = await allocationsReference
           .where('employee', isEqualTo: inventoryCountingSessionAllocation.employee.toJson())
           .where('location', isEqualTo: inventoryCountingSessionAllocation.location)
+          .where('session', isEqualTo: countingSession)
           .limit(1)
           .get();
 
       if (allocationAlreadyExists.size > 0) throw AllocationAlreadyExistsException();
 
-      return await allocationsReference.add(inventoryCountingSessionAllocation.toJson());
+      return await allocationsReference.add({
+        'employee': inventoryCountingSessionAllocation.employee.toJson(),
+        'location': inventoryCountingSessionAllocation.location,
+        'session': countingSession
+      });
     } catch (e) {
       throw e;
     }
@@ -312,6 +317,7 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .collection('inventories')
           .doc(inventoryCode)
           .collection('allocations')
+          .where('session', isEqualTo: countingSession)
           .get();
 
       return allocationsResult.docs.map((e) => InventoryCountingSessionAllocation.fromJson(e.data())).toList();

@@ -2,6 +2,7 @@ import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/router/app_router.dart';
+import 'package:beep/features/home/presentation/widgets/log_out_confirmation_dialog.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,10 +53,16 @@ class HomeHeader extends StatelessWidget {
                   ),
                 )
               ),
-              SvgPicture.asset(
-                logout,
-                width: normalSize,
-                height: normalSize,
+              InkWell(
+                onTap: () => Get.dialog(LogOutConfirmationDialog()),
+                child: Padding(
+                  padding: EdgeInsets.all(mediumSmallSize),
+                  child: SvgPicture.asset(
+                    logout,
+                    width: normalSize,
+                    height: normalSize
+                  ),
+                )
               )
             ],
           ),

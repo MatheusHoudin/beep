@@ -89,7 +89,7 @@ void main() async {
 }
 
 String getInitialRoute(bool shouldHideOnboarding, String loggedUserId) {
-  if (loggedUserId != null) return homeRouterPage;
+  if (loggedUserId != null && loggedUserId.isNotEmpty) return homeRouterPage;
   return (shouldHideOnboarding != null && shouldHideOnboarding)
       ? loginPage
       : splashPage;
