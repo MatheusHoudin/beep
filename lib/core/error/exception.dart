@@ -45,6 +45,11 @@ class InventoryLocationAlreadyExistsException extends Equatable implements Excep
   List<Object> get props => ["InventoryLocationAlreadyExistsException"];
 }
 
+class AllocationAlreadyExistsException extends Equatable implements Exception {
+  @override
+  List<Object> get props => ["AllocationAlreadyExistsException"];
+}
+
 class InventoryCountingSessionAlreadyExistsException extends Equatable implements Exception {
   @override
   List<Object> get props => ["InventoryCountingSessionAlreadyExistsException"];

@@ -2,6 +2,7 @@ import 'package:beep/core/error/exception.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/beep_inventory_counting_session_options.dart';
 import 'package:beep/shared/model/inventory_counting_session.dart';
+import 'package:beep/shared/model/inventory_counting_session_allocation.dart';
 import 'package:beep/shared/model/inventory_employee.dart';
 import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/model/inventory_product.dart';
@@ -34,6 +35,9 @@ abstract class BeepInventoryRepository {
 
   Future<BeepInventoryCountingSessionsOptions> fetchInventoryCountingSessionsOptions(
       String companyCode, String inventoryCode);
+
+  Future registerInventoryCountingSessionAllocation(String companyCode, String inventoryCode, String countingSession,
+      InventoryCountingSessionAllocation inventoryCountingSessionAllocation);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -262,9 +266,34 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       final inventoryEmployeesResult = await inventoryReference.collection('employees').get();
 
       final inventoryLocations = inventoryLocationsResult.docs.map((e) => e.data()['name'].toString()).toList();
-      final inventoryEmployees = inventoryEmployeesResult.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
+      final inventoryEmployees =
+          inventoryEmployeesResult.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
 
       return BeepInventoryCountingSessionsOptions(employees: inventoryEmployees, locations: inventoryLocations);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @override
+  Future registerInventoryCountingSessionAllocation(String companyCode, String inventoryCode, String countingSession,
+      InventoryCountingSessionAllocation inventoryCountingSessionAllocation) async {
+    try {
+      final allocationsReference = firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations');
+      final allocationAlreadyExists = await allocationsReference
+          .where('employee', isEqualTo: inventoryCountingSessionAllocation.employee.toJson())
+          .where('location', isEqualTo: inventoryCountingSessionAllocation.location)
+          .limit(1)
+          .get();
+
+      if (allocationAlreadyExists.size > 0) throw AllocationAlreadyExistsException();
+      
+      return await allocationsReference.add(inventoryCountingSessionAllocation.toJson());
     } catch (e) {
       throw e;
     }

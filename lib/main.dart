@@ -21,7 +21,6 @@ import 'package:beep/features/inventorylocations/presentation/pages/inventory_lo
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
 import 'package:beep/features/splash/presentation/splash_page.dart';
-import 'package:beep/shared/model/inventory_counting_session.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
