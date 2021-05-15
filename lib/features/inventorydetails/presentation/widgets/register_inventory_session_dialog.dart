@@ -21,7 +21,7 @@ class _RegisterInventorySessionDialogState extends State<RegisterInventorySessio
 
   @override
   Widget build(BuildContext context) {
-    return BaseDialog(
+    return BaseDialog( 
       content: Content(),
     );
   }

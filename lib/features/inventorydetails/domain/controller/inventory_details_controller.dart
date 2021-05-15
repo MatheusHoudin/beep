@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 
 abstract class InventoryDetailsController extends GetxController {
   void initialize(String inventoryId);
+  void routeToInventoryCountingSessions(String selectedSession);
   void routeToImportInventoryProductsPage();
   void routeToInventoryEmployeesPage();
   void routeToInventoryLocationsPage();
@@ -119,5 +120,10 @@ class InventoryDetailsControllerImpl extends InventoryDetailsController {
   @override
   List<InventoryCountingSession> getInventorySessions() {
     return inventoryCountingSessions;
+  }
+
+  @override
+  void routeToInventoryCountingSessions(String selectedSession) {
+    router.routeInventoryDetailsPageToInventoryCountingSessionsPage(beepInventory, selectedSession);
   }
 }

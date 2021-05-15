@@ -38,7 +38,7 @@ class _InventoryLocationPageState extends State<InventoryLocationPage> {
               CustomAppBar(
                 isWhiteStyle: true,
                 hasIcon: true,
-                icon: inventoryDetailsAddressesIcon,
+                icon: inventoryAddressGreen,
                 appBarTitle: inventoryLocationsToolbarTitle,
                 onBackPressed: () => null,
               ),

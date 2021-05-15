@@ -19,3 +19,4 @@ const spreadsheetIcon = 'assets/images/spreadsheet.png';
 const googleDriveIcon = 'assets/images/google_drive.svg';
 const greenBarcodeIcon = 'assets/images/green_barcode.svg';
 const productWeightIcon = 'assets/images/product_weight.svg';
+const inventoryAddressGreen = 'assets/images/inventory_address_green.svg';

@@ -6,4 +6,5 @@ const createInventoryRouterPage = '/createInventory';
 const inventoryDetailsRouterPage = '/inventoryDetails';
 const importInventoryProductsRouterPage = '/importInventoryProducts';
 const inventoryEmployeesRouterPage = '/inventoryEmployees';
-const inventoryLocationsRouterPage = '/inventoryELocations';
+const inventoryLocationsRouterPage = '/inventoryLocations';
+const inventoryCountingSessionsRouterPage = '/inventoryCountingSessions';
