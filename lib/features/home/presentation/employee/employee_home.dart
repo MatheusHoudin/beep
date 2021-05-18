@@ -6,9 +6,16 @@ class EmployeeHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HomeHeader(),
+        HomeHeader(
+          isCompany: false,
+          loggedEntityName: "Matheus Gomes",
+        ),
         Expanded(
-          child: Container(),
+          child: Center(
+            child: Container(
+              child: Text("EMPLOYEE"),
+            ),
+          ),
         )
       ],
     );

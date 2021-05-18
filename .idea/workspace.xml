@@ -43,15 +43,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01fd1866-6d26-4baa-974a-6af039d690a1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/di/register_inventory_employee_bindings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/di/register_inventory_employee_bindings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/error/exception.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/error/exception.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/inventorydetails/domain/controller/inventory_details_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventorydetails/domain/controller/inventory_details_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/inventorydetails/presentation/pages/inventory_details_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventorydetails/presentation/pages/inventory_details_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/inventoryemployees/domain/controller/inventory_employees_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/inventoryemployees/domain/controller/inventory_employees_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/feedback/feedback_message_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/feedback/feedback_message_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/constants/texts.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/constants/texts.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/home/presentation/company/company_home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/home/presentation/company/company_home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/home/presentation/employee/employee_home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/home/presentation/employee/employee_home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/home/presentation/widgets/home_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/home/presentation/widgets/home_header.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/repository/login/login_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/repository/login/login_repository.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,10 +115,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2199" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619016124454">
+    <state x="2199" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1621375070654">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2199" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619016124454" />
+    <state x="2199" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621375070654" />
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1618273808159" />
     <state x="2012" y="92" width="1736" height="856" key="AVDManager" timestamp="1619016209660">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -133,25 +132,25 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="508" height="466" key="DebuggerActiveHint/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619284952059" />
-    <state width="1877" height="209" key="GridCell.Tab.0.bottom" timestamp="1619287074377">
+    <state width="1877" height="488" key="GridCell.Tab.0.bottom" timestamp="1621376657056">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="209" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
+    <state width="1877" height="488" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621376657056" />
     <state width="1491" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
-    <state width="1877" height="209" key="GridCell.Tab.0.center" timestamp="1619287074377">
+    <state width="1877" height="488" key="GridCell.Tab.0.center" timestamp="1621376657056">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="209" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
+    <state width="1877" height="488" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621376657056" />
     <state width="1491" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
-    <state width="1877" height="209" key="GridCell.Tab.0.left" timestamp="1619287074377">
+    <state width="1877" height="488" key="GridCell.Tab.0.left" timestamp="1621376657055">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="209" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
+    <state width="1877" height="488" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621376657055" />
     <state width="1491" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
-    <state width="1877" height="209" key="GridCell.Tab.0.right" timestamp="1619287074377">
+    <state width="1877" height="488" key="GridCell.Tab.0.right" timestamp="1621376657056">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="209" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287074377" />
+    <state width="1877" height="488" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621376657056" />
     <state width="1491" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618361948743" />
     <state x="147" y="65" key="MergeDialog" timestamp="1618273600280">
       <screen x="0" y="0" width="1536" height="824" />
@@ -161,10 +160,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1618273600287" />
-    <state x="2587" y="253" width="586" height="534" key="find.popup" timestamp="1619287004409">
+    <state x="2691" y="506" width="586" height="534" key="find.popup" timestamp="1621375055767">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2587" y="253" width="586" height="534" key="find.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619287004409" />
+    <state x="2691" y="506" width="586" height="534" key="find.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621375055767" />
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1619025719246">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -180,12 +179,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart</url>
-          <line>97</line>
+          <line>103</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/core/model_repository/beep_inventory_repository.dart</url>
-          <line>99</line>
+          <line>105</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">

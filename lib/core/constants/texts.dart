@@ -58,15 +58,16 @@ const logOutConfirmationDialogConfirm = 'Confirmar';
 const logOutConfirmationDialogCancel = 'Cancelar';
 // home
 
-// home_company
-const companyHi = 'Olá ';
-const companyWelcome = ', seja bem vindo (a)';
-const companyStart = 'Vamos começar?';
-const companyCreateInventory = 'Criar novo Inventário';
-const companyStartedInventoriesTitle = 'Iniciados';
-const companyNotStartedInventoriesTitle = 'Próximos';
-const companyFinishedInventoriesTitle = 'Finalizados';
-// home_company
+// home
+const homeHi = 'Olá ';
+const homeWelcome = ', seja bem vindo (a)';
+const homeInstructions = 'Abaixo você poderá visualizar os inventários que irá participar, fique atento as datas!';
+const homeStart = 'Vamos começar?';
+const homeCreateInventory = 'Criar novo Inventário';
+const homeStartedInventoriesTitle = 'Iniciados';
+const homeNotStartedInventoriesTitle = 'Próximos';
+const homeFinishedInventoriesTitle = 'Finalizados';
+// home
 
 // create_inventory
 const createInventoryToolbarTitle = 'CADASTRAR INVENTÁRIO';

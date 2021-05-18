@@ -34,7 +34,7 @@ class _CompanyHomeState extends State<CompanyHome> {
             children: [
               HomeHeader(
                 isCompany: true,
-                companyName: c.getCompanyName(),
+                loggedEntityName: c.getCompanyName(),
               ),
               SizedBox(height: smallSize,),
               Expanded(
@@ -47,9 +47,9 @@ class _CompanyHomeState extends State<CompanyHome> {
                 SingleChildScrollView(
                   child: Column(
                     children: [
-                      _inventorySection(companyStartedInventoriesTitle, c.getStartedInventories(), c),
-                      _inventorySection(companyNotStartedInventoriesTitle, c.getNotStartedInventories(), c),
-                      _inventorySection(companyFinishedInventoriesTitle, c.getFinishedInventories(), c)
+                      _inventorySection(homeStartedInventoriesTitle, c.getStartedInventories(), c),
+                      _inventorySection(homeNotStartedInventoriesTitle, c.getNotStartedInventories(), c),
+                      _inventorySection(homeFinishedInventoriesTitle, c.getFinishedInventories(), c)
                     ],
                   ),
                 )

@@ -1,4 +1,5 @@
 import 'package:beep/core/constants/assets.dart';
+import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/router/app_router.dart';
@@ -11,9 +12,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class HomeHeader extends StatelessWidget {
   final bool isCompany;
-  final String companyName;
+  final String loggedEntityName;
 
-  HomeHeader({this.isCompany, this.companyName});
+  HomeHeader({this.isCompany, this.loggedEntityName});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class HomeHeader extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  '$companyHi$companyName',
+                  '$homeHi$loggedEntityName',
                   style: GoogleFonts.firaSans(
                     color: Colors.black,
                     fontSize: mediumTextSize
@@ -66,13 +67,13 @@ class HomeHeader extends StatelessWidget {
               )
             ],
           ),
-          _createInventorySection()
+          isCompany ? CreateInventorySection() : EmployeeInventoryInstructions()
         ],
       ),
     );
   }
 
-  Widget _createInventorySection() {
+  Widget CreateInventorySection() {
     return Container(
       margin: EdgeInsets.only(
         top: smallSize
@@ -80,7 +81,7 @@ class HomeHeader extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            companyStart,
+            homeStart,
             style: GoogleFonts.firaSans(
               color: Colors.black,
               fontSize: normalTextSize
@@ -90,11 +91,29 @@ class HomeHeader extends StatelessWidget {
           PrimaryButton(
             paddingHorizontal: largeSize,
             paddingVertical: tinySize,
-            buttonText: companyCreateInventory,
+            buttonText: homeCreateInventory,
             onPressedCallback: () => Get.find<AppRouter>().routeHomePageToRegisterInventoryPage(),
             shouldExpand: false,
           )
         ],
+      ),
+    );
+  }
+
+  Widget EmployeeInventoryInstructions() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: smallSize,
+        left: smallSize,
+        right: smallSize
+      ),
+      child: Text(
+        homeInstructions,
+        textAlign: TextAlign.center,
+        style: GoogleFonts.firaSans(
+          fontSize: smallSize,
+          color: secondaryColor
+        ),
       ),
     );
   }
