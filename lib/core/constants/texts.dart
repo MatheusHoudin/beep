@@ -159,3 +159,8 @@ const allocationCreatedSuccessfulyTitle = 'Sucesso!';
 const allocationCreatedSuccessfulyMessage = 'Alocação criada com sucesso';
 const allocationsEmptyListMessage = 'Não existem alocações desta sessão de inventário criadas no momento.';
 // inventory_counting_sessions
+
+// home_employee
+const homeEmployeeInstructionsFirst = 'Abaixo você poderá visualizar os inventários que irá participar,';
+const homeEmployeeInstructionsSecond = 'fique atento as datas!';
+// home_employee

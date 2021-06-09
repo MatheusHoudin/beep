@@ -1,6 +1,7 @@
 import 'package:beep/core/auth_repository/auth_repository.dart';
 import 'package:beep/core/model_repository/beep_inventory_repository.dart';
 import 'package:beep/features/home/domain/controller/company_controller.dart';
+import 'package:beep/features/home/domain/controller/employee_controller.dart';
 import 'package:beep/features/home/domain/controller/home_router_controller.dart';
 import 'package:beep/features/home/domain/usecase/fetch_company_inventories_use_case.dart';
 import 'package:beep/features/home/domain/usecase/format_company_inventories_per_status_use_case.dart';
@@ -49,5 +50,9 @@ class HomePageBinding extends Bindings {
         fetchCompanyInventoriesUseCase: Get.find(),
         formatCompanyInventoriesPerStatusUseCase: Get.find(),
         router: Get.find()));
+    Get.put<EmployeeController>(EmployeeControllerImpl(
+      getLoggedUserUseCase: Get.find(),
+      formatCompanyInventoriesPerStatusUseCase: Get.find()
+    ));
   }
 }
