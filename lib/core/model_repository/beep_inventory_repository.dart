@@ -15,6 +15,8 @@ abstract class BeepInventoryRepository {
 
   Future<List<BeepInventory>> fetchCompanyInventories(String companyCode);
 
+  Future<List<BeepInventory>> fetchCompanyStartedInventories(String companyCode);
+
   Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId);
 
   Future importInventoryProductsToInventory(
@@ -62,6 +64,24 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
     try {
       final inventoriesSnapshot =
           await firestore.collection('companies').doc(companyCode).collection('inventories').get();
+
+      return inventoriesSnapshot.docs
+          .map((e) => BeepInventory.fromJson(e.data()..putIfAbsent('id', () => e.id)))
+          .toList();
+    } catch (_) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future<List<BeepInventory>> fetchCompanyStartedInventories(String companyCode) async {
+    try {
+      final inventoriesSnapshot = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .where('status', isEqualTo: 'Started')
+          .get();
 
       return inventoriesSnapshot.docs
           .map((e) => BeepInventory.fromJson(e.data()..putIfAbsent('id', () => e.id)))

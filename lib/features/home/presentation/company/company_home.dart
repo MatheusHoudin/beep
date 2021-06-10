@@ -34,7 +34,7 @@ class _CompanyHomeState extends State<CompanyHome> {
             children: [
               HomeHeader(
                 isCompany: true,
-                companyName: c.getCompanyName(),
+                loggedUserName: c.getLoggedUserName(),
               ),
               SizedBox(height: smallSize,),
               Expanded(

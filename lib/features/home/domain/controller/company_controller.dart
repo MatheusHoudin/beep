@@ -9,7 +9,7 @@ import 'package:beep/shared/model/inventories_per_status.dart';
 import 'package:get/get.dart';
 
 abstract class CompanyController extends GetxController {
-  String getCompanyName();
+  String getLoggedUserName();
 
   bool isLoadingInventories();
 
@@ -45,7 +45,7 @@ class CompanyControllerImpl extends CompanyController {
   });
 
   @override
-  String getCompanyName() {
+  String getLoggedUserName() {
     return loggedUser?.name ?? "";
   }
 

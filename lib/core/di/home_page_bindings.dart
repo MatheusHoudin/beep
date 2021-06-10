@@ -1,15 +1,19 @@
 import 'package:beep/core/auth_repository/auth_repository.dart';
 import 'package:beep/core/model_repository/beep_inventory_repository.dart';
 import 'package:beep/features/home/domain/controller/company_controller.dart';
+import 'package:beep/features/home/domain/controller/employee_controller.dart';
 import 'package:beep/features/home/domain/controller/home_router_controller.dart';
 import 'package:beep/features/home/domain/usecase/fetch_company_inventories_use_case.dart';
+import 'package:beep/features/home/domain/usecase/fetch_employee_inventories_use_case.dart';
 import 'package:beep/features/home/domain/usecase/format_company_inventories_per_status_use_case.dart';
 import 'package:beep/features/home/domain/usecase/get_logged_user_use_case.dart';
 import 'package:beep/features/home/domain/usecase/logout_use_case.dart';
+import 'package:beep/shared/datasource/employeeinventories/fetch_employee_inventories_remote_data_source.dart';
 import 'package:beep/shared/datasource/listinventory/fetch_company_inventories_remote_data_source.dart';
 import 'package:beep/shared/datasource/user/user_local_datasource.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
 import 'package:beep/shared/feedback/loading_provider.dart';
+import 'package:beep/shared/repository/employeeinventories/fetch_employee_inventories_repository.dart';
 import 'package:beep/shared/repository/home/get_logged_user_repository.dart';
 import 'package:beep/shared/repository/home/logout_user_repository.dart';
 import 'package:beep/shared/repository/listinventory/fetch_company_inventories_repository.dart';
@@ -31,7 +35,11 @@ class HomePageBinding extends Bindings {
     Get.put<LoadingProvider>(LoadingProviderImpl(), permanent: true);
     Get.put<FetchCompanyInventoriesRemoteDataSource>(
         FetchCompanyInventoriesRemoteDataSourceImpl(repository: Get.find()));
+    Get.put<FetchEmployeeInventoriesRemoteDataSource>(
+        FetchEmployeeInventoriesRemoteDataSourceImpl(repository: Get.find()));
     Get.put<UserLocalDataSource>(UserLocalDataSourceImpl(sharedPreferences: Get.find()));
+    Get.put<FetchEmployeeInventoriesRepository>(FetchEmployeeInventoriesRepositoryImpl(
+        networkInfo: Get.find(), remoteDataSource: Get.find(), userLocalDataSource: Get.find()));
     Get.put<FetchCompanyInventoriesRepository>(
         FetchCompanyInventoriesRepositoryImpl(networkInfo: Get.find(), remoteDataSource: Get.find()));
     Get.put<GetLoggedUserRepository>(GetLoggedUserRepositoryImpl(dataSource: Get.find()));
@@ -41,6 +49,7 @@ class HomePageBinding extends Bindings {
     Get.put<GetLoggedUserUseCase>(GetLoggedUserUseCase(repository: Get.find()));
     Get.put<FetchCompanyInventoriesUseCase>(FetchCompanyInventoriesUseCase(repository: Get.find()));
     Get.put<FormatCompanyInventoriesPerStatusUseCase>(FormatCompanyInventoriesPerStatusUseCase());
+    Get.put<FetchEmployeeInventoriesUseCase>(FetchEmployeeInventoriesUseCase(repository: Get.find()));
     Get.put<HomeRouterController>(HomeRouterControllerImpl(
         getLoggedUserUseCase: Get.find(), loadingProvider: Get.find(), logOutUseCase: Get.find(), router: Get.find()));
     Get.put<CompanyController>(CompanyControllerImpl(
@@ -48,6 +57,12 @@ class HomePageBinding extends Bindings {
         feedbackMessageProvider: Get.find(),
         fetchCompanyInventoriesUseCase: Get.find(),
         formatCompanyInventoriesPerStatusUseCase: Get.find(),
+        router: Get.find()));
+    Get.put<EmployeeController>(EmployeeControllerImpl(
+        getLoggedUserUseCase: Get.find(),
+        feedbackMessageProvider: Get.find(),
+        fetchEmployeeInventoriesUseCase: Get.find(),
+        loadingProvider: Get.find(),
         router: Get.find()));
   }
 }

@@ -72,7 +72,7 @@ class AppRouterImpl extends AppRouter {
 
   @override
   void logOut() {
-    Get.offAndToNamed(loginPage);
+    Get.offAllNamed(loginPage);
   }
 
   @override

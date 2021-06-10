@@ -11,9 +11,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class HomeHeader extends StatelessWidget {
   final bool isCompany;
-  final String companyName;
+  final String loggedUserName;
 
-  HomeHeader({this.isCompany, this.companyName});
+  HomeHeader({this.isCompany, this.loggedUserName});
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +21,16 @@ class HomeHeader extends StatelessWidget {
       width: Get.size.width,
       padding: EdgeInsets.all(smallSize),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(extraHugeSize),
-          bottomRight: Radius.circular(extraHugeSize)
-        )
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(extraHugeSize), bottomRight: Radius.circular(extraHugeSize))),
       child: Column(
         children: [
           Row(
             children: [
               Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100)
-                ),
-                margin: EdgeInsets.only(
-                  right: smallSize
-                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                margin: EdgeInsets.only(right: smallSize),
                 child: Image.asset(
                   beepLogo,
                   width: hugeSize,
@@ -45,28 +38,19 @@ class HomeHeader extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Text(
-                  '$companyHi$companyName',
-                  style: GoogleFonts.firaSans(
-                    color: Colors.black,
-                    fontSize: mediumTextSize
-                  ),
-                )
-              ),
+                  child: Text(
+                '$companyHi$loggedUserName',
+                style: GoogleFonts.firaSans(color: Colors.black, fontSize: mediumTextSize),
+              )),
               InkWell(
-                onTap: () => Get.dialog(LogOutConfirmationDialog()),
-                child: Padding(
-                  padding: EdgeInsets.all(mediumSmallSize),
-                  child: SvgPicture.asset(
-                    logout,
-                    width: normalSize,
-                    height: normalSize
-                  ),
-                )
-              )
+                  onTap: () => Get.dialog(LogOutConfirmationDialog()),
+                  child: Padding(
+                    padding: EdgeInsets.all(mediumSmallSize),
+                    child: SvgPicture.asset(logout, width: normalSize, height: normalSize),
+                  ))
             ],
           ),
-          _createInventorySection()
+          isCompany ? _createInventorySection() : _employeeInstructionsSection()
         ],
       ),
     );
@@ -74,19 +58,16 @@ class HomeHeader extends StatelessWidget {
 
   Widget _createInventorySection() {
     return Container(
-      margin: EdgeInsets.only(
-        top: smallSize
-      ),
+      margin: EdgeInsets.only(top: smallSize),
       child: Column(
         children: [
           Text(
             companyStart,
-            style: GoogleFonts.firaSans(
-              color: Colors.black,
-              fontSize: normalTextSize
-            ),
+            style: GoogleFonts.firaSans(color: Colors.black, fontSize: normalTextSize),
           ),
-          SizedBox(height: tinySize,),
+          SizedBox(
+            height: tinySize,
+          ),
           PrimaryButton(
             paddingHorizontal: largeSize,
             paddingVertical: tinySize,
@@ -94,6 +75,26 @@ class HomeHeader extends StatelessWidget {
             onPressedCallback: () => Get.find<AppRouter>().routeHomePageToRegisterInventoryPage(),
             shouldExpand: false,
           )
+        ],
+      ),
+    );
+  }
+
+  Widget _employeeInstructionsSection() {
+    return Container(
+      margin: EdgeInsets.only(top: largeSize, left: miniSize, right: miniSize),
+      child: Column(
+        children: [
+          Text(
+            homeEmployeeInstructionsFirst,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.firaSans(color: Colors.black, fontSize: normalTextSize),
+          ),
+          Text(
+            homeEmployeeInstructionsSecond,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.firaSans(color: Colors.black, fontSize: normalTextSize, fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );
