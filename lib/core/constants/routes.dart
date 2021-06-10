@@ -8,3 +8,4 @@ const importInventoryProductsRouterPage = '/importInventoryProducts';
 const inventoryEmployeesRouterPage = '/inventoryEmployees';
 const inventoryLocationsRouterPage = '/inventoryLocations';
 const inventoryCountingSessionsRouterPage = '/inventoryCountingSessions';
+const employeeInventoryAllocationsRouterPage = '/employeeInventoryAllocations';
