@@ -82,7 +82,7 @@ class HomeHeader extends StatelessWidget {
 
   Widget _employeeInstructionsSection() {
     return Container(
-      margin: EdgeInsets.only(top: largeSize, left: mediumSmallSize, right: mediumSmallSize),
+      margin: EdgeInsets.only(top: largeSize, left: miniSize, right: miniSize),
       child: Column(
         children: [
           Text(
