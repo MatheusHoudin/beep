@@ -72,7 +72,7 @@ class InventoryCountingSessionsControllerImpl extends InventoryCountingSessionsC
             inventoryCountingSessionAllocation: InventoryCountingSessionAllocation(
                 employee: beepInventoryCountingSessionsOptions.employees
                     .firstWhere((element) => element.email == employeeEmail),
-                location: location)));
+                location: beepInventoryCountingSessionsOptions.locations.firstWhere((e) => e.name == location))));
 
     loadingProvider.hideFullscreenLoading();
     if (allocationResult != null) {
@@ -100,7 +100,7 @@ class InventoryCountingSessionsControllerImpl extends InventoryCountingSessionsC
 
   @override
   List<String> getInventoryLocations() {
-    return beepInventoryCountingSessionsOptions.locations;
+    return beepInventoryCountingSessionsOptions.locations.map((e) => e.name).toList();
   }
 
   @override

@@ -1,6 +1,8 @@
 import 'package:beep/core/error/exception.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/beep_inventory_counting_session_options.dart';
+import 'package:beep/shared/model/beep_user.dart';
+import 'package:beep/shared/model/employee_inventory_allocation.dart';
 import 'package:beep/shared/model/inventory_counting_session.dart';
 import 'package:beep/shared/model/inventory_counting_session_allocation.dart';
 import 'package:beep/shared/model/inventory_employee.dart';
@@ -16,6 +18,8 @@ abstract class BeepInventoryRepository {
   Future<List<BeepInventory>> fetchCompanyInventories(String companyCode);
 
   Future<List<BeepInventory>> fetchCompanyStartedInventories(String companyCode);
+
+  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(String inventoryCode, BeepUser loggedUser);
 
   Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId);
 
@@ -288,7 +292,7 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       final inventoryLocationsResult = await inventoryReference.collection('locations').get();
       final inventoryEmployeesResult = await inventoryReference.collection('employees').get();
 
-      final inventoryLocations = inventoryLocationsResult.docs.map((e) => e.data()['name'].toString()).toList();
+      final inventoryLocations = inventoryLocationsResult.docs.map((e) => InventoryLocation.fromJson(e.data())).toList();
       final inventoryEmployees =
           inventoryEmployeesResult.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
 
@@ -310,7 +314,7 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .collection('allocations');
       final allocationAlreadyExists = await allocationsReference
           .where('employee', isEqualTo: inventoryCountingSessionAllocation.employee.toJson())
-          .where('location', isEqualTo: inventoryCountingSessionAllocation.location)
+          .where('location', isEqualTo: inventoryCountingSessionAllocation.location.name)
           .where('session', isEqualTo: countingSession)
           .limit(1)
           .get();
@@ -319,8 +323,9 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
 
       return await allocationsReference.add({
         'employee': inventoryCountingSessionAllocation.employee.toJson(),
-        'location': inventoryCountingSessionAllocation.location,
-        'session': countingSession
+        'location': inventoryCountingSessionAllocation.location.toJson(),
+        'session': countingSession,
+        'status': 'NotStarted'
       });
     } catch (e) {
       throw e;
@@ -341,6 +346,23 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .get();
 
       return allocationsResult.docs.map((e) => InventoryCountingSessionAllocation.fromJson(e.data())).toList();
+    } catch (_) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(String inventoryCode, BeepUser loggedUser) async {
+    try {
+      final employeeAllocationsResult = await firestore
+          .collection('companies')
+          .doc(loggedUser.companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .where('employee', isEqualTo: {'name': loggedUser.name, 'email': loggedUser.email}).get();
+
+      return employeeAllocationsResult.docs.map((e) => EmployeeInventoryAllocation.fromJson(e.data())).toList();
     } catch (_) {
       throw GenericException();
     }

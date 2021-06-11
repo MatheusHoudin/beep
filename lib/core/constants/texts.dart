@@ -161,7 +161,9 @@ const allocationsEmptyListMessage = 'Não existem alocações desta sessão de i
 // inventory_counting_sessions
 
 // employee_inventory_allocations
-const employeeInventoryAllocationsInstructions = "Abaixo estão os endereços que você irá realizar contagem neste inventário";
+const employeeInventoryAllocationsInstructions =
+    "Abaixo estão os endereços que você irá realizar contagem neste inventário";
+const noEmployeeInventoryAllocations = "Você não está alocado para nenhuma contagem neste inventário";
 // employee_inventory_allocations
 
 // home_employee
