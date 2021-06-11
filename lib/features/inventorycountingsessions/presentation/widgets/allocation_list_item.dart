@@ -61,7 +61,7 @@ class AllocationListItem extends StatelessWidget {
         ),
         SizedBox(width: mediumSmallSize,),
         Text(
-          allocation.location,
+          allocation.location.name,
           style: GoogleFonts.firaSans(fontSize: mediumTextSize, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ],

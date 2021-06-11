@@ -2,6 +2,7 @@ import 'package:beep/core/constants/keys.dart';
 import 'package:beep/core/constants/routes.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/di/create_inventory_page_bindings.dart';
+import 'package:beep/core/di/employee_inventory_allocations_bindings.dart';
 import 'package:beep/core/di/home_page_bindings.dart';
 import 'package:beep/core/di/import_inventory_products_bindings.dart';
 import 'package:beep/core/di/inventory_counting_sessions_bindings.dart';
@@ -13,6 +14,7 @@ import 'package:beep/core/di/register_inventory_employee_bindings.dart';
 import 'package:beep/core/di/register_page_bindings.dart';
 import 'package:beep/core/di/splash_page_bindings.dart';
 import 'package:beep/features/createinventory/presentation/create_inventory_page.dart';
+import 'package:beep/features/employeeinventoryallocations/presentation/pages/employee_inventory_allocations_page.dart';
 import 'package:beep/features/home/presentation/router/home_router.dart';
 import 'package:beep/features/importinventoryproducts/presentation/pages/import_inventory_products_page.dart';
 import 'package:beep/features/inventorycountingsessions/presentation/pages/inventory_counting_sessions.dart';
@@ -84,6 +86,10 @@ void main() async {
         name: inventoryCountingSessionsRouterPage,
         page: () => InventoryCountingSessionsPage(),
         binding: InventoryCountingSessionsBindings()),   
+      GetPage(
+        name: employeeInventoryAllocationsRouterPage,
+        page: () => EmployeeInventoryAllocationsPage(),
+        binding: EmployeeInventoryAllocationsPageBindings()),     
     ],
   ));
 }

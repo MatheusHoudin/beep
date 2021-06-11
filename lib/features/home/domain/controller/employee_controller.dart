@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 abstract class EmployeeController extends GetxController {
   void initialize();
   void fetchEmployeeInventories();
+  void routeToInventoryAllocationsPage(int inventoryIndex);
   String getLoggedUserName();
   List<BeepInventory> getEmployeeInventories();
 }
@@ -62,5 +63,10 @@ class EmployeeControllerImpl extends EmployeeController {
   @override
   List<BeepInventory> getEmployeeInventories() {
     return _employeeInventories;
+  }
+
+  @override
+  void routeToInventoryAllocationsPage(int inventoryIndex) {
+    router.routeHomePageToEmployeeInventoryAllocationsPage(_employeeInventories[inventoryIndex]);
   }
 }

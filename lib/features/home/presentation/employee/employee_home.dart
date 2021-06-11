@@ -43,6 +43,7 @@ class _EmployeeHomeState extends State<EmployeeHome> {
                         itemCount: c.getEmployeeInventories().length,
                         itemBuilder: (context, index) => InventoryItem(
                           inventory: c.getEmployeeInventories()[index],
+                          onClicked: () => c.routeToInventoryAllocationsPage(index),
                         ),
                       ),
               )
