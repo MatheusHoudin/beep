@@ -8,3 +8,4 @@ const notStartedInventoryBackground = Color(0xff52D5F1);
 const negativeColor = Color(0xffF15252);
 const secondaryNegativeColor = Color(0xffED3A3A);
 const grayColor = Color(0xff7A7A7A);
+const countingGray = Color(0xffD8DCE5);

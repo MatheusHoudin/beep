@@ -18,7 +18,8 @@ class EmployeeInventoryAllocationsPageBindings extends Bindings {
     Get.lazyPut<EmployeeInventoryAllocationsController>(() => EmployeeInventoryAllocationsControllerImpl(
       feedbackMessageProvider: Get.find(),
       fetchEmployeeInventoryAllocationsUseCase: Get.find(),
-      loadingProvider: Get.find()
+      loadingProvider: Get.find(),
+      router: Get.find()
     ));
   }
 }

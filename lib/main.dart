@@ -10,6 +10,7 @@ import 'package:beep/core/di/inventory_details_bindings.dart';
 import 'package:beep/core/di/inventory_location_bindings.dart';
 import 'package:beep/core/di/login_page_bindings.dart';
 import 'package:beep/core/di/main_bindings.dart';
+import 'package:beep/core/di/register_counting_page_bindings.dart';
 import 'package:beep/core/di/register_inventory_employee_bindings.dart';
 import 'package:beep/core/di/register_page_bindings.dart';
 import 'package:beep/core/di/splash_page_bindings.dart';
@@ -22,6 +23,7 @@ import 'package:beep/features/inventoryemployees/presentation/pages/inventory_em
 import 'package:beep/features/inventorylocations/presentation/pages/inventory_location_page.dart';
 import 'package:beep/features/login/presentation/pages/login_page.dart';
 import 'package:beep/features/register/presentation/register_page.dart';
+import 'package:beep/features/registercounting/presentation/pages/register_counting_page.dart';
 import 'package:beep/features/splash/presentation/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +92,10 @@ void main() async {
         name: employeeInventoryAllocationsRouterPage,
         page: () => EmployeeInventoryAllocationsPage(),
         binding: EmployeeInventoryAllocationsPageBindings()),     
+      GetPage(
+        name: registerCountingRouterPage,
+        page: () => RegisterCountingPage(),
+        binding: RegisterCountingPageBindings()),  
     ],
   ));
 }

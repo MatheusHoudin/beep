@@ -9,3 +9,4 @@ const inventoryEmployeesRouterPage = '/inventoryEmployees';
 const inventoryLocationsRouterPage = '/inventoryLocations';
 const inventoryCountingSessionsRouterPage = '/inventoryCountingSessions';
 const employeeInventoryAllocationsRouterPage = '/employeeInventoryAllocations';
+const registerCountingRouterPage = '/registerCounting';
