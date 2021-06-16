@@ -17,6 +17,7 @@ const companyCodeKey = 'companycode';
 const genericErrorMessage = "Um erro inesperado ocorreu";
 const genericErrorMessageTitle = "Ops...";
 const genericErrorButton = "OK";
+const notImplementedMessage = "Esta funcionalidade estará disponível em breve!!!";
 const noInternetConnectionError = "Sua conexão com a internet parece estar fraca, verifique e tente novamente";
 // errors
 
@@ -171,3 +172,12 @@ const homeEmployeeInstructionsFirst = 'Abaixo você poderá visualizar os invent
 const homeEmployeeInstructionsSecond = 'fique atento as datas!';
 const noEmployeeInventories = 'Você ainda não foi cadastrado em nenhum inventário';
 // home_employee
+
+// register_counting_page
+const registerCountingPageCameraInstructions =
+    "Posicione o código de barras do produto na área da câmera, a leitura será automática";
+const registerCountingPageTurnOnCameraMessage =
+    "Ative a câmera para realizar a leitura do código de barras dos produtos";
+const registerCountingPageFinishCounting = "Finalizar Endereço";
+const registerCountingPageLastRegisteredProducts = "ÚLTIMOS PRODUTOS REGISTRADOS";
+// register_counting_page

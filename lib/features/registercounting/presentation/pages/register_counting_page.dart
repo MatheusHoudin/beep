@@ -1,10 +1,18 @@
 import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
+import 'package:beep/core/constants/texts.dart';
+import 'package:beep/core/utils/custom_beep_feedback_message.dart';
 import 'package:beep/features/registercounting/domain/controller/register_counting_controller.dart';
 import 'package:beep/features/registercounting/presentation/widgets/counting_action_toggle.dart';
 import 'package:beep/shared/model/inventory_counting_allocation.dart';
+import 'package:beep/shared/model/inventory_product.dart';
+import 'package:beep/shared/model/inventory_product_packaging.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
+import 'package:beep/shared/widgets/fullscreen_loading.dart';
+import 'package:beep/shared/widgets/inventory_product_list_item.dart';
+import 'package:beep/shared/widgets/inventory_products_list.dart';
+import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:get/get.dart';
@@ -16,6 +24,8 @@ class RegisterCountingPage extends StatefulWidget {
 }
 
 class _RegisterCountingPageState extends State<RegisterCountingPage> {
+  bool isCameraVisible = true;
+
   @override
   void initState() {
     super.initState();
@@ -59,10 +69,26 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
   Widget ContentSection() {
     return Padding(
       padding: EdgeInsets.only(top: mediumSize, left: normalSize, right: normalSize),
-      child: Column(
+      child: ListView(
+        scrollDirection: Axis.vertical,
         children: [
           CountingActionsSection(),
-          BarcodeCameraSection()
+          SizedBox(
+            height: normalSize,
+          ),
+          BarcodeCameraSection(),
+          SizedBox(
+            height: smallSize,
+          ),
+          CameraInstructionsSection(),
+          SizedBox(
+            height: normalSize,
+          ),
+          FinishInventoryButton(),
+          SizedBox(
+            height: largeSize,
+          ),
+          RegisteredProductsSection()
         ],
       ),
     );
@@ -83,34 +109,127 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
 
   Widget CameraToggleAction() {
     return CountingActionToggle(
-      color: primaryColor,
+      color: isCameraVisible ? secondaryNegativeColor : primaryColor,
       icon: Icon(
-        Icons.visibility_outlined,
+        isCameraVisible ? Icons.visibility_off_outlined : Icons.visibility_outlined,
         color: Colors.white,
       ),
-      onClick: () => null,
+      onClick: () => toggleCameraVisibility(),
     );
+  }
+
+  void toggleCameraVisibility() {
+    setState(() {
+      isCameraVisible = !isCameraVisible;
+    });
   }
 
   Widget FlashlightToggleAction() {
     return CountingActionToggle(
-      color: secondaryNegativeColor,
-      icon: Icon(
-        Icons.flash_off,
-        color: Colors.white,
-      ),
-      onClick: () => null,
-    );
+        color: primaryColor,
+        icon: Icon(
+          Icons.flash_off,
+          color: Colors.white,
+        ),
+        onClick: () => showNotImplementedSnackbar());
   }
 
   Widget BarcodeCameraSection() {
+    return Visibility(
+      visible: isCameraVisible,
+      child: Container(
+        height: Get.size.height * 0.4,
+        child: QRBarScannerCamera(
+          fit: BoxFit.fill,
+          notStartedBuilder: (_) => FullScreenLoading(
+            width: Get.size.width,
+            height: Get.size.height * 0.4,
+          ),
+          qrCodeCallback: (barcode) {
+            print(barcode);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget CameraInstructionsSection() {
+    return Text(
+      isCameraVisible ? registerCountingPageCameraInstructions : registerCountingPageTurnOnCameraMessage,
+      textAlign: TextAlign.center,
+      style: GoogleFonts.firaSans(color: Colors.white),
+    );
+  }
+
+  Widget FinishInventoryButton() {
+    return PrimaryButton(
+      buttonText: registerCountingPageFinishCounting,
+      shouldExpand: true,
+      buttonColor: secondaryNegativeColor,
+    );
+  }
+
+  Widget RegisteredProductsSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          registerCountingPageLastRegisteredProducts,
+          textAlign: TextAlign.start,
+          style: GoogleFonts.firaSans(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: normalSize,
+        ),
+        Column(
+          children: [
+            InventoryProduct(
+                code: "3254634234343",
+                inventoryProductPackaging: InventoryProductPackaging.KG,
+                name: "Oleo de oliva natural 250ML",
+                quantity: 20.5),
+            InventoryProduct(
+                code: "3254634234343",
+                inventoryProductPackaging: InventoryProductPackaging.UND,
+                name: "Oleo de oliva natural 250ML",
+                quantity: 20.0),
+            InventoryProduct(
+                code: "3254634234343",
+                inventoryProductPackaging: InventoryProductPackaging.KG,
+                name: "Oleo de oliva natural 250ML",
+                quantity: 20.0),
+            InventoryProduct(
+                code: "3254634234343",
+                inventoryProductPackaging: InventoryProductPackaging.KG,
+                name: "Oleo de oliva natural 250ML",
+                quantity: 20.0),
+            InventoryProduct(
+                code: "3254634234343",
+                inventoryProductPackaging: InventoryProductPackaging.KG,
+                name: "Oleo de oliva natural 250ML",
+                quantity: 20.0),
+            InventoryProduct(
+                code: "3254634234343",
+                inventoryProductPackaging: InventoryProductPackaging.KG,
+                name: "Oleo de oliva natural 250ML",
+                quantity: 20.0),
+            InventoryProduct(
+                code: "3254634234343",
+                inventoryProductPackaging: InventoryProductPackaging.KG,
+                name: "Oleo de oliva natural 250ML",
+                quantity: 20.0),
+          ].map((e) => InventoryProductItem(e)).toList(),
+        )
+      ],
+    );
+  }
+
+  Widget InventoryProductItem(InventoryProduct inventoryProduct) {
     return Container(
-      width: Get.size.width,
-      height: Get.size.height * 0.4,
-      child: QRBarScannerCamera(
-        qrCodeCallback: (barcode) {
-          print(barcode);
-        },
+      margin: EdgeInsets.only(bottom: mediumSmallSize),
+      child: InventoryProductListItem(
+        inventoryProduct: inventoryProduct,
+        shouldShowProductCount: true,
       ),
     );
   }
