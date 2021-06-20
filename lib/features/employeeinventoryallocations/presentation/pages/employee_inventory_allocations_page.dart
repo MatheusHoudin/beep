@@ -28,7 +28,7 @@ class _EmployeeInventoryAllocationsPageState extends State<EmployeeInventoryAllo
     _inventory = Get.arguments as BeepInventory;
     Get.find<EmployeeInventoryAllocationsController>().initialize(_inventory);
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      Get.find<EmployeeInventoryAllocationsController>().fetchEmployeeInventoryAllocations();
+      Get.find<EmployeeInventoryAllocationsController>().fetchEmployeeInventoryData();
     });
   }
 

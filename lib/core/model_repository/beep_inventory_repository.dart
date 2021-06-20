@@ -19,7 +19,10 @@ abstract class BeepInventoryRepository {
 
   Future<List<BeepInventory>> fetchCompanyStartedInventories(String companyCode);
 
-  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(String inventoryCode, BeepUser loggedUser);
+  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(
+      String inventoryCode, BeepUser loggedUser);
+
+  Future<List<InventoryProduct>> fetchInventoryProducts(String companyCode, String inventoryCode);
 
   Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId);
 
@@ -292,7 +295,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       final inventoryLocationsResult = await inventoryReference.collection('locations').get();
       final inventoryEmployeesResult = await inventoryReference.collection('employees').get();
 
-      final inventoryLocations = inventoryLocationsResult.docs.map((e) => InventoryLocation.fromJson(e.data())).toList();
+      final inventoryLocations =
+          inventoryLocationsResult.docs.map((e) => InventoryLocation.fromJson(e.data())).toList();
       final inventoryEmployees =
           inventoryEmployeesResult.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
 
@@ -352,7 +356,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
   }
 
   @override
-  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(String inventoryCode, BeepUser loggedUser) async {
+  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(
+      String inventoryCode, BeepUser loggedUser) async {
     try {
       final employeeAllocationsResult = await firestore
           .collection('companies')
@@ -364,6 +369,23 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
 
       return employeeAllocationsResult.docs.map((e) => EmployeeInventoryAllocation.fromJson(e.data())).toList();
     } catch (_) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future<List<InventoryProduct>> fetchInventoryProducts(String companyCode, String inventoryCode) async {
+    try {
+      final inventoryProductsResult = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('products')
+          .get();
+
+      return inventoryProductsResult.docs.map((e) => InventoryProduct.fromJson(e.data())).toList();
+    } catch (e) {
       throw GenericException();
     }
   }
