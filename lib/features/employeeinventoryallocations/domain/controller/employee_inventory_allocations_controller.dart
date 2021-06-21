@@ -62,7 +62,7 @@ class EmployeeInventoryAllocationsControllerImpl extends EmployeeInventoryAlloca
 
   @override
   void routeToRegisterCounting(EmployeeInventoryAllocation allocation) {
-    router.routeEmployeeInventoryAllocationsPageToRegisterCountingPage(
-        InventoryCountingAllocation(beepInventory: _beepInventory, employeeInventoryAllocation: allocation));
+    router.routeEmployeeInventoryAllocationsPageToRegisterCountingPage(InventoryCountingAllocation(
+        beepInventory: _beepInventory, employeeInventoryAllocation: allocation, products: _products));
   }
 }

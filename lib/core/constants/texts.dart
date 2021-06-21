@@ -180,4 +180,10 @@ const registerCountingPageTurnOnCameraMessage =
     "Ative a câmera para realizar a leitura do código de barras dos produtos";
 const registerCountingPageFinishCounting = "Finalizar Endereço";
 const registerCountingPageLastRegisteredProducts = "ÚLTIMOS PRODUTOS REGISTRADOS";
+const registerCountingPageProductName = "Produto";
+const registerCountingPageProductCode = "Código";
+const registerCountingPageProductPackaging = "Embalagem";
+const registerCountingPageQuantityHint = "Quantidade";
+const registerCountingPageCancelButton = "Cancelar";
+const registerCountingPageRegisterButton = "Registrar";
 // register_counting_page

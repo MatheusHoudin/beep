@@ -5,6 +5,8 @@ import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/utils/custom_beep_feedback_message.dart';
 import 'package:beep/features/registercounting/domain/controller/register_counting_controller.dart';
 import 'package:beep/features/registercounting/presentation/widgets/counting_action_toggle.dart';
+import 'package:beep/features/registercounting/presentation/widgets/finish_allocation_counting_button.dart';
+import 'package:beep/features/registercounting/presentation/widgets/register_product_counting_section.dart';
 import 'package:beep/shared/model/inventory_counting_allocation.dart';
 import 'package:beep/shared/model/inventory_product.dart';
 import 'package:beep/shared/model/inventory_product_packaging.dart';
@@ -50,7 +52,7 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
                 onBackPressed: () => null,
               ),
               LocationText(c.getLocationName()),
-              Expanded(child: ContentSection())
+              Expanded(child: ContentSection(c))
             ],
           ),
         ),
@@ -66,31 +68,41 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
     );
   }
 
-  Widget ContentSection() {
-    return Padding(
+  Widget ContentSection(RegisterCountingController controller) {
+    final foundProduct = controller.getFoundInventoryProduct();
+    return Container(
+      width: Get.size.width,
       padding: EdgeInsets.only(top: mediumSize, left: normalSize, right: normalSize),
       child: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          CountingActionsSection(),
-          SizedBox(
-            height: normalSize,
-          ),
-          BarcodeCameraSection(),
-          SizedBox(
-            height: smallSize,
-          ),
-          CameraInstructionsSection(),
-          SizedBox(
-            height: normalSize,
-          ),
-          FinishInventoryButton(),
+          foundProduct == null ? RegisterProductSection(controller) : RegisterProductCountingSection(inventoryProduct: foundProduct,),
           SizedBox(
             height: largeSize,
           ),
           RegisteredProductsSection()
         ],
       ),
+    );
+  }
+
+  Widget RegisterProductSection(RegisterCountingController controller) {
+    return Column(
+      children: [
+        CountingActionsSection(),
+        SizedBox(
+          height: normalSize,
+        ),
+        BarcodeCameraSection(controller),
+        SizedBox(
+          height: smallSize,
+        ),
+        CameraInstructionsSection(),
+        SizedBox(
+          height: normalSize,
+        ),
+        FinishCountingButton(controller),
+      ],
     );
   }
 
@@ -134,7 +146,7 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
         onClick: () => showNotImplementedSnackbar());
   }
 
-  Widget BarcodeCameraSection() {
+  Widget BarcodeCameraSection(RegisterCountingController controller) {
     return Visibility(
       visible: isCameraVisible,
       child: Container(
@@ -145,9 +157,7 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
             width: Get.size.width,
             height: Get.size.height * 0.4,
           ),
-          qrCodeCallback: (barcode) {
-            print(barcode);
-          },
+          qrCodeCallback: (barcode) => controller.findProductByBarCode(barcode),
         ),
       ),
     );
@@ -161,11 +171,11 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
     );
   }
 
-  Widget FinishInventoryButton() {
-    return PrimaryButton(
-      buttonText: registerCountingPageFinishCounting,
-      shouldExpand: true,
-      buttonColor: secondaryNegativeColor,
+  Widget FinishCountingButton(RegisterCountingController controller) {
+    return FinishAllocationCountingButton(
+      companyCode: controller.getLoggedUserCompanyCode(),
+      inventoryCode: controller.getInventoryCode(),
+      inventoryLocation: controller.getInventoryLocation(),
     );
   }
 
