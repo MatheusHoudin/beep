@@ -8,19 +8,22 @@ class InventoryProduct extends Equatable {
   final double quantity;
   final InventoryProductPackaging inventoryProductPackaging;
 
-  InventoryProduct({
-    this.name,
-    this.code,
-    this.inventoryProductPackaging,
-    this.quantity = 0.0
-  });
+  InventoryProduct({this.name, this.code, this.inventoryProductPackaging, this.quantity = 0.0});
 
   factory InventoryProduct.fromJson(Map<String, dynamic> json) {
     return InventoryProduct(
-      name: json['name'],
-      code: json['code'],
-      quantity: json['quantity'] ?? 0.0,
-      inventoryProductPackaging: json['packaging'].toString().convertStringToInventoryProductPackaging()
+        name: json['name'],
+        code: json['code'],
+        quantity: json['quantity'] ?? 0.0,
+        inventoryProductPackaging: json['packaging'].toString().convertStringToInventoryProductPackaging());
+  }
+
+  InventoryProduct copyWithNewQuantity(double newQuantity) {
+    return InventoryProduct(
+      name: name,
+      code: code,
+      quantity: this.quantity + newQuantity,
+      inventoryProductPackaging: inventoryProductPackaging
     );
   }
 

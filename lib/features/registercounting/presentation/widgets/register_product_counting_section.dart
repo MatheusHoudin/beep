@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class RegisterProductCountingSection extends StatelessWidget {
   final InventoryProduct inventoryProduct;
+  final TextEditingController quantityController = TextEditingController();
 
   RegisterProductCountingSection({this.inventoryProduct});
 
@@ -30,7 +31,7 @@ class RegisterProductCountingSection extends StatelessWidget {
             children: [
               Expanded(child: ProductInfoSection(registerCountingPageProductCode, inventoryProduct.code)),
               Expanded(
-                child: ProductInfoSection(registerCountingPageProductName,
+                child: ProductInfoSection(registerCountingPageProductPackaging,
                     inventoryProduct.inventoryProductPackaging.convertInventoryProductPackagingToString()),
               )
             ],
@@ -80,6 +81,7 @@ class RegisterProductCountingSection extends StatelessWidget {
     return MainTextField(
       hint: registerCountingPageQuantityHint,
       textInputType: TextInputType.number,
+      controller: quantityController,
     );
   }
 
@@ -97,6 +99,7 @@ class RegisterProductCountingSection extends StatelessWidget {
       buttonText: registerCountingPageRegisterButton,
       shouldExpand: true,
       buttonColor: primaryColor,
+      onPressedCallback: () => Get.find<RegisterCountingController>().registerFoundProduct(quantityController.text),
     );
   }
 }

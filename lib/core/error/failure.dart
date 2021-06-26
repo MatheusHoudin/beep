@@ -137,3 +137,13 @@ class AllocationAlreadyExistsFailure extends Failure {
   @override
   List<Object> get props => [message, title];
 }
+
+class AllocationNotFoundFailure extends Failure {
+  final String title;
+  final String message;
+
+  AllocationNotFoundFailure({this.message, this.title}) : super(title, message);
+
+  @override
+  List<Object> get props => [message, title];
+}

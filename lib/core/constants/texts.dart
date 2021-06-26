@@ -186,4 +186,9 @@ const registerCountingPageProductPackaging = "Embalagem";
 const registerCountingPageQuantityHint = "Quantidade";
 const registerCountingPageCancelButton = "Cancelar";
 const registerCountingPageRegisterButton = "Registrar";
+const registerCountingPageAllocationNotFound = "Você não está alocado para essa contagem";
+const registerCountingPageRegisterProductSuccessTitle = "Sucesso!";
+const registerCountingPageRegisterProductSuccessMessage = "A contagem para este produto foi registrada com sucesso!";
+const registerCountingPageFormatErrorTitle = "Ops...";
+const registerCountingPageFormatErrorMessage = "A quantidade fornecida é inválida, tente outra!";
 // register_counting_page

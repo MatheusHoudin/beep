@@ -55,6 +55,11 @@ class InventoryCountingSessionAlreadyExistsException extends Equatable implement
   List<Object> get props => ["InventoryCountingSessionAlreadyExistsException"];
 }
 
+class InventoryAllocationNotFoundException extends Equatable implements Exception {
+  @override
+  List<Object> get props => ["InventoryAllocationNotFoundException"];
+}
+
 class InvalidInventoryProductsFileException extends Equatable implements Exception {
   final String message;
 

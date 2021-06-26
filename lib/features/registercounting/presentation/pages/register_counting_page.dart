@@ -13,8 +13,6 @@ import 'package:beep/shared/model/inventory_product_packaging.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:beep/shared/widgets/fullscreen_loading.dart';
 import 'package:beep/shared/widgets/inventory_product_list_item.dart';
-import 'package:beep/shared/widgets/inventory_products_list.dart';
-import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:get/get.dart';
