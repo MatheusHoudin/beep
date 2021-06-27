@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:beep/core/constants/assets.dart';
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
@@ -6,6 +8,7 @@ import 'package:beep/core/utils/custom_beep_feedback_message.dart';
 import 'package:beep/features/registercounting/domain/controller/register_counting_controller.dart';
 import 'package:beep/features/registercounting/presentation/widgets/counting_action_toggle.dart';
 import 'package:beep/features/registercounting/presentation/widgets/finish_allocation_counting_button.dart';
+import 'package:beep/features/registercounting/presentation/widgets/not_found_product_section.dart';
 import 'package:beep/features/registercounting/presentation/widgets/register_product_counting_section.dart';
 import 'package:beep/shared/model/inventory_counting_allocation.dart';
 import 'package:beep/shared/model/inventory_product.dart';
@@ -25,11 +28,18 @@ class RegisterCountingPage extends StatefulWidget {
 
 class _RegisterCountingPageState extends State<RegisterCountingPage> {
   bool isCameraVisible = true;
+  Timer readBarCodeDeboucer;
 
   @override
   void initState() {
     super.initState();
     Get.find<RegisterCountingController>().initialize(Get.arguments as InventoryCountingAllocation);
+  }
+
+  @override
+  void dispose() {
+    readBarCodeDeboucer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -68,13 +78,22 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
 
   Widget ContentSection(RegisterCountingController controller) {
     final foundProduct = controller.getFoundInventoryProduct();
+    final notFoundProductCode = controller.getNotFoundProductCode();
     return Container(
       width: Get.size.width,
       padding: EdgeInsets.only(top: mediumSize, left: normalSize, right: normalSize),
       child: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          foundProduct == null ? RegisterProductSection(controller) : RegisterProductCountingSection(inventoryProduct: foundProduct,),
+          foundProduct == null && notFoundProductCode == null
+              ? RegisterProductSection(controller)
+              : (foundProduct != null
+                  ? RegisterProductCountingSection(
+                      inventoryProduct: foundProduct,
+                    )
+                  : NotFoundProductSection(
+                      productCode: notFoundProductCode,
+                    )),
           SizedBox(
             height: largeSize,
           ),
@@ -155,10 +174,18 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
             width: Get.size.width,
             height: Get.size.height * 0.4,
           ),
-          qrCodeCallback: (barcode) => controller.findProductByBarCode(barcode),
+          qrCodeCallback: (barcode) => _readBarCodeWithDebouce(barcode, controller),
         ),
       ),
     );
+  }
+
+  void _readBarCodeWithDebouce(String barcode, RegisterCountingController controller) {
+    if (readBarCodeDeboucer?.isActive ?? false) readBarCodeDeboucer.cancel();
+
+    readBarCodeDeboucer = Timer(Duration(milliseconds: 100), () {
+      controller.findProductByBarCode(barcode);
+    });
   }
 
   Widget CameraInstructionsSection() {

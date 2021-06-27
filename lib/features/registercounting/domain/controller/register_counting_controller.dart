@@ -17,9 +17,11 @@ abstract class RegisterCountingController extends GetxController {
   String getInventoryCode();
   String getLoggedUserCompanyCode();
   InventoryProduct getFoundInventoryProduct();
+  String getNotFoundProductCode();
   void findProductByBarCode(String barcode);
   void registerFoundProduct(String quantity);
   void resetFoundProduct();
+  void resetNotFoundProduct();
 }
 
 class RegisterCountingControllerImpl extends RegisterCountingController {
@@ -30,6 +32,7 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
 
   InventoryCountingAllocation _inventoryCountingAllocation;
   InventoryProduct _foundProduct;
+  String _notFoundProductCode;
 
   RegisterCountingControllerImpl(
       {this.getLoggedUserUseCase, this.loadingProvider, this.feedbackMessageProvider, this.registerCountingUseCase});
@@ -67,9 +70,12 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
 
   @override
   void findProductByBarCode(String barcode) {
-    _foundProduct = _inventoryCountingAllocation.products.firstWhere((e) => e.code == barcode);
-
-    if (_foundProduct != null) update();
+    _foundProduct = _inventoryCountingAllocation.products.firstWhere((e) => e.code == barcode, orElse: () => null);
+    
+    if (_foundProduct == null) {
+      _notFoundProductCode = barcode;
+    }
+    update();
   }
 
   @override
@@ -107,6 +113,7 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
 
         feedbackMessageProvider.showOneButtonDialog(
             registerCountingPageRegisterProductSuccessTitle, registerCountingPageRegisterProductSuccessMessage);
+        resetFoundProduct();
       } on FormatException {
         feedbackMessageProvider.showOneButtonDialog(
             registerCountingPageFormatErrorTitle, registerCountingPageFormatErrorMessage);
@@ -116,5 +123,16 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
 
   void _handleFailure(Failure failure) {
     feedbackMessageProvider.showOneButtonDialog(failure.title, failure.message);
+  }
+
+  @override
+  String getNotFoundProductCode() {
+    return _notFoundProductCode;
+  }
+
+  @override
+  void resetNotFoundProduct() {
+    _notFoundProductCode = null;
+    update();
   }
 }

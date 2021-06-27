@@ -186,9 +186,13 @@ const registerCountingPageProductPackaging = "Embalagem";
 const registerCountingPageQuantityHint = "Quantidade";
 const registerCountingPageCancelButton = "Cancelar";
 const registerCountingPageRegisterButton = "Registrar";
+const registerCountingPageTryAgain = "Tentar novamente";
 const registerCountingPageAllocationNotFound = "Você não está alocado para essa contagem";
 const registerCountingPageRegisterProductSuccessTitle = "Sucesso!";
 const registerCountingPageRegisterProductSuccessMessage = "A contagem para este produto foi registrada com sucesso!";
 const registerCountingPageFormatErrorTitle = "Ops...";
 const registerCountingPageFormatErrorMessage = "A quantidade fornecida é inválida, tente outra!";
+const registerCountingPageNotFoundProductTitle = "Produto não encontrado!";
+const registerCountingPageNotFoundProductMessageFirst = "O produto identificado pelo código ";
+const registerCountingPageNotFoundProductMessageSecond = " não está na lista de produtos deste inventário!";
 // register_counting_page
