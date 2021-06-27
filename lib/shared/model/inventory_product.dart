@@ -1,4 +1,5 @@
 import 'package:beep/shared/model/inventory_product_packaging.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:beep/core/extension/inventory_product_packaging_extensions.dart';
 import 'package:beep/core/extension/string_extensions.dart';
@@ -32,7 +33,8 @@ class InventoryProduct extends Equatable {
       'name': name,
       'code': code,
       'quantity': quantity,
-      'packaging': inventoryProductPackaging.convertInventoryProductPackagingToString()
+      'packaging': inventoryProductPackaging.convertInventoryProductPackagingToString(),
+      'updatedAt': Timestamp.now()
     };
   }
 

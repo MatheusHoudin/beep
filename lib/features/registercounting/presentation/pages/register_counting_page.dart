@@ -7,6 +7,7 @@ import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/utils/custom_beep_feedback_message.dart';
 import 'package:beep/features/registercounting/domain/controller/register_counting_controller.dart';
 import 'package:beep/features/registercounting/presentation/widgets/counting_action_toggle.dart';
+import 'package:beep/features/registercounting/presentation/widgets/counting_products_section.dart';
 import 'package:beep/features/registercounting/presentation/widgets/finish_allocation_counting_button.dart';
 import 'package:beep/features/registercounting/presentation/widgets/not_found_product_section.dart';
 import 'package:beep/features/registercounting/presentation/widgets/register_product_counting_section.dart';
@@ -97,7 +98,7 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
           SizedBox(
             height: largeSize,
           ),
-          RegisteredProductsSection()
+          RegisteredProductsSection(controller)
         ],
       ),
     );
@@ -206,58 +207,13 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
     );
   }
 
-  Widget RegisteredProductsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          registerCountingPageLastRegisteredProducts,
-          textAlign: TextAlign.start,
-          style: GoogleFonts.firaSans(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: normalSize,
-        ),
-        Column(
-          children: [
-            InventoryProduct(
-                code: "3254634234343",
-                inventoryProductPackaging: InventoryProductPackaging.KG,
-                name: "Oleo de oliva natural 250ML",
-                quantity: 20.5),
-            InventoryProduct(
-                code: "3254634234343",
-                inventoryProductPackaging: InventoryProductPackaging.UND,
-                name: "Oleo de oliva natural 250ML",
-                quantity: 20.0),
-            InventoryProduct(
-                code: "3254634234343",
-                inventoryProductPackaging: InventoryProductPackaging.KG,
-                name: "Oleo de oliva natural 250ML",
-                quantity: 20.0),
-            InventoryProduct(
-                code: "3254634234343",
-                inventoryProductPackaging: InventoryProductPackaging.KG,
-                name: "Oleo de oliva natural 250ML",
-                quantity: 20.0),
-            InventoryProduct(
-                code: "3254634234343",
-                inventoryProductPackaging: InventoryProductPackaging.KG,
-                name: "Oleo de oliva natural 250ML",
-                quantity: 20.0),
-            InventoryProduct(
-                code: "3254634234343",
-                inventoryProductPackaging: InventoryProductPackaging.KG,
-                name: "Oleo de oliva natural 250ML",
-                quantity: 20.0),
-            InventoryProduct(
-                code: "3254634234343",
-                inventoryProductPackaging: InventoryProductPackaging.KG,
-                name: "Oleo de oliva natural 250ML",
-                quantity: 20.0),
-          ].map((e) => InventoryProductItem(e)).toList(),
-        )
-      ],
+  Widget RegisteredProductsSection(RegisterCountingController controller) {
+    return CountingProductsSection(
+      companyCode: controller.getLoggedUserCompanyCode(),
+      inventoryCode: controller.getInventoryCode(),
+      inventoryLocation: controller.getInventoryLocation(),
+      loggedUser: controller.getLoggedUser(),
+      session: controller.getAllocationSession(),
     );
   }
 
