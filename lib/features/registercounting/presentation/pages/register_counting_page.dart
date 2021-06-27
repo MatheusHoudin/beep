@@ -201,6 +201,8 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
       companyCode: controller.getLoggedUserCompanyCode(),
       inventoryCode: controller.getInventoryCode(),
       inventoryLocation: controller.getInventoryLocation(),
+      loggedUser: controller.getLoggedUser(),
+      session: controller.getAllocationSession(),
     );
   }
 

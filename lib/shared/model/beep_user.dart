@@ -11,20 +11,20 @@ class BeepUser extends Equatable {
 
   factory BeepUser.fromJson(Map<String, dynamic> json) {
     return BeepUser(
-      uid: json['id'],
-      email: json['email'],
-      name: json['name'],
-      type: json['type'],
-      companyCode: json['companyCode']
-    );
+        uid: json['id'],
+        email: json['email'],
+        name: json['name'],
+        type: json['type'],
+        companyCode: json['companyCode']);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'email': email
+    };
   }
 
   @override
-  List<Object> get props => [
-    this.uid,
-    this.name,
-    this.email,
-    this.type,
-    this.companyCode
-  ];
+  List<Object> get props => [this.uid, this.name, this.email, this.type, this.companyCode];
 }

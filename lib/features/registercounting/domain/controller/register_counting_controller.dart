@@ -3,6 +3,7 @@ import 'package:beep/features/home/domain/usecase/get_logged_user_use_case.dart'
 import 'package:beep/features/registercounting/domain/usecase/register_counting_use_case.dart';
 import 'package:beep/shared/feedback/feedback_message_provider.dart';
 import 'package:beep/shared/feedback/loading_provider.dart';
+import 'package:beep/shared/model/beep_user.dart';
 import 'package:beep/shared/model/inventory_counting_allocation.dart';
 import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/model/inventory_product.dart';
@@ -18,6 +19,8 @@ abstract class RegisterCountingController extends GetxController {
   String getLoggedUserCompanyCode();
   InventoryProduct getFoundInventoryProduct();
   String getNotFoundProductCode();
+  BeepUser getLoggedUser();
+  String getAllocationSession();
   void findProductByBarCode(String barcode);
   void registerFoundProduct(String quantity);
   void resetFoundProduct();
@@ -33,6 +36,7 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
   InventoryCountingAllocation _inventoryCountingAllocation;
   InventoryProduct _foundProduct;
   String _notFoundProductCode;
+  BeepUser _loggedUser;
 
   RegisterCountingControllerImpl(
       {this.getLoggedUserUseCase, this.loadingProvider, this.feedbackMessageProvider, this.registerCountingUseCase});
@@ -40,6 +44,7 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
   @override
   void initialize(InventoryCountingAllocation inventoryCountingAllocation) {
     _inventoryCountingAllocation = inventoryCountingAllocation;
+    _loggedUser = getLoggedUserUseCase(GetLoggedUserParams());
   }
 
   @override
@@ -64,14 +69,13 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
 
   @override
   String getLoggedUserCompanyCode() {
-    final loggedUser = getLoggedUserUseCase(GetLoggedUserParams());
-    return loggedUser.companyCode;
+    return _loggedUser.companyCode;
   }
 
   @override
   void findProductByBarCode(String barcode) {
     _foundProduct = _inventoryCountingAllocation.products.firstWhere((e) => e.code == barcode, orElse: () => null);
-    
+
     if (_foundProduct == null) {
       _notFoundProductCode = barcode;
     }
@@ -134,5 +138,15 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
   void resetNotFoundProduct() {
     _notFoundProductCode = null;
     update();
+  }
+
+  @override
+  BeepUser getLoggedUser() {
+    return _loggedUser;
+  }
+
+  @override
+  String getAllocationSession() {
+    return _inventoryCountingAllocation.employeeInventoryAllocation.session;
   }
 }

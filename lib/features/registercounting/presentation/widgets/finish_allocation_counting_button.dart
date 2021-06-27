@@ -1,5 +1,6 @@
 import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/texts.dart';
+import 'package:beep/shared/model/beep_user.dart';
 import 'package:beep/shared/model/employee_inventory_allocation.dart';
 import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/widgets/primary_button.dart';
@@ -9,8 +10,10 @@ import 'package:flutter/material.dart';
 class FinishAllocationCountingButton extends StatelessWidget {
   final String companyCode, inventoryCode;
   final InventoryLocation inventoryLocation;
+  final BeepUser loggedUser;
+  final String session;
 
-  FinishAllocationCountingButton({this.companyCode, this.inventoryCode, this.inventoryLocation});
+  FinishAllocationCountingButton({this.companyCode, this.inventoryCode, this.inventoryLocation, this.loggedUser, this.session});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,8 @@ class FinishAllocationCountingButton extends StatelessWidget {
         .doc(inventoryCode)
         .collection('allocations')
         .where('location', isEqualTo: inventoryLocation.toJson())
+        .where('employee', isEqualTo: loggedUser.toJson())
+        .where('session', isEqualTo: session)
         .limit(1)
         .snapshots();
   }
