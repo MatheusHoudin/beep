@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 
 abstract class EmployeeInventoryAllocationsController extends GetxController {
   void initialize(BeepInventory beepInventory);
-  void fetchEmployeeInventoryData();
+  void fetchEmployeeInventoryData(bool isRefreshing, EmployeeInventoryAllocation allocation);
   void routeToRegisterCounting(EmployeeInventoryAllocation allocation);
   List<EmployeeInventoryAllocation> getEmployeeInventoryAllocations();
 }
@@ -42,7 +42,7 @@ class EmployeeInventoryAllocationsControllerImpl extends EmployeeInventoryAlloca
   }
 
   @override
-  void fetchEmployeeInventoryData() async {
+  void fetchEmployeeInventoryData(bool isRefreshing, EmployeeInventoryAllocation allocation) async {
     loadingProvider.showFullscreenLoading();
 
     final employeeInventoryDataResult =
@@ -54,6 +54,7 @@ class EmployeeInventoryAllocationsControllerImpl extends EmployeeInventoryAlloca
       _employeeInventoryAllocations = employeeInventoryData.allocations;
       _products = employeeInventoryData.products;
       update();
+      if (isRefreshing) _routeToRegisterCountingPage(allocation);
     });
   }
 
@@ -95,7 +96,7 @@ class EmployeeInventoryAllocationsControllerImpl extends EmployeeInventoryAlloca
     }
 
     router.back();
-    _routeToRegisterCountingPage(allocation);
+    fetchEmployeeInventoryData(true, allocation);
   }
 
   void _showChangeAllocationStatusConfirmDialog(String title, String message, EmployeeInventoryAllocation allocation) {
