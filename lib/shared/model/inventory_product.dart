@@ -20,10 +20,11 @@ class InventoryProduct extends Equatable {
   }
 
   InventoryProduct copyWithNewQuantity(double newQuantity) {
+    final quantityResult = this.quantity + newQuantity;
     return InventoryProduct(
       name: name,
       code: code,
-      quantity: this.quantity + newQuantity,
+      quantity: quantityResult < 0.0 ? 0.0 : quantityResult,
       inventoryProductPackaging: inventoryProductPackaging
     );
   }
