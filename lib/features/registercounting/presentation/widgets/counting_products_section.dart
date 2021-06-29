@@ -1,5 +1,6 @@
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
+import 'package:beep/features/registercounting/domain/controller/register_counting_controller.dart';
 import 'package:beep/shared/model/beep_user.dart';
 import 'package:beep/shared/model/inventory_location.dart';
 import 'package:beep/shared/model/inventory_product.dart';
@@ -75,9 +76,12 @@ class CountingProductsSection extends StatelessWidget {
   Widget InventoryProductItem(InventoryProduct inventoryProduct) {
     return Container(
       margin: EdgeInsets.only(bottom: mediumSmallSize),
-      child: InventoryProductListItem(
-        inventoryProduct: inventoryProduct,
-        shouldShowProductCount: true,
+      child: InkWell(
+        onTap: () => Get.find<RegisterCountingController>().setSelectedProduct(inventoryProduct),
+        child: InventoryProductListItem(
+          inventoryProduct: inventoryProduct,
+          shouldShowProductCount: true,
+        ),
       ),
     );
   }

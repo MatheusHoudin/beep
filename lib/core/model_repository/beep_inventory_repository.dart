@@ -53,6 +53,9 @@ abstract class BeepInventoryRepository {
 
   Future<List<InventoryCountingSessionAllocation>> fetchInventoryCountingSessionAllocations(
       String companyCode, String inventoryCode, String countingSession);
+
+  Future changeInventoryAllocationStatus(
+      String companyCode, String inventoryCode, EmployeeInventoryAllocation inventoryAllocation);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -444,6 +447,37 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .doc(inventoryProduct.code)
           .set(inventoryProduct.toJson());
     } catch (e) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future changeInventoryAllocationStatus(
+      String companyCode, String inventoryCode, EmployeeInventoryAllocation inventoryAllocation) async {
+    try {
+      final inventoryAllocationResult = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .where('employee', isEqualTo: inventoryAllocation.employeeAllocation.toJson())
+          .where('location', isEqualTo: inventoryAllocation.inventoryLocation.toJson())
+          .where('session', isEqualTo: inventoryAllocation.session)
+          .limit(1)
+          .get();
+
+      final inventoryAllocationId = inventoryAllocationResult.docs.first.id;
+      final foundAllocation = EmployeeInventoryAllocation.fromJson(inventoryAllocationResult.docs.first.data());
+      return await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .doc(inventoryAllocationId)
+          .update(foundAllocation.toJsonWithNewStatus());
+    } catch (_) {
       throw GenericException();
     }
   }

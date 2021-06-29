@@ -21,6 +21,7 @@ abstract class RegisterCountingController extends GetxController {
   String getNotFoundProductCode();
   BeepUser getLoggedUser();
   String getAllocationSession();
+  void setSelectedProduct(InventoryProduct selectedProduct);
   void findProductByBarCode(String barcode);
   void registerFoundProduct(String quantity);
   void resetFoundProduct();
@@ -148,5 +149,11 @@ class RegisterCountingControllerImpl extends RegisterCountingController {
   @override
   String getAllocationSession() {
     return _inventoryCountingAllocation.employeeInventoryAllocation.session;
+  }
+
+  @override
+  void setSelectedProduct(InventoryProduct selectedProduct) {
+    this._foundProduct = selectedProduct;
+    update();
   }
 }

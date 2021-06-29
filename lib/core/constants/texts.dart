@@ -196,3 +196,12 @@ const registerCountingPageNotFoundProductTitle = "Produto não encontrado!";
 const registerCountingPageNotFoundProductMessageFirst = "O produto identificado pelo código ";
 const registerCountingPageNotFoundProductMessageSecond = " não está na lista de produtos deste inventário!";
 // register_counting_page
+
+// change_allocation_status
+const changeAllocationStatusStartAllocationTitle = 'Iniciar endereço?';
+const changeAllocationStatusStartAllocationMessage = 'Você deseja realmente iniciar a contagem neste endereço?';
+const changeAllocationStatusFinishAllocationTitle = 'Finalizar endereço?';
+const changeAllocationStatusFinishAllocationMessage = 'Você deseja realmente finalizar a contagem neste endereço?';
+const changeAllocationStatusConfirm = 'Sim';
+const changeAllocationStatusCancel = 'Não';
+// change_allocation_status
