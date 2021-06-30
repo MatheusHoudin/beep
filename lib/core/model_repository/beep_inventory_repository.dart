@@ -19,7 +19,13 @@ abstract class BeepInventoryRepository {
 
   Future<List<BeepInventory>> fetchCompanyStartedInventories(String companyCode);
 
-  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(String inventoryCode, BeepUser loggedUser);
+  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(
+      String inventoryCode, BeepUser loggedUser);
+
+  Future registerInventoryProductCounting(String companyCode, String inventoryCode,
+      EmployeeInventoryAllocation inventoryAllocation, InventoryProduct inventoryProduct);
+
+  Future<List<InventoryProduct>> fetchInventoryProducts(String companyCode, String inventoryCode);
 
   Future<List<InventoryEmployee>> fetchInventoryEmployees(String companyCode, String inventoryId);
 
@@ -47,6 +53,9 @@ abstract class BeepInventoryRepository {
 
   Future<List<InventoryCountingSessionAllocation>> fetchInventoryCountingSessionAllocations(
       String companyCode, String inventoryCode, String countingSession);
+
+  Future changeInventoryAllocationStatus(
+      String companyCode, String inventoryCode, EmployeeInventoryAllocation inventoryAllocation);
 }
 
 class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
@@ -292,7 +301,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
       final inventoryLocationsResult = await inventoryReference.collection('locations').get();
       final inventoryEmployeesResult = await inventoryReference.collection('employees').get();
 
-      final inventoryLocations = inventoryLocationsResult.docs.map((e) => InventoryLocation.fromJson(e.data())).toList();
+      final inventoryLocations =
+          inventoryLocationsResult.docs.map((e) => InventoryLocation.fromJson(e.data())).toList();
       final inventoryEmployees =
           inventoryEmployeesResult.docs.map((e) => InventoryEmployee.fromJson(e.data())).toList();
 
@@ -352,7 +362,8 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
   }
 
   @override
-  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(String inventoryCode, BeepUser loggedUser) async {
+  Future<List<EmployeeInventoryAllocation>> fetchEmployeeInventoryAllocations(
+      String inventoryCode, BeepUser loggedUser) async {
     try {
       final employeeAllocationsResult = await firestore
           .collection('companies')
@@ -363,6 +374,109 @@ class BeepInventoryRepositoryImpl extends BeepInventoryRepository {
           .where('employee', isEqualTo: {'name': loggedUser.name, 'email': loggedUser.email}).get();
 
       return employeeAllocationsResult.docs.map((e) => EmployeeInventoryAllocation.fromJson(e.data())).toList();
+    } catch (_) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future<List<InventoryProduct>> fetchInventoryProducts(String companyCode, String inventoryCode) async {
+    try {
+      final inventoryProductsResult = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('products')
+          .get();
+
+      return inventoryProductsResult.docs.map((e) => InventoryProduct.fromJson(e.data())).toList();
+    } catch (e) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future registerInventoryProductCounting(String companyCode, String inventoryCode,
+      EmployeeInventoryAllocation inventoryAllocation, InventoryProduct inventoryProduct) async {
+    try {
+      final inventoryAllocationResult = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .where('employee', isEqualTo: inventoryAllocation.employeeAllocation.toJson())
+          .where('location', isEqualTo: inventoryAllocation.inventoryLocation.toJson())
+          .where('session', isEqualTo: inventoryAllocation.session)
+          .limit(1)
+          .get();
+
+      if (inventoryAllocationResult.size == 0) throw InventoryAllocationNotFoundException();
+
+      final inventoryAllocationId = inventoryAllocationResult.docs.first.id;
+      final allocationProductCounting = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .doc(inventoryAllocationId)
+          .collection('counting')
+          .doc(inventoryProduct.code)
+          .get();
+
+      if (allocationProductCounting.exists) {
+        final foundInventoryProduct = InventoryProduct.fromJson(allocationProductCounting.data());
+
+        return await allocationProductCounting.reference.set(
+            foundInventoryProduct.copyWithNewQuantity(inventoryProduct.quantity).toJson(),
+            SetOptions(
+              merge: true,
+            ));
+      }
+
+      return await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .doc(inventoryAllocationId)
+          .collection('counting')
+          .doc(inventoryProduct.code)
+          .set(inventoryProduct.toJson());
+    } catch (e) {
+      throw GenericException();
+    }
+  }
+
+  @override
+  Future changeInventoryAllocationStatus(
+      String companyCode, String inventoryCode, EmployeeInventoryAllocation inventoryAllocation) async {
+    try {
+      final inventoryAllocationResult = await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .where('employee', isEqualTo: inventoryAllocation.employeeAllocation.toJson())
+          .where('location', isEqualTo: inventoryAllocation.inventoryLocation.toJson())
+          .where('session', isEqualTo: inventoryAllocation.session)
+          .limit(1)
+          .get();
+
+      final inventoryAllocationId = inventoryAllocationResult.docs.first.id;
+      final foundAllocation = EmployeeInventoryAllocation.fromJson(inventoryAllocationResult.docs.first.data());
+      return await firestore
+          .collection('companies')
+          .doc(companyCode)
+          .collection('inventories')
+          .doc(inventoryCode)
+          .collection('allocations')
+          .doc(inventoryAllocationId)
+          .update(foundAllocation.toJsonWithNewStatus());
     } catch (_) {
       throw GenericException();
     }

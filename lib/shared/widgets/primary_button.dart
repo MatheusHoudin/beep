@@ -8,30 +8,29 @@ class PrimaryButton extends StatelessWidget {
   final bool shouldExpand;
   final double paddingHorizontal, paddingVertical;
   final Function onPressedCallback;
+  final Color buttonColor;
 
-  PrimaryButton({
-    this.buttonText,
-    this.onPressedCallback,
-    this.shouldExpand,
-    this.paddingHorizontal = 0.0,
-    this.paddingVertical = 0.0
-  });
+  PrimaryButton(
+      {this.buttonText,
+      this.onPressedCallback,
+      this.shouldExpand,
+      this.paddingHorizontal = 0.0,
+      this.paddingVertical = 0.0,
+      this.buttonColor = primaryColor});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: hugeSize,
       alignment: Alignment.center,
-      child: shouldExpand
-          ? ExpandableRawMaterialButton()
-          : NormalRawMaterialButton(),
+      child: shouldExpand ? ExpandableRawMaterialButton() : NormalRawMaterialButton(),
     );
   }
 
   Widget ExpandableRawMaterialButton() {
     return RawMaterialButton(
       constraints: BoxConstraints.expand(),
-      fillColor: primaryColor,
+      fillColor: this.buttonColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
@@ -42,7 +41,7 @@ class PrimaryButton extends StatelessWidget {
 
   Widget NormalRawMaterialButton() {
     return RawMaterialButton(
-      fillColor: primaryColor,
+      fillColor: this.buttonColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
@@ -53,16 +52,10 @@ class PrimaryButton extends StatelessWidget {
 
   Widget ButtonText() {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: paddingHorizontal,
-        vertical: paddingVertical
-      ),
+      padding: EdgeInsets.symmetric(horizontal: paddingHorizontal, vertical: paddingVertical),
       child: Text(
         buttonText,
-        style: GoogleFonts.firaSans(
-            fontSize: normalSize,
-            color: Colors.white,
-            fontWeight: FontWeight.bold),
+        style: GoogleFonts.firaSans(fontSize: normalSize, color: Colors.white, fontWeight: FontWeight.bold),
       ),
     );
   }

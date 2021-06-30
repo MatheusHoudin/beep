@@ -17,6 +17,24 @@ class EmployeeInventoryAllocation extends Equatable {
         status: json['status']);
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'employee': employeeAllocation.toJson(),
+      'location': inventoryLocation.toJson(),
+      'session': session,
+      'status': status
+    };
+  }
+
+  Map<String, dynamic> toJsonWithNewStatus() {
+    return {
+      'employee': employeeAllocation.toJson(),
+      'location': inventoryLocation.toJson(),
+      'session': session,
+      'status': status == 'Started' ? 'NotStarted' : (status == 'NotStarted' ? 'Started' : (status == 'Finished' ? 'Started' : status))
+    };
+  }
+
   @override
   List<Object> get props => [employeeAllocation, inventoryLocation, session, status];
 }

@@ -1,6 +1,7 @@
 import 'package:beep/core/constants/routes.dart';
 import 'package:beep/shared/model/beep_inventory.dart';
 import 'package:beep/shared/model/beep_inventory_session.dart';
+import 'package:beep/shared/model/inventory_counting_allocation.dart';
 import 'package:get/get.dart';
 
 abstract class AppRouter {
@@ -9,6 +10,8 @@ abstract class AppRouter {
   void routeLoginPageToHomePage();
   void routeHomePageToRegisterInventoryPage();
   void routeHomePageToEmployeeInventoryAllocationsPage(BeepInventory beepInventory);
+  void routeEmployeeInventoryAllocationsPageToRegisterCountingPage(
+      InventoryCountingAllocation inventoryCountingAllocation);
   void routeHomePageToInventoryDetailsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToImportInventoryProductsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory);
@@ -78,5 +81,11 @@ class AppRouterImpl extends AppRouter {
   @override
   void routeHomePageToEmployeeInventoryAllocationsPage(BeepInventory beepInventory) {
     Get.toNamed(employeeInventoryAllocationsRouterPage, arguments: beepInventory);
+  }
+
+  @override
+  void routeEmployeeInventoryAllocationsPageToRegisterCountingPage(
+      InventoryCountingAllocation inventoryCountingAllocation) {
+    Get.toNamed(registerCountingRouterPage, arguments: inventoryCountingAllocation);
   }
 }

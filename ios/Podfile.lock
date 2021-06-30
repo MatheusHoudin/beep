@@ -269,6 +269,9 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30908.0)
   - Flutter (1.0.0)
+  - flutter_qr_bar_scanner (0.0.1):
+    - Flutter
+    - GoogleMobileVision/BarcodeDetector
   - google_sign_in (0.0.1):
     - Flutter
     - GoogleSignIn (~> 5.0)
@@ -276,10 +279,22 @@ PODS:
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (~> 1.2)
+  - GoogleMobileVision/BarcodeDetector (1.6.0):
+    - GoogleMobileVision/Detector (~> 1.6)
+  - GoogleMobileVision/Detector (1.6.0):
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.1)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/Defines (2.3.1)
+  - GoogleToolboxForMac/Logger (2.3.1):
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.1)":
+    - GoogleToolboxForMac/Defines (= 2.3.1)
   - GoogleUtilities/AppDelegateSwizzler (7.4.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -329,9 +344,12 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - native_device_orientation (0.0.1):
+    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (1.2.12)
+  - Protobuf (3.17.0)
   - shared_preferences (0.0.1):
     - Flutter
 
@@ -340,7 +358,9 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - flutter_qr_bar_scanner (from `.symlinks/plugins/flutter_qr_bar_scanner/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
+  - native_device_orientation (from `.symlinks/plugins/native_device_orientation/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
@@ -355,7 +375,9 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - GoogleDataTransport
+    - GoogleMobileVision
     - GoogleSignIn
+    - GoogleToolboxForMac
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
@@ -364,6 +386,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - Protobuf
 
 EXTERNAL SOURCES:
   cloud_firestore:
@@ -374,8 +397,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  flutter_qr_bar_scanner:
+    :path: ".symlinks/plugins/flutter_qr_bar_scanner/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
+  native_device_orientation:
+    :path: ".symlinks/plugins/native_device_orientation/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   shared_preferences:
@@ -394,9 +421,12 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 68ad972f99206cef818230f3f3179d52ccfb7f8c
   FirebaseFirestore: f495bb336b23eca23ea5d3605dce2a4cc214fde9
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_qr_bar_scanner: 5c0324d036b4db9e5492dc876e6689dc7c38f203
   google_sign_in: 6bd214b9c154f881422f5fe27b66aaa7bbd580cc
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
+  GoogleMobileVision: 31cfb4319fd0c03d80105680abd9eae9da5e3b47
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GoogleToolboxForMac: 471e0c05d39506e50e6398f46fa9a12ae0efeff9
   GoogleUtilities: 284cddc7fffc14ae1907efb6f78ab95c1fccaedc
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
@@ -404,8 +434,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  native_device_orientation: 3b4cfc9565a7b879cc4fde282b3e27745e852d0d
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c

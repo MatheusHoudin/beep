@@ -28,7 +28,7 @@ class _EmployeeInventoryAllocationsPageState extends State<EmployeeInventoryAllo
     _inventory = Get.arguments as BeepInventory;
     Get.find<EmployeeInventoryAllocationsController>().initialize(_inventory);
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      Get.find<EmployeeInventoryAllocationsController>().fetchEmployeeInventoryAllocations();
+      Get.find<EmployeeInventoryAllocationsController>().fetchEmployeeInventoryData(false, null);
     });
   }
 
@@ -72,7 +72,7 @@ class _EmployeeInventoryAllocationsPageState extends State<EmployeeInventoryAllo
 
         return employeeAllocations.isEmpty
             ? NoEmployeeInventoryAllocations()
-            : EmployeeInventoryAllocationsList(employeeAllocations);
+            : EmployeeInventoryAllocationsList(employeeAllocations, c);
       },
     );
   }
@@ -83,11 +83,12 @@ class _EmployeeInventoryAllocationsPageState extends State<EmployeeInventoryAllo
     );
   }
 
-  Widget EmployeeInventoryAllocationsList(List<EmployeeInventoryAllocation> employeeInventoryAllocations) {
+  Widget EmployeeInventoryAllocationsList(List<EmployeeInventoryAllocation> employeeInventoryAllocations, EmployeeInventoryAllocationsController controller) {
     return ListView.builder(
       itemCount: employeeInventoryAllocations.length,
       itemBuilder: (context, index) => InventoryAllocationItem(
         employeeInventoryAllocation: employeeInventoryAllocations[index],
+        onClick: controller.routeToRegisterCounting,
       ),
     );
   }

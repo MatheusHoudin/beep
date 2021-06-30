@@ -7,23 +7,27 @@ import 'package:google_fonts/google_fonts.dart';
 
 class InventoryAllocationItem extends StatelessWidget {
   final EmployeeInventoryAllocation employeeInventoryAllocation;
+  final Function onClick;
 
-  InventoryAllocationItem({this.employeeInventoryAllocation});
+  InventoryAllocationItem({this.employeeInventoryAllocation, this.onClick});
 
   @override
   Widget build(BuildContext context) {
     final shouldShowStatus = employeeInventoryAllocation.status != 'NotStarted';
-    return SmallCardListItem(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          AllocationName(),
-          AllocationDescription(),
-          Visibility(
-            visible: shouldShowStatus,
-            child: Status(),
-          )
-        ],
+    return InkWell(
+      onTap: () => onClick(employeeInventoryAllocation),
+      child: SmallCardListItem(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AllocationName(),
+            AllocationDescription(),
+            Visibility(
+              visible: shouldShowStatus,
+              child: Status(),
+            )
+          ],
+        ),
       ),
     );
   }

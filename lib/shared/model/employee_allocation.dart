@@ -6,10 +6,14 @@ class EmployeeAllocation extends Equatable {
   EmployeeAllocation({this.name, this.email});
 
   factory EmployeeAllocation.fromJson(Map<String, dynamic> json) {
-    return EmployeeAllocation(
-      name: json['name'],
-      email: json['email']
-    );
+    return EmployeeAllocation(name: json['name'], email: json['email']);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'email': email,
+      'name': name
+    };
   }
 
   @override
