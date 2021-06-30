@@ -5,6 +5,7 @@ import 'package:beep/core/constants/colors.dart';
 import 'package:beep/core/constants/dimens.dart';
 import 'package:beep/core/constants/texts.dart';
 import 'package:beep/core/utils/custom_beep_feedback_message.dart';
+import 'package:beep/features/employeeinventoryallocations/domain/controller/employee_inventory_allocations_controller.dart';
 import 'package:beep/features/registercounting/domain/controller/register_counting_controller.dart';
 import 'package:beep/features/registercounting/presentation/widgets/counting_action_toggle.dart';
 import 'package:beep/features/registercounting/presentation/widgets/counting_products_section.dart';
@@ -34,7 +35,10 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
   @override
   void initState() {
     super.initState();
-    Get.find<RegisterCountingController>().initialize(Get.arguments as InventoryCountingAllocation);
+    final inventoryAllocation = Get.arguments as InventoryCountingAllocation;
+    final onBackPressed =
+        () => Get.find<EmployeeInventoryAllocationsController>().fetchEmployeeInventoryData(false, inventoryAllocation.employeeInventoryAllocation);
+    Get.find<RegisterCountingController>().initialize(inventoryAllocation, onBackPressed);
   }
 
   @override
@@ -204,6 +208,7 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
       inventoryLocation: controller.getInventoryLocation(),
       loggedUser: controller.getLoggedUser(),
       session: controller.getAllocationSession(),
+      onPressed: controller.finishAllocation,
     );
   }
 

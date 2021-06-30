@@ -17,7 +17,9 @@ class RegisterCountingPageBindings extends Bindings {
       getLoggedUserUseCase: Get.find(),
       feedbackMessageProvider: Get.find(),
       loadingProvider: Get.find(),
-      registerCountingUseCase: Get.find()
+      registerCountingUseCase: Get.find(),
+      changeAllocationStatusUseCase: Get.find(),
+      router: Get.find()
     ));
   }
 }

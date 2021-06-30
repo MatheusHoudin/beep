@@ -12,8 +12,9 @@ class FinishAllocationCountingButton extends StatelessWidget {
   final InventoryLocation inventoryLocation;
   final BeepUser loggedUser;
   final String session;
+  final Function onPressed;
 
-  FinishAllocationCountingButton({this.companyCode, this.inventoryCode, this.inventoryLocation, this.loggedUser, this.session});
+  FinishAllocationCountingButton({this.companyCode, this.inventoryCode, this.inventoryLocation, this.loggedUser, this.session, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,7 @@ class FinishAllocationCountingButton extends StatelessWidget {
       buttonText: registerCountingPageFinishCounting,
       shouldExpand: true,
       buttonColor: secondaryNegativeColor,
+      onPressedCallback: () => onPressed(),
     );
   }
 }

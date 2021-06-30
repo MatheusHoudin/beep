@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "215669603109-q51q4psrcd6pvsfrc885chidop28fgm1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.houdin.beep.dev",
+            "certificate_hash": "8fd88fa6e3af0330e1c08697795dc9e557a69a76"
+          }
+        },
+        {
           "client_id": "215669603109-75psk0o1ftqqcoobcq34mg9e5i6e51rg.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -37,6 +45,13 @@
             {
               "client_id": "215669603109-75psk0o1ftqqcoobcq34mg9e5i6e51rg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "215669603109-8eqg5g6p43qh24g2o3tp7c9qmngsmjfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.houdin.beep"
+              }
             }
           ]
         }
