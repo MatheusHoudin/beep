@@ -31,7 +31,7 @@ class EmployeeInventoryAllocation extends Equatable {
       'employee': employeeAllocation.toJson(),
       'location': inventoryLocation.toJson(),
       'session': session,
-      'status': status == 'Started' ? 'NotStarted' : (status == 'NotStarted' ? 'Started' : (status == 'Finished' ? 'Started' : status))
+      'status': status == 'Started' ? 'Finished' : (status == 'NotStarted' ? 'Started' : (status == 'Finished' ? 'Started' : status))
     };
   }
 

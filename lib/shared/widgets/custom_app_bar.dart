@@ -46,9 +46,12 @@ class CustomAppBar extends StatelessWidget {
             ),
             Container(
               width: Get.size.width,
+              padding: EdgeInsets.symmetric(horizontal: largeSize),
               alignment: Alignment.center,
               child: Text(
                 appBarTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.firaSans(
                     color: isWhiteStyle ? secondaryColor : Colors.white,
