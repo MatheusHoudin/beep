@@ -40,7 +40,9 @@ class InventoryCountingSessionsPage extends StatelessWidget {
                 title: controller.getInventoryTitle(),
                 bottomSection: InventoryCountingSessionsInfoSection(),
               ),
-              Expanded(child: Content(controller),)
+              Expanded(
+                child: Content(controller),
+              )
             ],
           ),
         ),
@@ -50,11 +52,7 @@ class InventoryCountingSessionsPage extends StatelessWidget {
 
   Widget Content(InventoryCountingSessionsController controller) {
     return Container(
-      margin: EdgeInsets.only(
-        right: normalSize,
-        left: normalSize,
-        top: normalSize
-      ),
+      margin: EdgeInsets.only(right: normalSize, left: normalSize, top: normalSize),
       child: Column(
         children: [
           CreateCountingSessionButton(controller),
@@ -76,7 +74,7 @@ class InventoryCountingSessionsPage extends StatelessWidget {
   Widget CreateCountingSessionButton(InventoryCountingSessionsController controller) {
     return PrimaryButton(
       shouldExpand: true,
-      buttonText: createInventoryCountingSessionButton,
+      buttonText: createInventoryCountingSessionAllocationButton,
       onPressedCallback: () => Get.dialog(RegisterInventoryCountingSessionDialog(
         employees: controller.getInventoryEmployees(),
         locations: controller.getInventoryLocations(),

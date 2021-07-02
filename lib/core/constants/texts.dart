@@ -92,6 +92,7 @@ const importProducts = "Importar produtos";
 const manageAddresses = "Gerenciar endereços";
 const manageEmployees = "Gerenciar colaboradores";
 const createInventoryCountingSessionButton = 'CRIAR SESSÃO DE CONTAGEM';
+const createInventoryCountingSessionAllocationButton = 'CRIAR ALOCAÇÃO DE CONTAGEM';
 const thereAreNoCreatedInventoryCountingSessions = 'Ainda não existem sessões de inventários criadas.';
 const createInventoryCountingSessionTitle = 'Cadastrar sessão de contagem';
 const createInventoryCountingSessionAddButton = 'Confirmar';
