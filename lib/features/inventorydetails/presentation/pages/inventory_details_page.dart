@@ -17,7 +17,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:beep/core/constants/texts.dart';
 
 class InventoryDetailsPage extends StatefulWidget {
-
   @override
   _InventoryDetailsPageState createState() => _InventoryDetailsPageState();
 }
@@ -58,8 +57,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
               child: Container(
                 width: Get.size.width,
                 height: Get.size.height,
-                color: isFabOpened ? Colors.black.withOpacity(0.5) : Colors
-                    .transparent,
+                color: isFabOpened ? Colors.black.withOpacity(0.5) : Colors.transparent,
               ),
             ),
           ],
@@ -85,32 +83,27 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
 
   Widget InventoryDetailsSection() {
     return Container(
-      margin: EdgeInsets.symmetric(
-          horizontal: smallSize,
-          vertical: mediumSmallSize
-      ),
+      margin: EdgeInsets.symmetric(horizontal: smallSize, vertical: mediumSmallSize),
       child: Column(
         children: [
           Text(
             inventory.description,
-            style: GoogleFonts.firaSans(
-                color: grayColor,
-                fontSize: normalTextSize
-            ),
+            style: GoogleFonts.firaSans(color: grayColor, fontSize: normalTextSize),
           ),
-          SizedBox(height: smallSize,),
+          SizedBox(
+            height: smallSize,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 '${inventory.date} às ${inventory.time}',
                 textAlign: TextAlign.start,
-                style: GoogleFonts.firaSans(
-                    color: grayColor,
-                    fontSize: smallTextSize
-                ),
+                style: GoogleFonts.firaSans(color: grayColor, fontSize: smallTextSize),
               ),
-              SizedBox(height: mediumSmallSize,),
+              SizedBox(
+                height: mediumSmallSize,
+              ),
               InventoryStatus()
             ],
           ),
@@ -125,17 +118,14 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
         Container(
           height: smallSize,
           width: smallSize,
-          decoration: BoxDecoration(
-              color: getInventoryStatusColor(),
-              shape: BoxShape.circle
-          ),
+          decoration: BoxDecoration(color: getInventoryStatusColor(), shape: BoxShape.circle),
         ),
-        SizedBox(width: mediumSmallSize,),
+        SizedBox(
+          width: mediumSmallSize,
+        ),
         Text(
           getInventoryStatusName(),
-          style: GoogleFonts.firaSans(
-              color: secondaryColor
-          ),
+          style: GoogleFonts.firaSans(color: secondaryColor),
         )
       ],
     );
@@ -174,8 +164,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
             child: GetBuilder<InventoryDetailsController>(
               initState: (_) {
                 SchedulerBinding.instance.addPostFrameCallback((_) {
-                  Get.find<InventoryDetailsController>()
-                      .fetchInventoryDetails();
+                  Get.find<InventoryDetailsController>().fetchInventoryDetails();
                 });
               },
               builder: (c) {
@@ -188,10 +177,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
                     });
                   },
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    ProductsSection(beepInventory?.inventoryProducts),
-                    InventorySessionsSection(c)
-                  ],
+                  children: [ProductsSection(beepInventory?.inventoryProducts), InventorySessionsSection(c)],
                 );
               },
             ),
@@ -204,47 +190,28 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
   Widget ContentSectionNavigator() {
     return Row(
       children: [
-        Expanded(
-            child: SectionNavigatorItem(productsSectionTitle, 0)
-        ),
-        Expanded(
-            child: SectionNavigatorItem(inventorySessionsSectionTitle, 1)
-        ),
+        Expanded(child: SectionNavigatorItem(productsSectionTitle, 0)),
+        Expanded(child: SectionNavigatorItem(inventorySessionsSectionTitle, 1)),
       ],
     );
   }
 
   Widget SectionNavigatorItem(String section, int pageNumber) {
     return InkWell(
-      onTap: () =>
-          pageController.animateToPage(
-              pageNumber,
-              duration: Duration(milliseconds: 500),
-              curve: Curves.ease
-          ),
+      onTap: () => pageController.animateToPage(pageNumber, duration: Duration(milliseconds: 500), curve: Curves.ease),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: mediumSmallSize,
-                vertical: smallSize
-            ),
+            padding: EdgeInsets.symmetric(horizontal: mediumSmallSize, vertical: smallSize),
             child: Text(
               section,
               textAlign: TextAlign.center,
-              style: GoogleFonts.firaSans(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: smallTextSize
-              ),
+              style: GoogleFonts.firaSans(color: Colors.white, fontWeight: FontWeight.bold, fontSize: smallTextSize),
             ),
           ),
           Visibility(
             visible: selectedPage == pageNumber,
-            child: Container(
-              color: primaryColor,
-              height: miniSize
-            ),
+            child: Container(color: primaryColor, height: miniSize),
           )
         ],
       ),
@@ -252,8 +219,9 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
   }
 
   Widget ProductsSection(List<InventoryProduct> inventoryProducts) {
-    return inventoryProducts == null || inventoryProducts.isEmpty ?
-    NoInventoryProducts() : InventoryProductsSection(inventoryProducts);
+    return inventoryProducts == null || inventoryProducts.isEmpty
+        ? NoInventoryProducts()
+        : InventoryProductsSection(inventoryProducts);
   }
 
   Widget NoInventoryProducts() {
@@ -265,7 +233,7 @@ class _InventoryDetailsPageState extends State<InventoryDetailsPage> {
   Widget InventoryProductsSection(List<InventoryProduct> inventoryProducts) {
     return InventoryProductsList(
       inventoryProducts: inventoryProducts,
-      shouldShowProductCount: true,
+      shouldShowProductCount: false,
     );
   }
 

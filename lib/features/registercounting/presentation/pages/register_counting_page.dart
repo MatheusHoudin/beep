@@ -18,6 +18,8 @@ import 'package:beep/shared/model/inventory_product_packaging.dart';
 import 'package:beep/shared/widgets/custom_app_bar.dart';
 import 'package:beep/shared/widgets/fullscreen_loading.dart';
 import 'package:beep/shared/widgets/inventory_product_list_item.dart';
+import 'package:beep/shared/widgets/main_text_field.dart';
+import 'package:beep/shared/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:get/get.dart';
@@ -31,13 +33,14 @@ class RegisterCountingPage extends StatefulWidget {
 class _RegisterCountingPageState extends State<RegisterCountingPage> {
   bool isCameraVisible = true;
   Timer readBarCodeDeboucer;
+  final TextEditingController barcodeController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     final inventoryAllocation = Get.arguments as InventoryCountingAllocation;
-    final onBackPressed =
-        () => Get.find<EmployeeInventoryAllocationsController>().fetchEmployeeInventoryData(false, inventoryAllocation.employeeInventoryAllocation);
+    final onBackPressed = () => Get.find<EmployeeInventoryAllocationsController>()
+        .fetchEmployeeInventoryData(false, inventoryAllocation.employeeInventoryAllocation);
     Get.find<RegisterCountingController>().initialize(inventoryAllocation, onBackPressed);
   }
 
@@ -115,6 +118,10 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
         SizedBox(
           height: normalSize,
         ),
+        ManualBarcodeSection(controller),
+        SizedBox(
+          height: normalSize,
+        ),
         BarcodeCameraSection(controller),
         SizedBox(
           height: smallSize,
@@ -166,6 +173,34 @@ class _RegisterCountingPageState extends State<RegisterCountingPage> {
           color: Colors.white,
         ),
         onClick: () => showNotImplementedSnackbar());
+  }
+
+  Widget ManualBarcodeSection(RegisterCountingController controller) {
+    return Column(
+      children: [
+        BarcodeTextField(),
+        SizedBox(
+          height: normalSize,
+        ),
+        SearchProductByBarcodeButton(controller)
+      ],
+    );
+  }
+
+  Widget BarcodeTextField() {
+    return MainTextField(
+      hint: registerCountingPageBarcodeHint,
+      textInputType: TextInputType.number,
+      controller: barcodeController,
+    );
+  }
+
+  Widget SearchProductByBarcodeButton(RegisterCountingController controller) {
+    return PrimaryButton(
+      buttonText: registerCountingPageSearchByBarcode,
+      shouldExpand: true,
+      onPressedCallback: () => controller.findProductByBarCode(barcodeController.text),
+    );
   }
 
   Widget BarcodeCameraSection(RegisterCountingController controller) {
