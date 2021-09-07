@@ -9,14 +9,14 @@ abstract class AppRouter {
   void routeLoginPageToRegisterPage();
   void routeLoginPageToHomePage();
   void routeHomePageToRegisterInventoryPage();
-  void routeHomePageToEmployeeInventoryAllocationsPage(BeepInventory beepInventory);
+  void routeHomePageToEmployeeAllocationsPage(BeepInventory beepInventory);
   void routeEmployeeInventoryAllocationsPageToRegisterCountingPage(
       InventoryCountingAllocation inventoryCountingAllocation);
   void routeHomePageToInventoryDetailsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToImportInventoryProductsPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryEmployeesPage(BeepInventory beepInventory);
   void routeInventoryDetailsPageToInventoryLocationsPage(BeepInventory beepInventory);
-  void routeInventoryDetailsPageToInventoryCountingSessionsPage(BeepInventory beepInventory, String session);
+  void routeInventoryDetailsPageToCountingSessionsPage(BeepInventory beepInventory, String session);
   void logOut();
   void back();
 }

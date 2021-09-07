@@ -29,6 +29,13 @@
             {
               "client_id": "952531191789-0mtcvtlce1lpo721aagtkci1fqr5mlg8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "952531191789-2aff0l39dqiuqaloqpghpei8j9scio8e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.houdin.beep"
+              }
             }
           ]
         }

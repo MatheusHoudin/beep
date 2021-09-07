@@ -27,6 +27,7 @@ import 'package:beep/features/registercounting/presentation/pages/register_count
 import 'package:beep/features/splash/presentation/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'features/inventorydetails/presentation/pages/inventory_details_page.dart';
@@ -45,6 +46,8 @@ void main() async {
     debugShowCheckedModeBanner: false,
     initialRoute: getInitialRoute(shouldHideOnboarding, loggedUserId),
     initialBinding: MainBinding(),
+    localizationsDelegates: [GlobalMaterialLocalizations.delegate],
+    supportedLocales: [Locale('pt', 'BR')],
     getPages: [
       GetPage(
           name: splashPage,
