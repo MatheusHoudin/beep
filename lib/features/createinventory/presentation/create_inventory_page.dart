@@ -12,7 +12,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CreateInventoryPage extends StatelessWidget {
-
   final TextEditingController nameController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
@@ -20,9 +19,7 @@ class CreateInventoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<CreateInventoryController>().initialize(() =>
-        Get.find<CompanyController>().fetchCompanyInventories()
-    );
+    Get.find<CreateInventoryController>().initialize(() => Get.find<CompanyController>().fetchCompanyInventories());
     return SafeArea(
       child: Scaffold(
         backgroundColor: secondaryColor,
@@ -47,9 +44,7 @@ class CreateInventoryPage extends StatelessWidget {
   Widget CreateInventoryForm(BuildContext context) {
     return GetBuilder<CreateInventoryController>(
       builder: (c) => Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: mediumSize
-        ),
+        padding: EdgeInsets.symmetric(horizontal: mediumSize),
         child: Column(
           children: [
             NameField(),
@@ -82,25 +77,24 @@ class CreateInventoryPage extends StatelessWidget {
       onTap: () => _handleDatePicker(context, c),
       child: AbsorbPointer(
         child: MainTextField(
-          hint: createInventoryDateHint,
-          controller: dateController,
-          suffixIcon: _fieldIcon(datePicker),
-          textInputType: TextInputType.text
-        ),
+            hint: createInventoryDateHint,
+            controller: dateController,
+            suffixIcon: _fieldIcon(datePicker),
+            textInputType: TextInputType.text),
       ),
     );
   }
 
   void _handleDatePicker(BuildContext context, CreateInventoryController c) async {
     final DateTime pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2030),
-      helpText: "Selecione a data inicial do inventário",
-      cancelText: "Agora não",
-      confirmText: "Pronto",
-    );
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2030),
+        helpText: "Selecione a data inicial do inventário",
+        cancelText: "Cancelar",
+        confirmText: "Pronto",
+        locale: Locale("pt", "BR"));
 
     c.setPickedDate(pickedDate);
   }
@@ -159,12 +153,8 @@ class CreateInventoryPage extends StatelessWidget {
     return PrimaryButton(
       buttonText: createInventoryButtonText,
       shouldExpand: true,
-      onPressedCallback: () => c.createInventory(
-        nameController.value.text,
-        descriptionController.value.text,
-        dateController.value.text,
-        timeController.value.text
-      ),
+      onPressedCallback: () => c.createInventory(nameController.value.text, descriptionController.value.text,
+          dateController.value.text, timeController.value.text),
     );
   }
 }
